@@ -13,6 +13,8 @@
   &nbsp;·&nbsp;
   <a href=".claude-plugin/plugin.json">Claude Code plugin</a>
   &nbsp;·&nbsp;
+  <a href=".cursor-plugin/plugin.json">Cursor plugin</a>
+  &nbsp;·&nbsp;
   <a href="LICENSE">MIT license</a>
 </p>
 
@@ -101,6 +103,14 @@ claude --plugin-dir .
 
 Enter `/gnos:learning-orchestrator Teach me [topic]`. Repeat the launch command each session; [`--plugin-dir` is session-only](https://code.claude.com/docs/en/plugins/create#load-a-plugin-for-one-session).
 
+### Cursor
+
+Open the `Gnos` folder in Cursor. The workspace loads the teaching skills and the MCP servers in [`.cursor/mcp.json`](.cursor/mcp.json). In a new agent chat, ask:
+
+> Use GNOS. Read `skills/learning-orchestrator/SKILL.md` in this workspace and teach me [topic].
+
+Enable Excalidraw and Pinepaper if Cursor asks. To install the same plugin from Customize, import this repository; the [marketplace manifest](.cursor-plugin/marketplace.json) points at this folder. Keep courses and progress here either way.
+
 ### OpenCode, Antigravity, and other agents
 
 Open the `Gnos` folder as your workspace. For **OpenCode**, run `opencode` from that folder; for **Antigravity**, open it in the editor. Send:
@@ -112,7 +122,7 @@ Use GNOS to teach me [topic]. Keep courses and progress in this workspace.
 
 This uses GNOS directly from its files; your agent needs local file and terminal access. [OpenCode also loads `AGENTS.md` automatically](https://opencode.ai/docs/rules/). Keep the repository together so its teachers, references, and scripts remain available.
 
-**Visual tools:** Codex and Claude Code load the server definitions in [`.mcp.json`](.mcp.json). For [OpenCode](https://opencode.ai/docs/mcp-servers/) or [Antigravity](https://antigravity.google/docs/mcp), configure those servers using the host's MCP format. Pinepaper needs Node.js/npm; image generation uses your agent's available tools, while PDF and video lessons need their own dependencies.
+**Visual tools:** Codex and Claude Code load the server definitions in [`.mcp.json`](.mcp.json). Cursor loads the same definitions from [`.cursor/mcp.json`](.cursor/mcp.json). For [OpenCode](https://opencode.ai/docs/mcp-servers/) or [Antigravity](https://antigravity.google/docs/mcp), configure those servers using the host's MCP format. Pinepaper needs Node.js/npm; image generation uses your agent's available tools, while PDF and video lessons need their own dependencies.
 
 For a course, share your goal, starting point, depth, and available time. To study the result, ask: **“Show my course in the browser.”**
 

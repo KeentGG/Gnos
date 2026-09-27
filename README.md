@@ -120,13 +120,13 @@ Enter `/gnos:learning-orchestrator Teach me [topic]`. Repeat the launch command 
 
 That installs the teaching skills. These buttons install the diagram servers:
 
-<p>
-  <a href="https://cursor.com/en/install-mcp?name=excalidraw&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vbWNwLmV4Y2FsaWRyYXcuY29tL21jcCJ9"><img src="https://cursor.com/deeplink/mcp-install-dark.svg" alt="Add Excalidraw to Cursor" /></a>
-  Excalidraw
-  &nbsp;&nbsp;
-  <a href="https://cursor.com/en/install-mcp?name=pinepaper&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIi1wIiwiQHBpbmVwYXBlci5zdHVkaW8vbWNwLXNlcnZlckAxLjYuNyIsIi1wIiwicHVwcGV0ZWVyQDI1LjkuMCIsInBpbmVwYXBlci1tY3AiXSwiZW52Ijp7IlBJTkVQQVBFUl9FWEVDVVRJT05fTU9ERSI6InB1cHBldGVlciIsIlBJTkVQQVBFUl9IRUFETEVTUyI6InRydWUiLCJQSU5FUEFQRVJfVE9PTEtJVCI6ImFnZW50IiwiUElORVBBUEVSX1ZFUkJPU0lUWSI6ImNvbXBhY3QiLCJQSU5FUEFQRVJfU0NSRUVOU0hPVF9NT0RFIjoib25fcmVxdWVzdCJ9fQ%3D%3D"><img src="https://cursor.com/deeplink/mcp-install-dark.svg" alt="Add Pinepaper to Cursor" /></a>
-  Pinepaper
-</p>
+[![Add Excalidraw to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=excalidraw&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vbWNwLmV4Y2FsaWRyYXcuY29tL21jcCJ9)
+
+Excalidraw
+
+[![Add Pinepaper to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=pinepaper&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIi1wIiwiQHBpbmVwYXBlci5zdHVkaW8vbWNwLXNlcnZlckAxLjYuNyIsIi1wIiwicHVwcGV0ZWVyQDI1LjkuMCIsInBpbmVwYXBlci1tY3AiXSwiZW52Ijp7IlBJTkVQQVBFUl9FWEVDVVRJT05fTU9ERSI6InB1cHBldGVlciIsIlBJTkVQQVBFUl9IRUFETEVTUyI6InRydWUiLCJQSU5FUEFQRVJfVE9PTEtJVCI6ImFnZW50IiwiUElORVBBUEVSX1ZFUkJPU0lUWSI6ImNvbXBhY3QiLCJQSU5FUEFQRVJfU0NSRUVOU0hPVF9NT0RFIjoib25fcmVxdWVzdCJ9fQ%3D%3D)
+
+Pinepaper
 
 Approve Excalidraw and Pinepaper if Cursor asks. To keep a course in a local folder, clone the repository, open that folder, and send the same message. The folder loads the same skills.
 

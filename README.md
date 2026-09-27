@@ -73,7 +73,9 @@ Frontier models know a great deal, but a good answer is only one part of teachin
 
 ## Get started
 
-Start with Git, Python 3, and your preferred coding agent installed. Clone GNOS once and use this folder as your learning workspace:
+Start with Git, Python 3, and your preferred coding agent installed. Codex, Claude Code, and other agents use a local checkout. Cursor adds the skills from Customize, in the section below.
+
+Clone GNOS once and use this folder as your learning workspace:
 
 ```sh
 git clone https://github.com/madhvantyagi/Gnos.git
@@ -105,6 +107,19 @@ Enter `/gnos:learning-orchestrator Teach me [topic]`. Repeat the launch command 
 
 ### Cursor
 
+1. Open **Customize**.
+2. Add this repository:
+
+   ```text
+   https://github.com/madhvantyagi/Gnos
+   ```
+
+3. Open a new agent chat and send:
+
+   > Use GNOS. Read `skills/learning-orchestrator/SKILL.md` and teach me [topic].
+
+That installs the teaching skills. These buttons install the diagram servers:
+
 <p>
   <a href="https://cursor.com/en/install-mcp?name=excalidraw&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vbWNwLmV4Y2FsaWRyYXcuY29tL21jcCJ9"><img src="https://cursor.com/deeplink/mcp-install-dark.svg" alt="Add Excalidraw to Cursor" /></a>
   Excalidraw
@@ -113,11 +128,7 @@ Enter `/gnos:learning-orchestrator Teach me [topic]`. Repeat the launch command 
   Pinepaper
 </p>
 
-Those buttons install the diagram servers. Open the `Gnos` folder in Cursor for the teaching skills. The workspace also loads the same servers from [`.cursor/mcp.json`](.cursor/mcp.json). In a new agent chat, ask:
-
-> Use GNOS. Read `skills/learning-orchestrator/SKILL.md` in this workspace and teach me [topic].
-
-Enable Excalidraw and Pinepaper if Cursor asks. To install the same plugin from Customize, import this repository; the [marketplace manifest](.cursor-plugin/marketplace.json) points at this folder. Keep courses and progress here either way.
+Approve Excalidraw and Pinepaper if Cursor asks. To keep a course in a local folder, clone the repository, open that folder, and send the same message. The folder loads the same skills.
 
 ### OpenCode, Antigravity, and other agents
 
@@ -130,7 +141,7 @@ Use GNOS to teach me [topic]. Keep courses and progress in this workspace.
 
 This uses GNOS directly from its files; your agent needs local file and terminal access. [OpenCode also loads `AGENTS.md` automatically](https://opencode.ai/docs/rules/). Keep the repository together so its teachers, references, and scripts remain available.
 
-**Visual tools:** Codex and Claude Code load the server definitions in [`.mcp.json`](.mcp.json). Cursor loads the same definitions from [`.cursor/mcp.json`](.cursor/mcp.json). For [OpenCode](https://opencode.ai/docs/mcp-servers/) or [Antigravity](https://antigravity.google/docs/mcp), configure those servers using the host's MCP format. Pinepaper needs Node.js/npm; image generation uses your agent's available tools, while PDF and video lessons need their own dependencies.
+**Visual tools:** Codex and Claude Code load the server definitions in [`.mcp.json`](.mcp.json). In Cursor, use the Add to Cursor buttons above, or open the folder so [`.cursor/mcp.json`](.cursor/mcp.json) loads the same servers. For [OpenCode](https://opencode.ai/docs/mcp-servers/) or [Antigravity](https://antigravity.google/docs/mcp), configure those servers using the host's MCP format. Pinepaper needs Node.js/npm; image generation uses your agent's available tools, while PDF and video lessons need their own dependencies.
 
 For a course, share your goal, starting point, depth, and available time. To study the result, ask: **“Show my course in the browser.”**
 

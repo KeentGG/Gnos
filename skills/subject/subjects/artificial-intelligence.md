@@ -28,95 +28,123 @@ Treat the named confusion as a possibility, not a diagnosis of this learner.
 
 ### Search and planning
 
-- **Build:** Start with a small route problem. Follow available moves before naming a
-  search method. A promising heuristic does not guarantee the cheapest path.
+- **Build:** Use a small route graph with two competing paths and explicit
+  edge costs. Follow available moves before naming the search method.
+  Separate discovered, expanded, and finalized states; a promising heuristic
+  alone does not guarantee the cheapest route.
 - **Research:** Use an introductory search chapter with pseudocode and guarantee
   conditions. Check heuristic assumptions and what the cost measures.
-- **Show and check:** An Excalidraw graph shows choices. A frontier table gives
-  exact costs. Use Pinepaper if stepping through expansion must update the
-  highlighted node and frontier together. Recalculate after changing an edge.
+- **Show and check:** Match node labels to frontier rows and separate path
+  cost, heuristic estimate, and selection score. Trace one expansion beside
+  the pseudocode; link the views if the learner steps through them. Change an
+  edge cost or overestimate a heuristic and ask which decision or guarantee
+  changes under the stated algorithm, including any reopening rule.
 
 ### Knowledge and reasoning
 
-- **Build:** Start with a few facts and one inference. Then state the rule that permits
-  it. A valid inference can start from a false premise. Missing evidence is not always
-  falsity.
+- **Build:** Use two facts and a rule, then one tempting conclusion the
+  rule does not license. Separate validity from truth of premises and an
+  implication from its converse. Specify whether a missing fact is unknown
+  or treated as false.
 - **Research:** Use a logic or knowledge-representation text with explicit semantics.
   Check whether the system treats missing facts as false or unknown.
-- **Show and check:** An inference tree makes dependencies visible. A truth table or
-  counterexample tests the rule. Code can trace a larger rule set.
+- **Show and check:** Match each inference-tree leaf to a supplied fact
+  and each edge to the stated rule. A truth table or countermodel explains
+  why reversing the implication fails. Remove a premise or add conflicting
+  evidence and ask what can still be concluded under the chosen semantics
+  before checking a larger rule trace.
 
 ### Machine learning
 
-- **Build:** Start with a real prediction task, a simple baseline, and one mistake.
-  Build toward loss and fitting. Lower training loss does not establish better
-  predictions on new data.
+- **Build:** Start with a relevant prediction task, a baseline, and one
+  labeled mistake. Name the unit being predicted and how splits were formed
+  before fitting. Training loss, held-out error, and the cost of a particular
+  mistake answer different questions.
 - **Research:** Use an accessible ML chapter for the first model and loss. Inspect
   dataset documentation and evaluation procedures before using performance claims.
-- **Show and check:** A small data table grounds the task. A plotted fit shows
-  errors. Use Pinepaper when a threshold control must update classifications,
-  error counts, and the plotted boundary together. Code traces one update.
+- **Show and check:** Carry the same example ID from the data table to its
+  plotted score, predicted label, and error-table cell. For classification,
+  change the threshold and predict which false positives and false negatives
+  move; for regression, connect a residual to its loss term. Change the
+  sampling or split rule and ask whether the earlier evaluation still
+  answers the task, rather than merely comparing training curves.
 
 ### Neural networks and optimization
 
-- **Build:** Start with one input, prediction, and error before explaining parameter
-  updates. Activations, parameters, and gradients play different roles.
+- **Build:** Work one input through a small network to its loss before
+  updating a parameter. Separate activations, parameters, gradients, and
+  optimizer state. A gradient is local sensitivity, not the parameter's
+  value or a guarantee that any step size improves the objective.
 - **Research:** Use a deep-learning chapter for the operation and official framework
   documentation for implementation. Inspect tensor shapes and the assumptions behind the
   update.
-- **Show and check:** Use a shape diagram and one numeric forward pass. Use Manim for a
-  narrated gradient path and a graph for loss or step size. Trace the same quantities in
-  code and compare training with held-out errors.
+- **Show and check:** Match tensor labels and shapes to the numeric forward
+  pass, then follow one derivative backward through the same operations.
+  Carry that derivative into the update table and its point on the loss
+  trace. Change the input or step size and ask what changes before running
+  code; compare held-out error separately from optimization progress.
 
 ### Language models and transformers
 
-- **Build:** Start with a short token sequence and the next-token task before attention
-  or generation. Training probabilities, sampling choices, and factual reliability are
-  different questions.
+- **Build:** Tokenize a short sequence and follow one next-token prediction
+  before explaining attention or generation. Distinguish tokens from words,
+  attention weights from output probabilities, and sampling choices from
+  factual reliability. State the architecture and mask being explained.
 - **Research:** Use an accessible transformer explanation, then the architecture paper
   and official model documentation. Check tokenizer, masks, objective, and evaluation
   conditions.
-- **Show and check:** Use an Excalidraw token and shape diagram, an attention
-  matrix, and one worked weighted sum. Use Pinepaper when a selected token
-  must highlight its matrix row and resulting vector together. Use Manim for
-  narrated decoding order. Explain why weights alone do not establish a
-  causal explanation.
+- **Show and check:** Give token positions the same labels in the sequence,
+  matrix axes, mask, and worked weighted sum. For one head, connect a selected
+  query row to the value vectors it combines; keep this separate from the
+  final vocabulary distribution. Change an earlier token or a mask entry
+  and ask which dependencies are permitted to change. Attention weights
+  alone do not establish a causal explanation of an output.
 
 ### Reinforcement learning foundations
 
-- **Build:** Start with a choice and its later consequences. Compare episodes before
-  return, policy, and value. One successful episode does not establish a good policy.
-  Immediate reward differs from return.
+- **Build:** Compare two short episodes in which the larger immediate reward
+  leads to a worse later outcome. Define the state, action, reward timing,
+  discount, and termination before return or value. One successful episode
+  does not establish a good policy.
 - **Research:** Use an introductory RL text or course section that develops episodes and
   decision rules. Bring in probability when comparing uncertain outcomes, with an
   inspected explanation of expectation.
-- **Show and check:** Use an episode trace, state diagram, and reward table for
-  the same case. Use Pinepaper when a chosen action must update the state,
-  reward, and trace together. Connect each Bellman term to its branch and
-  show what is averaged.
+- **Show and check:** Match each state-diagram edge to an episode row and
+  its reward term in the return. For a Bellman calculation, label branch
+  probabilities and distinguish averaging over transitions from averaging
+  over policy actions. Change discount or one transition and ask which
+  preferred action changes; compare expected values with individual episodes.
 
 ### Policy optimization and language-model post-training
 
-- **Build:** Start with a policy that generates choices, then how evaluated outcomes
-  change its parameters. A reward, value baseline, advantage estimate, and probability
-  ratio are different quantities.
+- **Build:** Use a small sampled batch from a policy and explicit outcome
+  scores before the objective. Distinguish reward, baseline, advantage, and
+  old-to-new probability ratio. Name which method supplies each quantity;
+  do not present all post-training methods as the same update.
 - **Research:** Read the relevant policy-gradient derivation before PPO or GRPO. Inspect
   each original method paper and implementation for objectives, sampling, normalization,
   and differences from earlier methods.
-- **Show and check:** Work through a small batch in a table before the objective. Use
-  graphs for clipping or reward sensitivity, code for one update, and motion for
-  sampling-to-update flow. State which parts are a simplified teaching example.
+- **Show and check:** Carry each sampled choice from its batch row to its
+  score, advantage calculation, and objective term. Match a clipping graph
+  to that term's advantage sign and ratio; state the inspected method's
+  normalization and any extra penalties. Change one score or probability
+  and ask which contributions change before tracing the update. Label the
+  simplified batch and avoid claiming empirical gains from it.
 
 ### Agents and robotics
 
-- **Build:** Start with a task, an observation, an action, and feedback from the
-  environment. A planned action may not execute. A plausible tool response may not
-  establish success.
+- **Build:** Follow one task from observation to proposed action, execution,
+  and feedback. Include a failed or uncertain action. The plan, issued
+  command, reported result, and verified environment state are distinct;
+  a plausible response alone does not establish completion.
 - **Research:** Inspect tool or robot interface documentation and the evaluation
   protocol. Use original results for claims about reliability or physical performance.
-- **Show and check:** A sequence diagram separates observation and action. A real or
-  labeled toy trace exposes failure. A simulation varies delays or failed actions.
-  Compare recovery policies.
+- **Show and check:** Match each sequence-diagram exchange to the trace's
+  observation, command, and resulting state. For a robot, keep coordinate
+  frames and sensor timing explicit; for a software agent, retain tool
+  arguments and verification evidence. Add delay, a missing observation, or
+  a failed action and ask what evidence permits retry or recovery. Compare
+  outcomes under the stated model before generalizing reliability.
 
 ## Source use
 

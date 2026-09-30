@@ -178,6 +178,12 @@ compare with the equation."
 
 ## The simulation worker
 
+For a mathematical graph, read [JSXGraph](../../jsxgraph/SKILL.md) and use its
+export helper and starter closest to the assigned action. Set the block's
+`production.skill_route` to `skills/jsxgraph/SKILL.md`. The same route belongs
+in the lesson's declared skills. This worker still returns the artifact to the
+coordinator and follows the shared presentation rules below.
+
 Build one self-contained HTML experiment for the question in the brief. Read
 the selected subfield guidance and
 [simulation presentation](simulation-design.md). Start from the

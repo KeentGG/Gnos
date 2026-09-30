@@ -135,19 +135,10 @@ Declare any media producer in the lesson's `skill_routes`; use
 invoked from these instructions, so its installation path does not belong in
 `course.json`.
 
-Several forms may explain one idea: text states the claim, a diagram shows
-its parts, motion shows a change, and practice checks whether the learner can
-use it. Give each form a distinct job. Do not recreate the same diagram in
-several tools or add media to meet a quota. Do not omit a useful graph, map,
-diagram, or control just to keep the lesson short.
-
-For a physics lesson on a pendulum, name the system and make a prediction,
-draw the forces at one position, show how position and velocity change over
-time, then let the learner vary the starting angle. Keep the same pendulum,
-units, and labels throughout. For a history lesson on a policy decision, give
-the dated choices in prose, show the relevant documents side by side, then ask
-the learner to explain what each source can and cannot establish. These are
-examples of different jobs for different forms, not templates for every lesson.
+Keep one case across forms. Identify which object, equation term, code step,
+or source passage corresponds to each visible part, then state what the new
+view adds. Change a meaningful condition for practice and ask which part of
+the reasoning survives. Avoid rebuilding the same visual in several tools.
 
 During lesson design, read
 `skills/lesson-design/references/representation-choices.md` for the medium

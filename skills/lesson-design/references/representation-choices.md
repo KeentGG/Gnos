@@ -64,13 +64,14 @@ must stay consistent across those forms.
 | Subject teacher | Explanations, derivations, examples, code, and exercises | A file that another media skill must produce |
 | Image generation | A still illustration, labeled scene, anatomy, apparatus, or visual analogy | Exact diagrams whose relations must be editable or verifiable |
 | [Excalidraw MCP](../../excalidraw/SKILL.md) | A quick inspectable relationship, process, boundary, or sequence sketch | Polished animation or dense paragraphs inside boxes |
-| [Pinepaper MCP](../../pinepaper/SKILL.md) | Linked diagrams, charts, motion, or learner-controlled visual states | A simple sketch, an unverified scientific plot, or narrated video lesson |
+| [JSXGraph](../../jsxgraph/SKILL.md) | Mathematical curves, coordinate constructions, and linked quantitative views that the learner inspects or changes | Concept maps, network layouts, geographic maps, or proof supplied only by a picture |
+| [Pinepaper MCP](../../pinepaper/SKILL.md) | Composed diagrams, spatial scenes, and motion whose objects must stay linked | A standalone mathematical graph better served by JSXGraph, an unverified scientific plot, or narrated video lesson |
 | Manim voice animation | A narrated rendered sequence where motion carries the explanation | Definitions appearing on screen or decorative camera movement |
 | Self-contained HTML | A simulation or interactive graph controlled by the learner | A fixed diagram with no useful control |
 | PDF skill | A checked handout, source packet, derivation sheet, or review guide | The primary interactive lesson |
 
 Lesson design chooses between Khan Academy, ImageGen, [Excalidraw](../../excalidraw/SKILL.md),
-[Pinepaper](../../pinepaper/SKILL.md), Manim, and a simulation using the selected subject
+[JSXGraph](../../jsxgraph/SKILL.md), [Pinepaper](../../pinepaper/SKILL.md), Manim, and a simulation using the selected subject
 guide. The links load operating instructions; they do not run either MCP server.
 When a block selects Excalidraw or Pinepaper, its worker reads that guide and
 calls the corresponding `excalidraw` or `pinepaper` MCP tools to build and
@@ -99,6 +100,35 @@ video does not replace controls, inspectable notation, source evidence, or
 code simply because it is available. Follow the Khan skill's selection,
 embedding, and browser checks; count multiple videos as one teaching form.
 
+## Choose a mathematical graph when the relationship needs inspection
+
+Use a graph when the learner needs to connect an equation to a visible quantity,
+solve through an intersection or feasible region, compare the effect of a
+condition, or learn to read and construct graphs. Name that action before
+building. If the question can be answered more clearly with one calculation
+or table, keep that form. A quantitative topic alone does not require a graph.
+
+Use [JSXGraph](../../jsxgraph/SKILL.md) as the default for these mathematical
+views, including curves, tangents, areas, coordinate transformations, and
+linked plots. Add a control only when varying it helps answer the question.
+A fixed annotated view is sufficient when the learner needs time to compare
+its parts. A changed case should test the same reasoning under a meaningful
+new condition.
+
+A node-and-edge graph represents connections, not necessarily coordinate
+quantities. Use Excalidraw for a fixed network, dependency map, or concept map;
+use Pinepaper when its process states need a composed scene. A geographic map
+needs a sourced map with the correct boundaries and scale. Do not route these
+requests to JSXGraph merely because they contain the word graph or map.
+
+Use a scientific plotting library for an export figure, substantial measured
+data, or statistical graphics that need its specialized scales and uncertainty
+display. Use Manim when narrated timing carries the mathematical explanation.
+Use Pinepaper when the teaching job depends on a composed physical or process
+scene, rather than mainly on mathematical coordinates. If two producers fit,
+choose the one that exposes the needed relationship with fewer unrelated
+controls and a checked output the viewer can display.
+
 ## Choose motion only when change is the idea
 
 Use animation for motion, transformation, propagation, feedback, accumulation,
@@ -117,8 +147,9 @@ produce exact data, readable source text, or a relation that must be checked
 against code.
 
 Use [Excalidraw](../../excalidraw/SKILL.md) for a quick relationship sketch.
-Use [Pinepaper](../../pinepaper/SKILL.md) when attached relations, a chart
-linked to the scene, motion, or interaction matters. For exact data or
+Use JSXGraph for a coordinate construction under the graph rules above.
+Use [Pinepaper](../../pinepaper/SKILL.md) when attached relations or a chart
+within a composed scene matters. For exact data or
 uncertainty that Pinepaper's chart cannot show faithfully, use a plotting
 library. Give two views of one idea the same objects, units, and state, then
 ask the learner to translate between them.
@@ -131,10 +162,11 @@ random trial. Useful controls include step size, initial condition,
 probability, threshold, policy rule, force, and sample size.
 Show the model, units, assumptions, and reset state. Ask for a prediction before
 the learner moves the control.
-Pinepaper can produce a self-contained interactive widget when its export
-preserves the controls. Register that HTML as a simulation only after it works
-inside the course viewer's restricted iframe. Use the self-contained HTML
-route when the widget cannot express the needed model or controls.
+For a mathematical view, use the JSXGraph skill under the graph rules above.
+Pinepaper can produce a widget for a composed scene when its export preserves
+the controls. Use ordinary self-contained HTML for other interactions, such
+as a grid policy game or an event queue. Register any of these HTML artifacts
+as a simulation only after it works inside the course viewer's restricted iframe.
 Plan the visible space before building it. Use the 1280 by 800 design target
 and [simulation presentation guide](simulation-design.md). Put the
 question, control, graph, and result where the learner can see their relation

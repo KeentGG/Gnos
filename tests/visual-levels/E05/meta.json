@@ -1,0 +1,29 @@
+{
+  "id": "E05",
+  "track": "excalidraw",
+  "level": 5,
+  "subject": "physics",
+  "title": "Two force vectors to scale",
+  "claim": "A learner can compare 10N vs 20N vectors drawn to scale.",
+  "brief": "Draw two horizontal arrows with 1:2 length ratio, labeled 10N and 20N with scale note.",
+  "must_include": [
+    "10N",
+    "20N",
+    "scale",
+    "N"
+  ],
+  "continuity": [
+    "SI units N, same baseline"
+  ],
+  "acceptance": [
+    "length ratio ~2x",
+    "units on both"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "087c23e59a5e4a3a98",
+  "note": "create_view checkpoint on live server; PNG via pinned excalidraw 0.18.1 exportToSvg; 200px vs 400px arrows (ratio 2.0), blue #4a9eed / red #ef4444, labels 10N/20N + scale note"
+}

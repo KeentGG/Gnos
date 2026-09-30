@@ -7,8 +7,9 @@ One successful company case does not establish a universal strategy.
 ## Ways to show the idea
 
 Use [Excalidraw](../../excalidraw/SKILL.md) for fixed process and responsibility
-maps, [Pinepaper](../../pinepaper/SKILL.md) for linked process states or
-scenario graphs, and tables for exact choices and cash. Use
+maps, [Pinepaper](../../pinepaper/SKILL.md) for linked process states,
+[JSXGraph](../../jsxgraph/SKILL.md) for quantitative scenario comparisons,
+and tables for exact choices and cash. Use
 [Manim](../../manim-voice-animation/SKILL.md) when work or information moving
 between stages explains a delay or failure. Keep case facts separate from
 illustrative numbers; a polished map does not establish actual behavior.

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html data-palette="forest" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Growth rate and capacity</title>
+<style id="simulation-style">
+:root{--surface:#EFE9E1;--ink:#322D29;--muted:#322D29;--primary:#72383D;--soft:#D9D9D9;--line:#D1C7BD;--secondary:#72383D;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+[data-palette="wine"]{--surface:#EDE7C7;--ink:#200E01;--muted:#200E01;--primary:#8B0000;--soft:#EDE7C7;--line:#5B0202;--secondary:#5B0202}
+[data-palette="forest"]{--surface:#FDE5D4;--ink:#001524;--muted:#001524;--primary:#445D48;--soft:#FDE5D4;--line:#445D48;--secondary:#5E3023}
+[data-palette="blue"]{--surface:#E9E6DD;--ink:#000000;--muted:#000000;--primary:#0274BD;--soft:#E9E6DD;--line:#C4AD9D;--secondary:#F57251}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--surface);color:var(--ink)}
+[hidden]{display:none!important}
+.sim-shell{width:100%;max-width:1280px;height:100%;margin:auto;padding:24px;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:16px}
+.sim-header h1{font:600 clamp(22px,2.6vw,30px)/1.2 Georgia,serif;letter-spacing:-.025em;margin:0 0 8px}
+.sim-header p{margin:0;color:var(--muted);max-width:80ch}
+.sim-nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+button{appearance:none;font-family:var(--mono);font-size:13px;font-weight:500;line-height:1.3;min-height:44px;padding:10px 16px;border:1px solid var(--primary);border-radius:3px;background:var(--primary);color:var(--surface);cursor:pointer}
+button.secondary,.sim-nav button{background:transparent;color:var(--primary);border-color:var(--line)}
+.sim-nav button[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--surface)}
+button:hover{text-decoration:underline}button:disabled{background:var(--surface);color:var(--muted);cursor:default}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.sim-panes{min-width:0;min-height:0;display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.25fr);gap:20px;align-items:start}
+.sim-panes[data-view]:not([data-view="both"]){grid-template-columns:minmax(0,1fr)}
+.sim-pane{min-width:0;max-width:100%;padding:20px;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+.sim-pane h2{font-size:16px;margin:0 0 16px;font-weight:600}
+.sim-pane p{margin:10px 0;overflow-wrap:anywhere}
+.sim-pane label{display:block;font-family:var(--mono);font-size:14px;font-weight:500;margin:16px 0 4px}
+input,output{font:inherit;color:inherit}
+input[type="range"]{display:block;width:100%;min-height:44px;margin:0;accent-color:var(--primary)}
+input[type="text"],input[type="number"]{min-height:44px;max-width:100%;border:1px solid var(--line);border-radius:3px;padding:8px;background:var(--surface)}
+input[type="text"]{width:100%}
+.controls,.controls-row,.controls-wrap,.btns,.btnrow,.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ctl,.control,.controls-wrap>div{flex:1 1 220px;min-width:0}
+.sim-pane>.controls:not(.actions){display:block}
+.sim-pane .row input[type="range"]{flex:1 1 120px;width:0}
+.readout,.readouts,.stats{font-variant-numeric:tabular-nums;margin:14px 0;display:flex;gap:12px;flex-wrap:wrap;background:var(--soft);padding:12px;border-radius:3px;color:var(--ink)}
+.readout p{margin:0}.readout strong,.v,.val,output{font-variant-numeric:tabular-nums;font-weight:600}
+.stat{flex:1 1 120px;min-width:0}.stat span,.stat .v{display:block;font-size:20px}
+.pill,.sign-pill{display:inline-block;border:1px solid var(--line);border-radius:3px;padding:4px 8px;font-size:14px}
+.sign-positive{color:var(--primary)}.sign-negative{color:var(--secondary)}
+.hint,.note,.model,.model-note,.axis-note,.small,.muted,.sub,.assump,.assume{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.predict,.prediction-box{padding:12px;border-left:3px solid var(--primary);background:var(--soft);margin:12px 0;font-size:14px}
+.eq,.formula,code,.code{font:14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.eq,.fixedbox{padding:12px;background:var(--surface);border-radius:3px;margin:12px 0}
+canvas,svg{display:block;max-width:min(100%,720px);width:100%;height:auto;max-height:260px;background:var(--surface);border:1px solid var(--line);border-radius:3px;object-fit:contain}
+.node{fill:var(--surface);stroke:var(--ink);stroke-width:2}.node.visited{fill:var(--soft);stroke:var(--primary)}.node.current{fill:var(--surface);stroke:var(--secondary);stroke-width:3}
+.nodelabel{font-size:22px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}.edgelabel{font-size:14px;fill:var(--muted)}
+.status{min-height:3em;font-size:14px}.label{font-size:14px;font-weight:600;margin:12px 0 4px}
+.gauge{flex:1 1 160px;padding:8px}.bar{height:12px;background:var(--line);border-radius:2px;margin:8px 0}.fill{height:100%;background:var(--primary);border-radius:2px}.fill.hot{background:var(--secondary)}
+#alarmBanner{display:none;padding:12px;border:1px solid var(--secondary);color:var(--secondary);background:var(--surface);border-radius:3px}#alarmBanner.show{display:block}#okBanner{padding:12px;color:var(--primary);background:var(--soft);border-radius:3px}#okBanner.hide{display:none}
+table{border-collapse:collapse;width:100%;font-size:14px}caption{text-align:left;font-weight:600;margin-bottom:8px}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;overflow-wrap:anywhere}
+#taskGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.task{min-width:0;min-height:40px;border:1px solid var(--line);border-radius:2px;padding:4px;font-size:14px;text-align:center;background:var(--surface)}.task.success{background:var(--soft);color:var(--primary)}.task.failed{background:var(--surface);color:var(--secondary)}.task.retry{background:var(--surface);color:var(--secondary)}
+#chart{max-width:min(100%,600px);max-height:180px}
+.sim-footer{font-family:var(--mono);font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+@media(max-width:999px){.sim-shell{padding:16px;gap:12px}.sim-panes{grid-template-columns:minmax(0,1fr)}.sim-pane{padding:16px}.sim-nav button[data-view="both"]{display:none}.sim-header h1{font-size:23px}.sim-header p{font-size:14px}.sim-pane label{margin-top:12px}canvas,svg{max-height:240px}.sim-pane h2{margin-bottom:12px}}
+@media(max-height:650px){.sim-shell{padding:12px;gap:8px}.sim-pane{padding:12px}canvas,svg{max-height:220px}.sim-header h1{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+[data-palette="blue"] button{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+[data-palette="blue"] button.secondary,[data-palette="blue"] .sim-nav button{background:transparent;color:var(--ink);border-color:var(--ink)}
+[data-palette="blue"] .sim-nav button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+[data-palette="blue"] .sign-positive,[data-palette="blue"] .sign-negative{color:var(--ink)}
+</style>
+</head>
+<body>
+<main aria-label="Interactive experiment" class="sim-shell">
+<header class="sim-header"><h1>Growth rate and capacity</h1><p>Keep capacity fixed and change the growth rate. Predict whether the ceiling moves.</p></header>
+<nav aria-label="Choose experiment view" class="sim-nav">
+<button aria-pressed="true" data-view="both" type="button">Together</button>
+<button aria-pressed="false" data-view="controls" type="button">Controls</button>
+<button aria-pressed="false" data-view="result" type="button">Result</button>
+<button aria-pressed="false" data-view="model" type="button">Model</button>
+</nav>
+<div class="sim-panes" data-view="both">
+<section aria-label="Controls" class="sim-pane" data-pane="controls"><h2>Change and compare</h2><div class="controls">
+<div class="ctl">
+<label for="rSlider">r (1/time) <output for="rSlider" id="rVal">0.50</output></label>
+<input aria-label="growth rate r from 0.1 to 2 per time unit" id="rSlider" max="2" min="0.1" step="0.01" type="range" value="0.5"/>
+<div class="muted">growth rate r, range 0.1..2 per time unit</div>
+</div>
+<div class="ctl">
+<label for="kSlider">K (individuals) <output for="kSlider" id="kVal">1000</output></label>
+<input aria-label="carrying capacity K from 100 to 2000 individuals" id="kSlider" max="2000" min="100" step="10" type="range" value="1000"/>
+<div class="muted">carrying capacity K, range 100..2000 individuals</div>
+</div>
+<div aria-live="polite" class="fixedbox">
+<div><b>N0</b> (initial population, fixed) = <b id="n0Val">10</b> individuals</div>
+<div class="muted">N0 is fixed for this experiment; only r and K vary.</div>
+</div>
+<div class="btnrow">
+<button id="playBtn" type="button">Pause</button>
+<button class="secondary" id="resetBtn" type="button">Reset</button>
+</div></div></section>
+<section aria-label="Result" class="sim-pane" data-pane="result"><h2>Read the result</h2><div><div class="canvasHolder">
+<canvas aria-label="Logistic population curve N versus time with dashed K asymptote" height="520" id="plot" role="img" width="1160"></canvas>
+</div><div aria-live="polite" class="readouts">
+<span class="pill">t = <b id="tOut">0.00</b> time units</span>
+<span class="pill">N = <b id="nOut">10.0</b> individuals</span>
+<span class="pill">dN/dt = <b id="dOut">0.0</b> individuals/time</span>
+<span class="pill">K = <b id="kOut">1000</b> individuals</span>
+<span class="pill">r = <b id="rOut">0.50</b> /time</span>
+</div></div></section>
+<section aria-label="Model" class="sim-pane" data-pane="model" hidden=""><h2>Model and assumptions</h2><p class="eq">dN/dt = rN(1 − N/K)</p><p class="eq">N(t) = K / (1 + Ae^(−rt))<br/>A = (K − 10)/10</p><p>Initial population: 10 individuals. Time: 0–20 units. N and K: individuals; r: 1/time. The dashed line marks K.</p><p>Closed population; constant r and K; continuous growth without delay or randomness. Growth is fastest at N = K/2. Changing r alters the approach to K; changing K moves the ceiling.</p></section>
+</div>
+<footer class="sim-footer">Compare your prediction with the result.</footer>
+</main>
+<script id="simulation-shell-script">
+(() => {
+  const panes = document.querySelector('.sim-panes');
+  const buttons = [...document.querySelectorAll('.sim-nav button')];
+  const narrow = matchMedia('(max-width:999px)');
+  let view = narrow.matches ? 'controls' : 'both';
+  function select(next) {
+    view = next;
+    panes.dataset.view = view;
+    panes.querySelectorAll('[data-pane]').forEach(pane => {
+      pane.hidden = view === 'both' ? pane.dataset.pane === 'model' : pane.dataset.pane !== view;
+    });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
+    window.dispatchEvent(new Event('resize'));
+  }
+  buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.view)));
+  narrow.addEventListener('change', () => {if(narrow.matches && view === 'both') select('controls')});
+  select(view);
+})();
+</script>
+<script id="simulation-model-script">const GNOS_PALETTE = (() => {const s=getComputedStyle(document.documentElement);return {surface:s.getPropertyValue('--surface').trim(),ink:s.getPropertyValue('--ink').trim(),primary:s.getPropertyValue('--primary').trim(),secondary:s.getPropertyValue('--secondary').trim(),line:s.getPropertyValue('--line').trim()}})();
+
+(function(){
+  "use strict";
+  var N0 = 10;             // fixed initial population (individuals)
+  var TMAX = 20;           // time window
+  var rSlider = document.getElementById('rSlider');
+  var kSlider = document.getElementById('kSlider');
+  var rVal = document.getElementById('rVal');
+  var kVal = document.getElementById('kVal');
+  var tOut = document.getElementById('tOut');
+  var nOut = document.getElementById('nOut');
+  var dOut = document.getElementById('dOut');
+  var kOut = document.getElementById('kOut');
+  var rOut = document.getElementById('rOut');
+  var playBtn = document.getElementById('playBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  var canvas = document.getElementById('plot');
+  var ctx = canvas.getContext('2d');
+
+  var DEF_R = 0.5, DEF_K = 1000;
+  var t = 0, playing = !matchMedia('(prefers-reduced-motion: reduce)').matches, lastTs = 0;
+  playBtn.textContent=playing?'Pause':'Play';
+  playBtn.setAttribute('aria-pressed',String(!playing));
+
+  function getR(){ return parseFloat(rSlider.value); }
+  function getK(){ return parseFloat(kSlider.value); }
+  function logistic(tt, r, K){
+    var A = (K - N0) / N0;
+    return K / (1 + A * Math.exp(-r * tt));
+  }
+  function deriv(N, r, K){ return r * N * (1 - N / K); }
+
+  function fitCanvas(){
+    var holder = canvas.parentElement;
+    var cssW = Math.min(holder.clientWidth - 20, 1160);
+    if (cssW < 200) cssW = holder.clientWidth - 20;
+    var dpr = window.devicePixelRatio || 1;
+    var cssH = Math.round(cssW * (520/1160));
+    canvas.style.aspectRatio = '1160 / 520';
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw(cssW, cssH);
+  }
+
+  function draw(W, H){
+    var r = getR(), K = getK();
+    var padL = 64, padR = 18, padT = 18, padB = 48;
+    var pw = W - padL - padR, ph = H - padT - padB;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = GNOS_PALETTE.surface;
+    ctx.fillRect(0, 0, W, H);
+
+    var yMax = K * 1.2;
+    function X(tt){ return padL + (tt / TMAX) * pw; }
+    function Y(N){ return padT + ph - (N / yMax) * ph; }
+
+    // grid + axes
+    ctx.strokeStyle = GNOS_PALETTE.ink; ctx.lineWidth = 1;
+    ctx.fillStyle = GNOS_PALETTE.ink; ctx.font = '12px system-ui,sans-serif';
+    var ySteps = 5;
+    for (var i = 0; i <= ySteps; i++){
+      var gv = yMax * i / ySteps, gy = Y(gv);
+      ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(padL + pw, gy); ctx.stroke();
+      ctx.fillText(Math.round(gv).toString(), 8, gy + 4);
+    }
+    for (var ti = 0; ti <= 4; ti++){
+      var tv = TMAX * ti / 4, gx = X(tv);
+      ctx.beginPath(); ctx.moveTo(gx, padT); ctx.lineTo(gx, padT + ph); ctx.stroke();
+      ctx.fillText(tv.toFixed(0), gx - 4, padT + ph + 20);
+    }
+    ctx.fillStyle = GNOS_PALETTE.ink;
+    ctx.fillText('N (individuals)', 6, 14);
+    ctx.fillText('t (time units)', padL + pw - 90, padT + ph + 38);
+
+    // K asymptote dashed
+    var ky = Y(K);
+    ctx.save();
+    ctx.strokeStyle = GNOS_PALETTE.secondary; ctx.lineWidth = 2; ctx.setLineDash([9, 7]);
+    ctx.beginPath(); ctx.moveTo(padL, ky); ctx.lineTo(padL + pw, ky); ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = GNOS_PALETTE.secondary; ctx.font = 'bold 13px system-ui,sans-serif';
+    ctx.fillText('K = ' + K, padL + pw - 76, ky - 8);
+
+    // N0 marker
+    ctx.strokeStyle = GNOS_PALETTE.ink; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+    ctx.beginPath(); ctx.moveTo(padL, Y(N0)); ctx.lineTo(padL + pw, Y(N0)); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = GNOS_PALETTE.ink; ctx.font = '12px system-ui,sans-serif';
+    ctx.fillText('N0 = ' + N0, padL + 6, Y(N0) - 6);
+
+    // full logistic curve (faint) — proves curve follows logistic
+    ctx.strokeStyle = GNOS_PALETTE.line; ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (var px = 0; px <= 300; px++){
+      var ttx = TMAX * px / 300;
+      var nn = logistic(ttx, r, K);
+      var cx = X(ttx), cy = Y(nn);
+      if (px === 0) ctx.moveTo(cx, cy); else ctx.lineTo(cx, cy);
+    }
+    ctx.stroke();
+
+    // traced portion up to current t
+    ctx.strokeStyle = GNOS_PALETTE.primary; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    ctx.beginPath();
+    var steps = Math.max(2, Math.round(200 * t / TMAX));
+    for (var q = 0; q <= steps; q++){
+      var tq = t * q / steps;
+      var nq = logistic(tq, r, K);
+      var qx = X(tq), qy = Y(nq);
+      if (q === 0) ctx.moveTo(qx, qy); else ctx.lineTo(qx, qy);
+    }
+    ctx.stroke();
+
+    // current point
+    var Nc = logistic(t, r, K);
+    ctx.fillStyle = GNOS_PALETTE.ink;
+    ctx.beginPath(); ctx.arc(X(t), Y(Nc), 6, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = GNOS_PALETTE.surface; ctx.lineWidth = 2; ctx.stroke();
+  }
+
+  function updateReadouts(){
+    var r = getR(), K = getK();
+    var N = logistic(t, r, K);
+    var d = deriv(N, r, K);
+    rVal.textContent = r.toFixed(2);
+    kVal.textContent = String(Math.round(K));
+    tOut.textContent = t.toFixed(2);
+    nOut.textContent = N.toFixed(1);
+    dOut.textContent = d.toFixed(1);
+    kOut.textContent = String(Math.round(K));
+    rOut.textContent = r.toFixed(2);
+  }
+  function render(){
+    var holder = canvas.parentElement;
+    var cssW = canvas.width / (window.devicePixelRatio || 1);
+    var cssH = canvas.height / (window.devicePixelRatio || 1);
+    if (!cssW || !cssH){ fitCanvas(); return; }
+    draw(cssW, cssH);
+    updateReadouts();
+  }
+
+  rSlider.addEventListener('input', render);
+  kSlider.addEventListener('input', render);
+
+  playBtn.addEventListener('click', function(){
+    playing = !playing;
+    playBtn.textContent = playing ? 'Pause' : 'Play';
+    playBtn.setAttribute('aria-pressed',String(!playing));
+    lastTs = 0;
+    if (playing && t >= TMAX) t = 0;
+    if (playing) requestAnimationFrame(tick);
+  });
+
+  resetBtn.addEventListener('click', function(){
+    rSlider.value = String(DEF_R);
+    kSlider.value = String(DEF_K);
+    t = 0; playing = false;
+    playBtn.textContent = 'Play'; playBtn.setAttribute('aria-pressed','true');
+    render();
+  });
+
+  function tick(ts){
+    if (!playing) return;
+    if (!lastTs) lastTs = ts;
+    var dt = (ts - lastTs) / 1000;
+    lastTs = ts;
+    t += dt * 2.0; // 2 time-units per second so full run ~10s
+    if (t >= TMAX){ t = TMAX; playing = false; playBtn.textContent = 'Play'; playBtn.setAttribute('aria-pressed','true'); }
+    render();
+    if (playing) requestAnimationFrame(tick);
+  }
+
+  var rT;
+  window.addEventListener('resize', function(){
+    clearTimeout(rT);
+    rT = setTimeout(fitCanvas, 120);
+  });
+
+  matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',event=>{
+    if(event.matches){playing=false;lastTs=0;playBtn.textContent='Play';playBtn.setAttribute('aria-pressed','true');render();}
+  });
+  document.getElementById('n0Val').textContent = String(N0);
+  fitCanvas();
+  render();
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

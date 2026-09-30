@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "project": "Pendulum numbers tied to geometry",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V05Scene": {
+      "title": "Pendulum numbers tied to geometry",
+      "cues": [
+        {
+          "text": "Watch the pivot. The string of length L swings out. The theta readout shows the same angle in degrees as the drawn swing. Predict the readout, then compare.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "swing-out",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "Now it swings back past center. The theta readout follows the string in degrees. Check that the displayed angle equals the drawn angle.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "swing-back",
+          "sync_target": "",
+          "pause_after": 0
+        }
+      ],
+      "total_duration": 10.0
+    }
+  }
+}

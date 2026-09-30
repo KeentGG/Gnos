@@ -1,0 +1,31 @@
+{
+  "title": "Pendulum numbers tied to geometry",
+  "concept_id": "phys-pendulum-angle-readout",
+  "prerequisite": "Learner can read degrees and identify a pivot and string length.",
+  "success_check": "Learner predicts the readout before each swing, then compares the displayed angle to the drawn angle.",
+  "aspect_ratio": "16:9",
+  "voice": "explainer-male",
+  "scenes": [
+    {
+      "id": "V05Scene",
+      "title": "Pendulum numbers tied to geometry",
+      "concept_target": "The displayed theta equals the drawn swing angle because both derive from the same state.",
+      "narration_cues": [
+        {
+          "cue_id": "swing-out",
+          "text": "Watch the pivot. The string of length L swings out. The theta readout shows the same angle in degrees as the drawn swing. Predict the readout, then compare.",
+          "visible_objects": ["pivot", "string", "bob", "theta readout in deg", "L label"],
+          "change": "The bob swings out to 30 degrees while the readout tracks the same theta.",
+          "duration": 5.0
+        },
+        {
+          "cue_id": "swing-back",
+          "text": "Now it swings back past center. The theta readout follows the string in degrees. Check that the displayed angle equals the drawn angle.",
+          "visible_objects": ["pivot", "string", "bob", "theta readout in deg", "L label"],
+          "change": "The bob swings back to minus 30 degrees while the readout tracks the same theta.",
+          "duration": 5.0
+        }
+      ]
+    }
+  ]
+}

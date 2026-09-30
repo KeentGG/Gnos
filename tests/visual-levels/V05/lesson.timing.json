@@ -1,0 +1,14 @@
+[
+  {
+    "cue_id": "swing-out",
+    "start": 0.0,
+    "end": 5.0,
+    "text": "Watch the pivot. The string of length L swings out. The theta readout shows the same angle in degrees as the drawn swing. Predict the readout, then compare."
+  },
+  {
+    "cue_id": "swing-back",
+    "start": 4.933333333333339,
+    "end": 9.933333333333339,
+    "text": "Now it swings back past center. The theta readout follows the string in degrees. Check that the displayed angle equals the drawn angle."
+  }
+]

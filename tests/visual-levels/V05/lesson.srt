@@ -1,0 +1,7 @@
+1
+00:00:00,000 --> 00:00:05,000
+Watch the pivot. The string of length L swings out. The theta readout shows the same angle in degrees as the drawn swing. Predict the readout, then compare.
+
+2
+00:00:04,933 --> 00:00:09,933
+Now it swings back past center. The theta readout follows the string in degrees. Check that the displayed angle equals the drawn angle.

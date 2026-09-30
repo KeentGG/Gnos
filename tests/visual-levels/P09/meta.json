@@ -1,0 +1,27 @@
+{
+  "id": "P09",
+  "track": "pinepaper",
+  "level": 9,
+  "subject": "economics",
+  "title": "Policy slider + export-safe controls",
+  "claim": "A learner can test a tax policy and keep controls after export.",
+  "brief": "Tax slider shifts equilibrium, surplus readout; controls survive sandboxed iframe export.",
+  "must_include": [
+    "tax",
+    "surplus",
+    "equilibrium",
+    "reset"
+  ],
+  "continuity": [
+    "USD units"
+  ],
+  "acceptance": [
+    "controls work in viewer iframe",
+    "reset restores"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "scaffolded"
+}

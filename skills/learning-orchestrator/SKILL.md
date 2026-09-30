@@ -37,7 +37,16 @@ Paths below are relative to the repository root.
    conversation and answer right away. Before designing a course, ask
    how deep and how long the learner wants to go; the course design
    skill records the answers and uses them to size the route.
-4. Load a media skill only when that medium is useful or requested:
+4. When the current topic or a blocking prerequisite is likely to have a
+   useful Khan Academy explanation, let lesson design check one exact item
+   through [Khan Academy](../khan-academy/SKILL.md). Use it only if the item
+   advances the learner's next action and its explanation matches the exact
+   lesson concept. Embed a video as a `khan-video` lesson block at the point
+   where the learner needs it, with a viewing prompt and a subsequent check.
+   Preserve the current lesson's pace and
+   return to its goal after a prerequisite bridge. A Khan link is not learner
+   evidence and never replaces GNOS's own explanation or check.
+5. Load a media skill only when that medium is useful or requested:
    `pdf`, `manim`, host image generation,
    [Excalidraw](../excalidraw/SKILL.md), or
    [Pinepaper](../pinepaper/SKILL.md). Use the lesson's subject guidance to
@@ -79,7 +88,7 @@ explicit plan. Add `--mode course` when designing.
 Use `--mode lesson` while building the current lesson. After the learner
 asks to see it or answers yes, use `--mode viewer` to load the viewing
 instructions for that enrolled course. Add
-`--media pdf|manim|image|diagram|simulation|pinepaper|excalidraw` when
+`--media pdf|manim|image|diagram|simulation|pinepaper|excalidraw|khan-academy` when
 a representation skill is needed this turn. `--media excalidraw` and
 `--media pinepaper` load their `SKILL.md` entrypoints; loading alone does not
 create a diagram.

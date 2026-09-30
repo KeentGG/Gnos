@@ -19,6 +19,7 @@ from portal_views import (  # noqa: E402
     ready_lessons,
 )
 from test_course_workspace import valid_lesson, valid_v2_course  # noqa: E402
+from test_artifact_manifest import write_test_video  # noqa: E402
 
 
 def ready_artifact(artifact_id="gradient-video", artifact_type="voice-animation",
@@ -57,9 +58,12 @@ class PortalViewTests(unittest.TestCase):
         self.workspace = create_workspace(self.root, "alex", plan)
         lesson = valid_lesson("ready", plan)
         publish_lesson(self.workspace, lesson)
-        artifact_path = self.workspace / "artifacts/generated/gradient-video.bin"
-        artifact_path.write_bytes(b"artifact")
-        register_artifact(self.workspace, ready_artifact())
+        artifact_path = self.workspace / "artifacts/generated/gradient-video.mp4"
+        write_test_video(artifact_path)
+        artifact = ready_artifact()
+        artifact["location"] = {"path": "artifacts/generated/gradient-video.mp4"}
+        artifact["mime_type"] = "video/mp4"
+        register_artifact(self.workspace, artifact)
         self.learner_summary = {
             "course_progress": {
                 "course_id": "gradient-descent",

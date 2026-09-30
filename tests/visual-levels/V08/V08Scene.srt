@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:05,000
+Launch. The projectile leaves at eight metres per second and forty-five degrees. Watch the horizontal component vx stay constant while the vertical component vy starts large. This cue timing sets up the flight in SI units.
+
+2
+00:00:04,933 --> 00:00:10,933
+Apex. At the top of the arc the vertical velocity vy is zero while vx carries the projectile forward. The apex marker appears exactly on this cue, at the apex frame.
+
+3
+00:00:10,933 --> 00:00:15,933
+Landing. Gravity has pulled vy negative, mirror to launch, while vx is unchanged and the range reads about six point five metres. The cue timing closes as the dot touches down; predict the landing spot before replaying, then compare.

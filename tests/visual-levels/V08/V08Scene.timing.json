@@ -1,0 +1,20 @@
+[
+  {
+    "cue_id": "launch",
+    "start": 0.0,
+    "end": 5.0,
+    "text": "Launch. The projectile leaves at eight metres per second and forty-five degrees. Watch the horizontal component vx stay constant while the vertical component vy starts large. This cue timing sets up the flight in SI units."
+  },
+  {
+    "cue_id": "apex",
+    "start": 4.933333333333339,
+    "end": 10.933333333333339,
+    "text": "Apex. At the top of the arc the vertical velocity vy is zero while vx carries the projectile forward. The apex marker appears exactly on this cue, at the apex frame."
+  },
+  {
+    "cue_id": "landing",
+    "start": 10.933333333333321,
+    "end": 15.933333333333321,
+    "text": "Landing. Gravity has pulled vy negative, mirror to launch, while vx is unchanged and the range reads about six point five metres. The cue timing closes as the dot touches down; predict the landing spot before replaying, then compare."
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "id": "S07",
+  "track": "simulation",
+  "level": 7,
+  "subject": "economics",
+  "title": "Stochastic demand trials",
+  "claim": "Learner repeats trials to distinguish noise from shift.",
+  "brief": "Buttons run-100/reset, mean/sd readout, histogram; seed note.",
+  "must_include": [
+    "run 100",
+    "mean",
+    "sd",
+    "histogram"
+  ],
+  "continuity": [
+    "USD units"
+  ],
+  "acceptance": [
+    "repeatable",
+    "stats update"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

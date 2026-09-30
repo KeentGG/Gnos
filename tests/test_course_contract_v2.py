@@ -96,6 +96,25 @@ def valid_v1_course():
 
 
 class CourseContractV2Tests(unittest.TestCase):
+    def test_khan_video_source_requires_canonical_url_and_video_id(self):
+        plan = valid_v2_course()
+        source = {
+            "title": "Slope as rate of change", "type": "khan-video",
+            "url": "https://www.khanacademy.org/math/algebra/x/v/slope-as-rate-of-change",
+            "youtube_id": "M7lc1UVf-VE", "checked_on": "2026-09-26",
+            "sections": ["Slope from two points"],
+            "verification_notes": "Checked the exact video and segment.",
+        }
+        plan["sources"]["khan-slope"] = source
+        plan["chapters"][0]["topics"][0]["resource_ids"].append("khan-slope")
+        self.assertEqual(contract.validate_course(plan), plan)
+        for key, value in (("url", "https://evil.example/video"),
+                           ("youtube_id", 'M7lc1UVf-VE" onclick="x')):
+            broken = copy.deepcopy(plan)
+            broken["sources"]["khan-slope"][key] = value
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                contract.validate_course(broken)
+
     def test_topic_subtopics_are_ordered_nonempty_distinct_titles(self):
         plan = valid_v2_course()
         topic = plan["chapters"][0]["topics"][0]

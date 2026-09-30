@@ -1,0 +1,29 @@
+{
+  "id": "E04",
+  "track": "excalidraw",
+  "level": 4,
+  "subject": "biology",
+  "title": "Cell boundary + organelles",
+  "claim": "A learner can see what is inside vs outside the cell.",
+  "brief": "Draw membrane boundary containing nucleus, mitochondria, ribosome; label outside.",
+  "must_include": [
+    "membrane",
+    "nucleus",
+    "mitochondria",
+    "ribosome",
+    "outside"
+  ],
+  "continuity": [
+    "bio terms, containment behind objects"
+  ],
+  "acceptance": [
+    "boundary contains 3 parts",
+    "outside label present"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "267cb066549f4a939f"
+}

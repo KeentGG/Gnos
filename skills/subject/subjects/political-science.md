@@ -28,62 +28,86 @@ Treat the named confusion as a possibility, not a diagnosis of this learner.
 
 ### Political theory
 
-- **Build:** Start with a concrete political choice and the reasons offered for it. A
-  normative premise differs from an empirical prediction.
+- **Build:** Start with a choice such as restricting an action to protect
+  others, and the reasons offered for it. A judgment about legitimate coercion
+  differs from a prediction about the restriction's effects.
 - **Research:** Inspect the original argument in a reliable edition and a serious
   scholarly objection. Separate normative premises from empirical claims.
-- **Show and check:** A short excerpt grounds the argument. An argument map connects
-  premises. A contrasting case tests the strongest objection.
+- **Show and check:** Annotate a short source excerpt, then map its premises
+  to the proposed conclusion using the same terms. Mark where an empirical
+  claim needs evidence rather than philosophical agreement. Work the
+  strongest objection through the case. Change who bears the restriction or
+  its justification and ask which premise must be defended or revised.
 
 ### Comparative politics
 
-- **Build:** Start with a rule operating in a named institution and case. Formal rules
-  do not establish how power works in practice.
+- **Build:** Start with a proposal passing through a named institution's
+  approval or veto rule. Formal authority does not establish who can exercise
+  it in practice; inspect the jurisdiction and date before comparing cases.
 - **Research:** Use constitutional or institutional records and comparative research.
   Check jurisdiction, period, case selection, and evidence about actual practice.
-- **Show and check:** An Excalidraw diagram shows formal authority. A case
-  table compares practice. Use Pinepaper only when a documented rule change
-  must update several linked institutions. Records test what actually happened.
+- **Show and check:** Trace the proposal through an authority diagram and
+  connect each step to the applicable rule and observed action in a case
+  table. For a second case, keep comparable functions distinct from similar
+  office names. Change a veto condition and ask which formal paths change
+  and what evidence is still needed to predict actual power or behavior.
 
 ### International relations
 
-- **Build:** Start with actors, alternatives, information, and a dated decision. A
-  plausible motive does not distinguish competing explanations.
+- **Build:** Start with a dated decision to negotiate, threaten, or withdraw.
+  Name actors, alternatives, and available information. A plausible motive
+  does not distinguish competing explanations of the same action.
 - **Research:** Pair a theory chapter with dated diplomatic records and scholarly case
   analysis. Check which observations distinguish the competing explanations.
-- **Show and check:** A decision tree shows available choices. An evidence table
-  compares predictions. A dated map or timeline establishes constraints.
+- **Show and check:** Use a dated map or timeline to establish the constraints
+  on the decision tree's alternatives. Put each explanation beside its
+  distinguishing prediction and the relevant record in an evidence table;
+  mark unknown information rather than filling it with motive. Supply a new
+  communication or change a stated information assumption and ask which
+  explanation gains support. Hypothetical branches remain counterfactuals.
 
 ### Public policy and administration
 
-- **Build:** Start with a policy goal and the steps from adoption to delivery. Passing a
-  rule does not establish implementation or effects.
+- **Build:** Start with an eligible person trying to receive a policy's
+  service. Passing a rule, providing the service, and improving the person's
+  outcome are separate claims.
 - **Research:** Inspect the policy text, implementation records, and evaluation methods.
   Separate legal adoption, delivery, take-up, and measured effects.
-- **Show and check:** An Excalidraw process diagram follows responsibilities.
-  A comparison table checks outcomes. Use Pinepaper when varying a stated
-  delivery assumption must update the linked stages and modeled result.
-  Keep that result separate from measured effects.
+- **Show and check:** Follow the person through authorization, funding,
+  application, and delivery in a responsibility diagram. Connect each stage
+  to its records and counts, preserving eligibility and denominators. An
+  evaluation table explains the outcome comparison rather than treating the
+  funnel as proof of effect. Change take-up or an administrative delay and
+  ask where the predicted gap appears; separate that modeled gap from measured
+  impact.
 
 ### Political behavior
 
-- **Build:** Start with a behavior, its measure, and who was sampled. Survey answers,
-  turnout, and population preferences need different evidence.
+- **Build:** Start with a turnout record or a survey answer to a stated
+  question. Define who could enter the measure. Reported voting, recorded
+  turnout, and population preferences are different quantities.
 - **Research:** Inspect the questionnaire or administrative definition and dataset
   methodology. Check field dates, weights, nonresponse, and population coverage.
-- **Show and check:** A questionnaire excerpt exposes measurement. A sourced
-  distribution plot shows variation. Use Pinepaper for a sampling model only
-  when the sample and displayed estimate change together. Compare groups
-  before generalizing.
+- **Show and check:** Keep the question or administrative definition beside
+  a table of responses or counts; derive the distribution plot from those
+  rows and declared weights. Show which population the estimate describes
+  and what is missing. Change question wording or exclude a group and ask
+  whether the estimate still answers the original question. Sampling models
+  illustrate assumptions; they do not repair unknown nonresponse.
 
 ### Research methods
 
-- **Build:** Start with a descriptive or causal question and a possible comparison.
-  Controlling for more variables does not automatically remove bias.
+- **Build:** Start with whether receiving a campaign message changes turnout,
+  and how recipients were selected. A recipient comparison can reflect prior
+  interest; controlling for more variables does not automatically remove bias.
 - **Research:** Use a research-methods chapter and the original study or replication.
   Inspect measurement, selection, and the assumptions needed for the claim.
-- **Show and check:** A study-design diagram shows selection. A data table grounds the
-  comparison. A simulated confound tests inference. Sourced estimates show uncertainty.
+- **Show and check:** Map assignment and measured outcomes from a study
+  diagram to the rows being compared in the data table. Translate the
+  estimate and uncertainty into turnout units. Use a labeled toy confound
+  to demonstrate an alternative explanation, keeping simulated and observed
+  data separate. Replace voluntary exposure with randomized assignment and
+  ask which inference improves and which measurement or attrition limits remain.
 
 ## Source use
 

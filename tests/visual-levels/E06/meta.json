@@ -1,0 +1,28 @@
+{
+  "id": "E06",
+  "track": "excalidraw",
+  "level": 6,
+  "subject": "history",
+  "title": "Dated timeline + boundary map",
+  "claim": "A learner can place 3 dated decisions on time and place.",
+  "brief": "Draw timeline 1939,1941,1945 with matching map pins A,B,C and one boundary line.",
+  "must_include": [
+    "1939",
+    "1941",
+    "1945",
+    "boundary"
+  ],
+  "continuity": [
+    "dates identical in both views"
+  ],
+  "acceptance": [
+    "3 dates + boundary present"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "855cf91305a34b1199",
+  "note": "create_view checkpoint on live server; PNG via pinned excalidraw 0.18.1 exportToSvg+densify RESTORED:22"
+}

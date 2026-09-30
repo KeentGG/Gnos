@@ -85,7 +85,8 @@ table{border-collapse:collapse;width:100%;font-size:14px}caption{text-align:left
   const panes = document.querySelector('.sim-panes');
   const buttons = [...document.querySelectorAll('.sim-nav button')];
   const narrow = matchMedia('(max-width:999px)');
-  let view = narrow.matches ? 'controls' : 'both';
+  let preferred = 'both';
+  let view = narrow.matches ? 'controls' : preferred;
   function select(next) {
     view = next;
     panes.dataset.view = view;
@@ -95,8 +96,11 @@ table{border-collapse:collapse;width:100%;font-size:14px}caption{text-align:left
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
     window.dispatchEvent(new Event('resize'));
   }
-  buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.view)));
-  narrow.addEventListener('change', () => {if(narrow.matches && view === 'both') select('controls')});
+  buttons.forEach(button => button.addEventListener('click', () => {
+    preferred = button.dataset.view;
+    select(preferred);
+  }));
+  narrow.addEventListener('change', () => select(narrow.matches && preferred === 'both' ? 'controls' : preferred));
   select(view);
 })();
 </script>

@@ -182,6 +182,25 @@ def _validate_local_path(workspace: Path, raw_path: str) -> Path:
     return candidate
 
 
+def _require_animation_audio(path: Path) -> None:
+    """Require a readable MP4 with decoded audio before publication."""
+    try:
+        import av
+    except ImportError as exc:
+        raise ValueError("Checking ready animations requires PyAV in this Python environment") from exc
+    try:
+        with av.open(str(path)) as container:
+            if not container.streams.video:
+                raise ValueError("Ready animations require a video stream")
+            if not container.streams.audio:
+                raise ValueError("Ready animations require an audio stream")
+            frame = next(container.decode(audio=0), None)
+            if frame is None or frame.samples <= 0:
+                raise ValueError("Ready animations require a decodable audio stream")
+    except av.FFmpegError as exc:
+        raise ValueError(f"Cannot inspect animation media: {path}") from exc
+
+
 def _validate_artifact_for_workspace(workspace: Path, artifact: dict, plan: dict) -> dict:
     checked = copy.deepcopy(artifact)
     artifact_id, location_key = _validate_artifact_shape(checked)
@@ -202,6 +221,10 @@ def _validate_artifact_for_workspace(workspace: Path, artifact: dict, plan: dict
         resolved_path = _validate_local_path(workspace, checked["location"]["path"])
         if checked["status"] == "ready" and not resolved_path.is_file():
             raise ValueError("Ready local artifacts must name an existing regular file")
+    if checked["status"] == "ready" and checked["type"] in {"voice-animation", "animation"}:
+        if location_key != "path" or checked["mime_type"] != "video/mp4":
+            raise ValueError("Ready animations require a local video/mp4 file so audio can be checked")
+        _require_animation_audio(resolved_path)
     return checked
 
 

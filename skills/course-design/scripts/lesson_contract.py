@@ -11,13 +11,13 @@ from course_contract import _validate_skill_route, course_content_fingerprint, n
 LESSON_SCHEMA_VERSION = 2
 BLOCK_TYPES = {
     "explanation", "bullets", "equation", "code", "voice-animation", "animation",
-    "diagram", "interactive-graph", "simulation", "source", "exercise", "feedback", "artifact",
+    "diagram", "interactive-graph", "simulation", "source", "khan-video", "exercise", "feedback", "artifact",
 }
 RESPONSE_TYPES = {"multiple-choice", "short-text", "long-text", "numeric", "code-text"}
 EVALUATION_MODES = {"manual", "choice", "numeric"}
 PUBLIC_BLOCK_FIELDS = {"id", "type", "concepts", "purpose", "text", "items", "equation", "code",
                        "artifact_id", "source_id", "exercise_id", "options", "caption", "label",
-                       "representation_id"}
+                       "representation_id", "clip_start_seconds", "clip_end_seconds"}
 REPRESENTATION_BLOCK_TYPES = {
     "manim": {"voice-animation", "animation"},
     "image": {"diagram", "artifact"},
@@ -26,10 +26,11 @@ REPRESENTATION_BLOCK_TYPES = {
     "pdf": {"artifact"},
     "text": {"explanation", "bullets", "equation", "code", "source", "feedback"},
     "exercise": {"exercise"},
+    "khan": {"khan-video"},
 }
 TEACHING_FORMS = {
     "explanation": "prose", "bullets": "prose", "equation": "notation",
-    "code": "code", "source": "source", "diagram": "still visual",
+    "code": "code", "source": "source", "khan-video": "video", "diagram": "still visual",
     "voice-animation": "motion", "animation": "motion",
     "interactive-graph": "interactive model", "simulation": "interactive model",
     "artifact": "artifact",
@@ -281,11 +282,31 @@ def validate_lesson(data, course):
                 raise ValueError(f"{block_id}: unknown artifact reference")
         if block_type in media_types and block.get("artifact_id") not in artifact_ids:
             raise ValueError(f"{block_id}: media block requires a known artifact reference")
-        if block_type == "source":
+        if block_type in ("source", "khan-video"):
             if block.get("source_id") not in source_ids:
                 raise ValueError(f"{block_id}: unknown source reference")
+            if block_type == "khan-video":
+                if block["source_id"] not in topic["resource_ids"]:
+                    raise ValueError(f"{block_id}: Khan video source must belong to the current topic")
+                if course["sources"][block["source_id"]].get("type") != "khan-video":
+                    raise ValueError(f"{block_id}: Khan video source must have type khan-video")
+                if not isinstance(block.get("text"), str) or not block["text"].strip():
+                    raise ValueError(f"{block_id}: Khan video block needs a watch prompt in text")
+                if ("production" in block and
+                        block["production"]["skill_route"] != "skills/khan-academy/SKILL.md"):
+                    raise ValueError(f"{block_id}: Khan video production must use the Khan Academy skill")
+            has_clip = "clip_start_seconds" in block or "clip_end_seconds" in block
+            if has_clip:
+                source = course["sources"][block["source_id"]]
+                start = block.get("clip_start_seconds")
+                end = block.get("clip_end_seconds")
+                if (source.get("type") != "khan-video" or type(start) is not int or
+                        type(end) is not int or start < 0 or end <= start):
+                    raise ValueError(f"{block_id}: Khan video clip requires integer start and end seconds")
         elif "source_id" in block and not isinstance(block["source_id"], str):
             raise ValueError(f"{block_id}: source_id must be text")
+        elif "clip_start_seconds" in block or "clip_end_seconds" in block:
+            raise ValueError(f"{block_id}: clip bounds require a source or Khan video block")
     for exercise in exercises:
         if any(ref not in block_ids for ref in exercise.get("reference_block_ids", [])):
             raise ValueError(f"{exercise['id']}: unknown reference block")

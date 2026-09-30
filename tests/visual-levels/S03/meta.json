@@ -1,0 +1,27 @@
+{
+  "id": "S03",
+  "track": "simulation",
+  "level": 3,
+  "subject": "computer-science",
+  "title": "BFS stepper",
+  "claim": "Learner steps through BFS and predicts next visit.",
+  "brief": "Buttons next/reset, visited list, queue display; prediction prompt.",
+  "must_include": [
+    "next",
+    "reset",
+    "queue",
+    "visited"
+  ],
+  "continuity": [
+    "same graph A-B-C"
+  ],
+  "acceptance": [
+    "step order correct",
+    "reset clears"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

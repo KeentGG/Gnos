@@ -83,25 +83,35 @@ python3 skills/manim-voice-animation/scripts/render_pipeline.py \
 Review the first frame, every conceptual transition, and the ending at actual
 playback size. Check that each spoken term points to the corresponding object,
 numbers agree with displayed equations and simulation state, labels stay in
-frame, and no updater remains attached after its section. Listen for cue drift
-when audio exists. A silent render verifies choreography only. Use a higher
-quality only after the low-quality preview is correct.
+frame, and no updater remains attached after its section. For the final render,
+listen from beginning to end and check that every narration cue is present,
+audible, and aligned with its visual action. A silent render verifies
+choreography only; keep it `draft`, even if the video itself renders correctly.
+Use a higher quality only after the low-quality preview is correct.
 
 ## Register the artifact
 
 The viewer page shows the topic's `manim` chip as ready only after the
-video is registered. Copy the render into the course workspace, then
-register it:
+video is registered. First render with real recorded or synthesized narration
+attached to the scene timeline, or mux a whole track made for the exact visual
+sequence. Review the resulting MP4 with sound. Copy that voiced render into
+the course workspace, then register it. In the example, `output/voiced.mp4`
+means your actual final render; the preview command above does not create that
+filename automatically:
 
 ```bash
-cp output/preview.mp4 learners/<learner>/courses/<course-id>/artifacts/videos/<slug>.mp4
+cp output/voiced.mp4 learners/<learner>/courses/<course-id>/artifacts/videos/<slug>.mp4
 python3 skills/course-design/scripts/manage_artifact.py --learners-root learners \
   register <learner-id> <course-id> --file artifact.json
 ```
 
 The artifact file uses `type: voice-animation`, `mime_type: video/mp4`,
-the topic's `lesson_id`, and `status: ready`. Register only the checked
-render; keep drafts as `draft` or `failed` with an honest note. Then
+the topic's `lesson_id`, and `status: ready`. Registration checks that a ready
+`voice-animation` or `animation` is a local MP4 with a video stream and a
+decodable audio stream; a silent preview or invalid file is rejected. This
+mechanical check cannot establish that the audio is narration, so the listening
+review above is still required. Keep silent previews and unfinished renders as
+`draft` or `failed` with an honest note. Then
 re-render the page:
 
 ```bash

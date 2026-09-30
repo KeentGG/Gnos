@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "project": "Basis transform ValueTracker",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V04Scene": {
+      "title": "Basis transform ValueTracker",
+      "cues": [
+        {
+          "text": "Here are basis vectors e1 and e2. The tracker alpha is at zero, and det equals one.",
+          "audio_file": null,
+          "duration": 4.0,
+          "cue_id": "c1_basis",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "As the tracker alpha sweeps to ninety degrees, e1 and e2 rotate together and det stays one.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "c2_rotate",
+          "sync_target": "",
+          "pause_after": 0
+        }
+      ],
+      "total_duration": 9.0
+    }
+  }
+}

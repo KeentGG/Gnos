@@ -1,0 +1,14 @@
+[
+  {
+    "cue_id": "c1_basis",
+    "start": 0.0,
+    "end": 4.0,
+    "text": "Here are basis vectors e1 and e2. The tracker alpha is at zero, and det equals one."
+  },
+  {
+    "cue_id": "c2_rotate",
+    "start": 4.0,
+    "end": 9.0,
+    "text": "As the tracker alpha sweeps to ninety degrees, e1 and e2 rotate together and det stays one."
+  }
+]

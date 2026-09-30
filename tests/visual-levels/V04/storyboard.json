@@ -1,0 +1,30 @@
+{
+  "title": "Basis transform ValueTracker",
+  "concept_id": "math.basis.rotation-det",
+  "prerequisite": "Learner can read basis vectors e1 and e2 as arrows on a grid.",
+  "success_check": "Learner predicts where e1 and e2 land after a 90-degree rotation and that det stays 1, then compares.",
+  "aspect_ratio": "16:9",
+  "scenes": [
+    {
+      "id": "V04Scene",
+      "title": "Basis transform ValueTracker",
+      "concept_target": "Basis vectors e1 and e2 rotate together while det stays 1 as tracker alpha sweeps.",
+      "narration_cues": [
+        {
+          "cue_id": "c1_basis",
+          "text": "Here are basis vectors e1 and e2. The tracker alpha is at zero, and det equals one.",
+          "visible_objects": ["plane", "e1_arrow", "e2_arrow", "det_readout", "tracker_readout"],
+          "change": "Basis shown at identity; det readout reads 1 with tracker at zero.",
+          "duration": 4.0
+        },
+        {
+          "cue_id": "c2_rotate",
+          "text": "As the tracker alpha sweeps to ninety degrees, e1 and e2 rotate together and det stays one.",
+          "visible_objects": ["e1_arrow", "e2_arrow", "det_readout", "tracker_readout"],
+          "change": "Basis rotated together by the tracker; det readout stays 1.",
+          "duration": 5.0
+        }
+      ]
+    }
+  ]
+}

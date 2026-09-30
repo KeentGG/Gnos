@@ -1,0 +1,27 @@
+{
+  "id": "P05",
+  "track": "pinepaper",
+  "level": 5,
+  "subject": "physics",
+  "title": "Pendulum motion + linked chart",
+  "claim": "A learner can see position and velocity change together.",
+  "brief": "Animated bob + linked sine chart with moving dot; play/pause; same angle state.",
+  "must_include": [
+    "angle",
+    "velocity",
+    "play",
+    "chart"
+  ],
+  "continuity": [
+    "same pendulum, rad units"
+  ],
+  "acceptance": [
+    "motion and chart agree",
+    "controls work sandboxed"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "scaffolded"
+}

@@ -1,0 +1,12 @@
+[
+  {"type":"cameraUpdate","width":800,"height":600,"x":0,"y":0},
+  {"type":"rectangle","id":"b","x":80,"y":80,"width":640,"height":440,"strokeStyle":"dashed","strokeWidth":2,"strokeColor":"#8b5cf6"},
+  {"type":"text","id":"b_lbl","x":100,"y":92,"text":"system boundary","fontSize":16,"strokeColor":"#8b5cf6"},
+  {"type":"text","id":"title","x":260,"y":20,"text":"Reactor boundary flows","fontSize":24,"strokeColor":"#1e1e1e"},
+  {"type":"rectangle","id":"vessel","x":300,"y":210,"width":200,"height":180,"backgroundColor":"#d0bfff","fillStyle":"solid","strokeColor":"#8b5cf6","strokeWidth":2,"roundness":{"type":3},"label":{"text":"reactor","fontSize":20}},
+  {"type":"arrow","id":"stir_shaft","x":440,"y":210,"width":0,"height":110,"points":[[0,0],[0,110]],"strokeColor":"#1e1e1e","strokeWidth":2,"endArrowhead":null},
+  {"type":"arrow","id":"stir_blade","x":400,"y":320,"width":80,"height":0,"points":[[0,0],[80,0]],"strokeColor":"#1e1e1e","strokeWidth":2,"endArrowhead":null},
+  {"type":"arrow","id":"a_in","x":10,"y":300,"width":300,"height":0,"points":[[0,0],[300,0]],"endArrowhead":"arrow","strokeColor":"#22c55e","strokeWidth":2,"label":{"text":"inflow","fontSize":16}},
+  {"type":"arrow","id":"a_out","x":490,"y":300,"width":240,"height":0,"points":[[0,0],[240,0]],"endArrowhead":"arrow","strokeColor":"#8b5cf6","strokeWidth":2,"label":{"text":"outflow","fontSize":16}},
+  {"type":"arrow","id":"a_heat","x":400,"y":580,"width":0,"height":-200,"points":[[0,0],[0,-200]],"endArrowhead":"arrow","strokeColor":"#ef4444","strokeWidth":2,"label":{"text":"Q heat","fontSize":16}}
+]

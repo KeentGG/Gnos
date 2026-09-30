@@ -1,0 +1,29 @@
+{
+  "id": "E08",
+  "track": "excalidraw",
+  "level": 8,
+  "subject": "economics",
+  "title": "Two linked markets",
+  "claim": "A learner can compare equilibrium across two side-by-side markets.",
+  "brief": "Draw two S/D panels with same color meanings, link arrow showing spillover.",
+  "must_include": [
+    "Market A",
+    "Market B",
+    "spillover",
+    "P*",
+    "Q*"
+  ],
+  "continuity": [
+    "same colors both panels"
+  ],
+  "acceptance": [
+    "two panels + link arrow"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "c17713f3aa82411696",
+  "note": "create_view checkpoint on live server (final, title/P* fix); PNG via pinned excalidraw 0.18.1 exportToSvg+densify, visually inspected"
+}

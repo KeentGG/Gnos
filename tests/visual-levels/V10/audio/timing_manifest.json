@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "project": "Gradient path on contours finds the minimum",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V10Scene": {
+      "title": "Contour plus gradient path camera reveal",
+      "cues": [
+        {
+          "text": "Predict before we move: this bowl f of x y equals x squared plus y squared has circular level sets. Watch them appear.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "contour",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "Now test your prediction: gradient dots step downhill, crossing each circle toward lower values.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "path",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "One justified zoom moves inward to reveal the minimum: the dots settle at the center where the bowl is lowest.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "zoom",
+          "sync_target": "",
+          "pause_after": 1.5
+        }
+      ],
+      "total_duration": 18.5
+    }
+  }
+}

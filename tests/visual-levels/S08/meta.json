@@ -1,0 +1,27 @@
+{
+  "id": "S08",
+  "track": "simulation",
+  "level": 8,
+  "subject": "physics",
+  "title": "Damping + drive phase plot",
+  "claim": "Learner maps drive to phase portrait.",
+  "brief": "Sliders damping, drive; phase canvas + amplitude readout; reset.",
+  "must_include": [
+    "damping",
+    "drive",
+    "phase",
+    "amplitude"
+  ],
+  "continuity": [
+    "same oscillator state both views"
+  ],
+  "acceptance": [
+    "phase responds",
+    "no overflow"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

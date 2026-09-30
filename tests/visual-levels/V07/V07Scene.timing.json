@@ -1,0 +1,32 @@
+[
+  {
+    "cue_id": "init",
+    "start": 0.0,
+    "end": 7.0,
+    "text": "We track dist from source s. Relax means keep the shorter path. Dist of s is zero, others start at inf. Follow the subtitles as each cue updates a label."
+  },
+  {
+    "cue_id": "relax-s-a",
+    "start": 7.400000000000006,
+    "end": 13.400000000000006,
+    "text": "Relax edge s to a with weight 4. The candidate is 0 plus 4. Dist of a becomes 4."
+  },
+  {
+    "cue_id": "relax-s-b",
+    "start": 13.866666666666662,
+    "end": 19.86666666666666,
+    "text": "Relax edge s to b with weight 2. The candidate beats inf. Dist of b becomes 2."
+  },
+  {
+    "cue_id": "relax-a-t",
+    "start": 20.333333333333318,
+    "end": 27.333333333333318,
+    "text": "Relax edge a to t with weight 3. From dist a equals 4, the candidate is 7. Dist of t becomes 7."
+  },
+  {
+    "cue_id": "done",
+    "start": 27.799999999999972,
+    "end": 33.79999999999997,
+    "text": "Done. Dist values are s 0, a 4, b 2, t 7. Edge b to t would give 9, so dist t stays 7. The subtitles matched each relax cue. Predict the result before running, then compare."
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "id": "V07",
+  "track": "video",
+  "level": 7,
+  "subject": "computer-science",
+  "title": "Dijkstra 5 cues + subtitles",
+  "claim": "Learner tracks relaxations with subtitle timing.",
+  "brief": "5 cues, per-cue subtitle lines, distance labels update.",
+  "must_include": [
+    "dist",
+    "relax",
+    "subtitle",
+    "5 cues"
+  ],
+  "continuity": [
+    "graph layout fixed"
+  ],
+  "acceptance": [
+    "subtitles align to cues",
+    "distances correct"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent",
+  "preview": "preview.mp4",
+  "preview_bytes": 349073,
+  "duration_s": 33.8,
+  "timing": "V07Scene.timing.json",
+  "subtitles": "V07Scene.srt",
+  "cues": ["init", "relax-s-a", "relax-s-b", "relax-a-t", "done"],
+  "dist_final": {"s": 0, "a": 4, "b": 2, "t": 7},
+  "quality": "-q l",
+  "mode": "silent-preview"
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "project": "Dijkstra 5 cues + subtitles",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V07Scene": {
+      "title": "Track Dijkstra relaxations with subtitles",
+      "cues": [
+        {
+          "text": "We track dist from source s. Relax means keep the shorter path. Dist of s is zero, others start at inf. Follow the subtitles as each cue updates a label.",
+          "audio_file": null,
+          "duration": 7.0,
+          "cue_id": "init",
+          "sync_target": "",
+          "pause_after": 0.5
+        },
+        {
+          "text": "Relax edge s to a with weight 4. The candidate is 0 plus 4. Dist of a becomes 4.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "relax-s-a",
+          "sync_target": "",
+          "pause_after": 0.5
+        },
+        {
+          "text": "Relax edge s to b with weight 2. The candidate beats inf. Dist of b becomes 2.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "relax-s-b",
+          "sync_target": "",
+          "pause_after": 0.5
+        },
+        {
+          "text": "Relax edge a to t with weight 3. From dist a equals 4, the candidate is 7. Dist of t becomes 7.",
+          "audio_file": null,
+          "duration": 7.0,
+          "cue_id": "relax-a-t",
+          "sync_target": "",
+          "pause_after": 0.5
+        },
+        {
+          "text": "Done. Dist values are s 0, a 4, b 2, t 7. Edge b to t would give 9, so dist t stays 7. The subtitles matched each relax cue. Predict the result before running, then compare.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "done",
+          "sync_target": "",
+          "pause_after": 0
+        }
+      ],
+      "total_duration": 34.0
+    }
+  }
+}

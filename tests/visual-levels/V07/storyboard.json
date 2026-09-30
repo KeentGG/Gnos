@@ -1,0 +1,81 @@
+{
+  "title": "Dijkstra 5 cues + subtitles",
+  "concept_id": "cs-dijkstra-relaxation",
+  "prerequisite": "Learner can read edge weights and track a running best distance.",
+  "success_check": "Learner predicts dist(t) before the relax a-t cue runs, then compares with the shown update.",
+  "aspect_ratio": "16:9",
+  "voice": "explainer-male",
+  "scenes": [
+    {
+      "id": "V07Scene",
+      "title": "Track Dijkstra relaxations with subtitles",
+      "concept_target": "Each relax keeps the smallest known dist; subtitles mark each distance update.",
+      "narration_cues": [
+        {
+          "cue_id": "init",
+          "text": "We track dist from source s. Relax means keep the shorter path. Dist of s is zero, others start at inf. Follow the subtitles as each cue updates a label.",
+          "visible_objects": [
+            "title",
+            "graph nodes s a b t",
+            "edges s-a s-b a-t b-t",
+            "dist labels",
+            "weight labels"
+          ],
+          "change": "Graph, edge weights, and initial dist labels appear; layout stays fixed for all cues.",
+          "duration": 7.0,
+          "pause_after": 0.5
+        },
+        {
+          "cue_id": "relax-s-a",
+          "text": "Relax edge s to a with weight 4. The candidate is 0 plus 4. Dist of a becomes 4.",
+          "visible_objects": [
+            "edge s-a",
+            "node s",
+            "node a",
+            "dist label a"
+          ],
+          "change": "Edge s-a highlights and dist(a) updates from inf to 4.",
+          "duration": 6.0,
+          "pause_after": 0.5
+        },
+        {
+          "cue_id": "relax-s-b",
+          "text": "Relax edge s to b with weight 2. The candidate beats inf. Dist of b becomes 2.",
+          "visible_objects": [
+            "edge s-b",
+            "node s",
+            "node b",
+            "dist label b"
+          ],
+          "change": "Edge s-b highlights and dist(b) updates from inf to 2.",
+          "duration": 6.0,
+          "pause_after": 0.5
+        },
+        {
+          "cue_id": "relax-a-t",
+          "text": "Relax edge a to t with weight 3. From dist a equals 4, the candidate is 7. Dist of t becomes 7.",
+          "visible_objects": [
+            "edge a-t",
+            "node a",
+            "node t",
+            "dist label t"
+          ],
+          "change": "Edge a-t highlights and dist(t) updates from inf to 7.",
+          "duration": 7.0,
+          "pause_after": 0.5
+        },
+        {
+          "cue_id": "done",
+          "text": "Done. Dist values are s 0, a 4, b 2, t 7. Edge b to t would give 9, so dist t stays 7. The subtitles matched each relax cue. Predict the result before running, then compare.",
+          "visible_objects": [
+            "final dist labels",
+            "caption shortest dist t equals 7",
+            "graph layout fixed"
+          ],
+          "change": "Final distances hold with a one-line caption; no node moves.",
+          "duration": 6.0
+        }
+      ]
+    }
+  ]
+}

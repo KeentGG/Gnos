@@ -28,42 +28,57 @@ Treat the named confusion as a possibility, not a diagnosis of this learner.
 ### Financial accounting
 
 - **Build:** Start with one business event, the entity, and the reporting period.
-  Receiving cash and earning revenue can occur at different times.
+  A customer prepayment makes cash receipt and revenue recognition separate
+  questions. Establish what was promised and delivered before selecting an entry.
 - **Research:** Use an introductory accounting chapter for the sequence, then the
   applicable reporting standard for recognition. Check entity, framework, period, and
   transaction evidence.
-- **Show and check:** Trace one amount through a journal, ledger, and
-  statements. Exact tables show both sides of the entry. Use Pinepaper only
-  when moving the recognition date must update the period timeline and
-  statement effect together. Reconcile the totals.
+- **Show and check:** Put the receipt and delivery on a timeline, then carry
+  the same amount and dates into journal, ledger, and statement tables. Explain
+  which account changes at each event under the inspected framework; reconcile
+  the balance sheet and period result. Move delivery into the next period and
+  ask for the entries and statement effects before updating the linked views.
 
 ### Managerial and cost accounting
 
 - **Build:** Start with a decision between alternatives and which costs change.
-  Allocated or sunk costs may not be relevant to the decision.
+  Compare accepting an extra order with declining it. Separate a fixed cost
+  allocation from an additional cash cost and the value of scarce capacity.
 - **Research:** Use a managerial-accounting chapter and a stated operating case. Check
   which costs change with the decision and which are allocations.
-- **Show and check:** A cost table separates fixed and variable terms. Use
-  Pinepaper when a changed volume or capacity must update the break-even
-  graph and decision margin together. Recalculate one case from the table.
+- **Show and check:** Compare revenue and relevant costs for both alternatives
+  in a table. For a linear cost model, map its fixed term to the graph's
+  intercept and its variable rate to the slope; mark the order's volume.
+  If capacity is scarce, show what the order displaces. Change spare capacity
+  or price and ask which terms
+  change and whether the decision reverses. Keep break-even and incremental
+  profit as distinct questions.
 
 ### Audit and controls
 
-- **Build:** Start with an assertion about a transaction and what could make it wrong.
-  Having a control does not establish that it operated effectively.
+- **Build:** Start with a recorded supplier payment and an assertion it must
+  satisfy. Approval may be designed into the process yet absent for this payment.
 - **Research:** Inspect the applicable auditing standard and the records the procedure
   examines. Separate control design, operation, and evidence of failure.
-- **Show and check:** A process diagram locates a failure. An evidence table connects
-  risk, control, and test. Compare a case where the control exists but fails.
+- **Show and check:** Follow the payment through request, approval, and
+  recording in a process diagram. Link each relevant step to the assertion,
+  control, test, and actual record in an evidence table. Show what a missing
+  approval establishes and what it does not establish about the transaction.
+  Supply an exception with different evidence and ask the learner to revise
+  the test or conclusion.
 
 ### Tax and reporting
 
-- **Build:** Start with an entity, jurisdiction, period, and concrete transaction. A
-  familiar rule may not apply to this entity or date.
+- **Build:** Start with one expense and the entity, jurisdiction, and period
+  reporting it. Book expense and tax deduction may differ; determine the
+  applicable rule before assuming either timing or amount.
 - **Research:** Inspect the authority for the jurisdiction and reporting period. Check
   effective dates, definitions, exceptions, and any official worked example.
-- **Show and check:** Pair the applicable rule excerpt with a worked calculation. A
-  timeline separates relevant dates. Reconcile the result to the underlying records.
+- **Show and check:** Annotate the rule's conditions beside the transaction
+  facts. Carry the supported adjustment from a book-to-tax reconciliation into
+  the worked calculation; a timeline explains any timing difference. Change
+  the date or entity type and ask which conditions require fresh verification.
+  Do not extend the example into another jurisdiction by analogy.
 
 ## Source use
 

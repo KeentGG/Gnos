@@ -10,10 +10,11 @@ Date current figures and policy claims.
 ## Ways to show the idea
 
 For a new curve, work through a few values and explain its axes and units.
-Use plotted graphs and equations whenever the mechanism is quantitative;
-economics does not need a separate math lesson to use them. Use
+Use equations for quantitative mechanisms; add graphs when shape,
+intersections, or changed conditions need inspection. Economics does not need
+a separate math lesson to use them. Use
 [Excalidraw](../../excalidraw/SKILL.md) for institutional or flow structure,
-[Pinepaper](../../pinepaper/SKILL.md) for linked curves, and
+[JSXGraph](../../jsxgraph/SKILL.md) for linked curves and feasible regions, and
 [Manim](../../manim-voice-animation/SKILL.md) for narrated adjustment over time.
 An interactive graph tests comparative statics; a simulation tests a sequence
 under stated rules. A smooth path is not a forecast or a causal finding.

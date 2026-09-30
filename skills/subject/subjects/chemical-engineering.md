@@ -8,8 +8,9 @@ blocks the explanation.
 ## Ways to show the idea
 
 Use [Excalidraw](../../excalidraw/SKILL.md) for fixed streams and control volumes,
-[Pinepaper](../../pinepaper/SKILL.md) when a process state and its graph must
-change together, and property tables for exact values.
+[Pinepaper](../../pinepaper/SKILL.md) for changing process scenes,
+[JSXGraph](../../jsxgraph/SKILL.md) for phase, rate, and response curves,
+and property tables for exact values.
 Use [Manim](../../manim-voice-animation/SKILL.md) for narrated transient change
 and a simulation to test flow, temperature, residence time, or controller
 settings. Match stream names and units across the picture and balance.

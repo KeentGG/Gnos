@@ -12,8 +12,10 @@ use an invariant or argument for a claim over all inputs.
 Use [Excalidraw](../../excalidraw/SKILL.md) for structure and boundaries,
 [Manim](../../manim-voice-animation/SKILL.md) for narrated state changes, and
 [Pinepaper](../../pinepaper/SKILL.md) for linked or interactive diagrams.
-Code and traces connect those pictures to executable behavior. Use a graph
-for measured cost or scaling; do not infer complexity from a timing curve.
+Code and traces connect those pictures to executable behavior. Use JSXGraph
+to compare mathematical cost functions and scientific plots for measured
+timings; do not infer complexity from a timing curve. Algorithm graphs remain
+node-and-edge diagrams rather than coordinate plots.
 Read [the CS reference](../references/computer-science.md) when the lesson
 needs a detailed trace, invariant, or visual construction pattern.
 

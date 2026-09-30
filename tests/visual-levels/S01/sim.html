@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html data-palette="forest" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Slope and change</title>
+<style id="simulation-style">
+:root{--surface:#EFE9E1;--ink:#322D29;--muted:#322D29;--primary:#72383D;--soft:#D9D9D9;--line:#D1C7BD;--secondary:#72383D;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+[data-palette="wine"]{--surface:#EDE7C7;--ink:#200E01;--muted:#200E01;--primary:#8B0000;--soft:#EDE7C7;--line:#5B0202;--secondary:#5B0202}
+[data-palette="forest"]{--surface:#FDE5D4;--ink:#001524;--muted:#001524;--primary:#445D48;--soft:#FDE5D4;--line:#445D48;--secondary:#5E3023}
+[data-palette="blue"]{--surface:#E9E6DD;--ink:#000000;--muted:#000000;--primary:#0274BD;--soft:#E9E6DD;--line:#C4AD9D;--secondary:#F57251}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--surface);color:var(--ink)}
+[hidden]{display:none!important}
+.sim-shell{width:100%;max-width:1280px;height:100%;margin:auto;padding:24px;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:16px}
+.sim-header h1{font:600 clamp(22px,2.6vw,30px)/1.2 Georgia,serif;letter-spacing:-.025em;margin:0 0 8px}
+.sim-header p{margin:0;color:var(--muted);max-width:80ch}
+.sim-nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+button{appearance:none;font-family:var(--mono);font-size:13px;font-weight:500;line-height:1.3;min-height:44px;padding:10px 16px;border:1px solid var(--primary);border-radius:3px;background:var(--primary);color:var(--surface);cursor:pointer}
+button.secondary,.sim-nav button{background:transparent;color:var(--primary);border-color:var(--line)}
+.sim-nav button[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--surface)}
+button:hover{text-decoration:underline}button:disabled{background:var(--surface);color:var(--muted);cursor:default}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.sim-panes{min-width:0;min-height:0;display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.25fr);gap:20px;align-items:start}
+.sim-panes[data-view]:not([data-view="both"]){grid-template-columns:minmax(0,1fr)}
+.sim-pane{min-width:0;max-width:100%;padding:20px;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+.sim-pane h2{font-size:16px;margin:0 0 16px;font-weight:600}
+.sim-pane p{margin:10px 0;overflow-wrap:anywhere}
+.sim-pane label{display:block;font-family:var(--mono);font-size:14px;font-weight:500;margin:16px 0 4px}
+input,output{font:inherit;color:inherit}
+input[type="range"]{display:block;width:100%;min-height:44px;margin:0;accent-color:var(--primary)}
+input[type="text"],input[type="number"]{min-height:44px;max-width:100%;border:1px solid var(--line);border-radius:3px;padding:8px;background:var(--surface)}
+input[type="text"]{width:100%}
+.controls,.controls-row,.controls-wrap,.btns,.btnrow,.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ctl,.control,.controls-wrap>div{flex:1 1 220px;min-width:0}
+.sim-pane>.controls:not(.actions){display:block}
+.sim-pane .row input[type="range"]{flex:1 1 120px;width:0}
+.readout,.readouts,.stats{font-variant-numeric:tabular-nums;margin:14px 0;display:flex;gap:12px;flex-wrap:wrap;background:var(--soft);padding:12px;border-radius:3px;color:var(--ink)}
+.readout p{margin:0}.readout strong,.v,.val,output{font-variant-numeric:tabular-nums;font-weight:600}
+.stat{flex:1 1 120px;min-width:0}.stat span,.stat .v{display:block;font-size:20px}
+.pill,.sign-pill{display:inline-block;border:1px solid var(--line);border-radius:3px;padding:4px 8px;font-size:14px}
+.sign-positive{color:var(--primary)}.sign-negative{color:var(--secondary)}
+.hint,.note,.model,.model-note,.axis-note,.small,.muted,.sub,.assump,.assume{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.predict,.prediction-box{padding:12px;border-left:3px solid var(--primary);background:var(--soft);margin:12px 0;font-size:14px}
+.eq,.formula,code,.code{font:14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.eq,.fixedbox{padding:12px;background:var(--surface);border-radius:3px;margin:12px 0}
+canvas,svg{display:block;max-width:min(100%,720px);width:100%;height:auto;max-height:260px;background:var(--surface);border:1px solid var(--line);border-radius:3px;object-fit:contain}
+.node{fill:var(--surface);stroke:var(--ink);stroke-width:2}.node.visited{fill:var(--soft);stroke:var(--primary)}.node.current{fill:var(--surface);stroke:var(--secondary);stroke-width:3}
+.nodelabel{font-size:22px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}.edgelabel{font-size:14px;fill:var(--muted)}
+.status{min-height:3em;font-size:14px}.label{font-size:14px;font-weight:600;margin:12px 0 4px}
+.gauge{flex:1 1 160px;padding:8px}.bar{height:12px;background:var(--line);border-radius:2px;margin:8px 0}.fill{height:100%;background:var(--primary);border-radius:2px}.fill.hot{background:var(--secondary)}
+#alarmBanner{display:none;padding:12px;border:1px solid var(--secondary);color:var(--secondary);background:var(--surface);border-radius:3px}#alarmBanner.show{display:block}#okBanner{padding:12px;color:var(--primary);background:var(--soft);border-radius:3px}#okBanner.hide{display:none}
+table{border-collapse:collapse;width:100%;font-size:14px}caption{text-align:left;font-weight:600;margin-bottom:8px}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;overflow-wrap:anywhere}
+#taskGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.task{min-width:0;min-height:40px;border:1px solid var(--line);border-radius:2px;padding:4px;font-size:14px;text-align:center;background:var(--surface)}.task.success{background:var(--soft);color:var(--primary)}.task.failed{background:var(--surface);color:var(--secondary)}.task.retry{background:var(--surface);color:var(--secondary)}
+#chart{max-width:min(100%,600px);max-height:180px}
+.sim-footer{font-family:var(--mono);font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+@media(max-width:999px){.sim-shell{padding:16px;gap:12px}.sim-panes{grid-template-columns:minmax(0,1fr)}.sim-pane{padding:16px}.sim-nav button[data-view="both"]{display:none}.sim-header h1{font-size:23px}.sim-header p{font-size:14px}.sim-pane label{margin-top:12px}canvas,svg{max-height:240px}.sim-pane h2{margin-bottom:12px}}
+@media(max-height:650px){.sim-shell{padding:12px;gap:8px}.sim-pane{padding:12px}canvas,svg{max-height:220px}.sim-header h1{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+[data-palette="blue"] button{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+[data-palette="blue"] button.secondary,[data-palette="blue"] .sim-nav button{background:transparent;color:var(--ink);border-color:var(--ink)}
+[data-palette="blue"] .sim-nav button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+[data-palette="blue"] .sign-positive,[data-palette="blue"] .sign-negative{color:var(--ink)}
+</style>
+</head>
+<body>
+<main aria-label="Interactive experiment" class="sim-shell">
+<header class="sim-header"><h1>Slope and change</h1><p>For a run of +1, predict the rise. Change the slope and compare the line with its readout.</p></header>
+<nav aria-label="Choose experiment view" class="sim-nav">
+<button aria-pressed="true" data-view="both" type="button">Together</button>
+<button aria-pressed="false" data-view="controls" type="button">Controls</button>
+<button aria-pressed="false" data-view="result" type="button">Result</button>
+<button aria-pressed="false" data-view="model" type="button">Model</button>
+</nav>
+<div class="sim-panes" data-view="both">
+<section aria-label="Controls" class="sim-pane" data-pane="controls"><h2>Change and compare</h2><section aria-label="controls" class="sim-panel">
+<label class="slider-label" for="slopeSlider">slope m (−3 to 3)</label>
+<input aria-describedby="mValue signValue" aria-label="slope m" id="slopeSlider" max="3" min="-3" name="slope m" step="0.1" type="range" value="2"/>
+<div aria-live="polite" class="readout">
+<div>m = <strong id="mValue">2.0</strong></div>
+<div>predicted change sign: <span class="sign-pill sign-positive" id="signValue">positive</span></div>
+</div>
+<div class="axis-note" id="deltaNote">At m = 2.0, a run of +1 gives a rise of +2.0.</div>
+<div class="controls-row">
+<button id="resetBtn" type="button">reset</button>
+<span style="font-size:0.9rem;color:var(--muted);">reset restores m=2</span>
+</div>
+</section></section>
+<section aria-label="Result" class="sim-pane" data-pane="result"><h2>Read the result</h2><section aria-label="graph" class="sim-plot-wrap">
+<canvas aria-label="Plot of y=mx for current slope m" height="500" id="plot" role="img" width="800"></canvas>
+<p class="axis-note">x-axis: x (units) · y-axis: y (units). Grid lines at each integer. Line updates live as slope m changes.</p>
+</section></section>
+<section aria-label="Model" class="sim-pane" data-pane="model" hidden=""><h2>Model and assumptions</h2><div class="model-note">
+<div><strong>model:</strong> y=mx — a straight line through the origin with slope m.</div>
+<div><strong>units:</strong> dimensionless pure numbers on both axes (x units, y units).</div>
+<div><strong>assumptions:</strong> exact linear relation, no intercept, no noise; x range −5…5 shown.</div>
+</div></section>
+</div>
+<footer class="sim-footer">Compare your prediction with the result.</footer>
+</main>
+<script id="simulation-shell-script">
+(() => {
+  const panes = document.querySelector('.sim-panes');
+  const buttons = [...document.querySelectorAll('.sim-nav button')];
+  const narrow = matchMedia('(max-width:999px)');
+  let view = narrow.matches ? 'controls' : 'both';
+  function select(next) {
+    view = next;
+    panes.dataset.view = view;
+    panes.querySelectorAll('[data-pane]').forEach(pane => {
+      pane.hidden = view === 'both' ? pane.dataset.pane === 'model' : pane.dataset.pane !== view;
+    });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
+    window.dispatchEvent(new Event('resize'));
+  }
+  buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.view)));
+  narrow.addEventListener('change', () => {if(narrow.matches && view === 'both') select('controls')});
+  select(view);
+})();
+</script>
+<script id="simulation-model-script">const GNOS_PALETTE = (() => {const s=getComputedStyle(document.documentElement);return {surface:s.getPropertyValue('--surface').trim(),ink:s.getPropertyValue('--ink').trim(),primary:s.getPropertyValue('--primary').trim(),secondary:s.getPropertyValue('--secondary').trim(),line:s.getPropertyValue('--line').trim()}})();
+
+(function () {
+  "use strict";
+  var slider = document.getElementById("slopeSlider");
+  var mValue = document.getElementById("mValue");
+  var signValue = document.getElementById("signValue");
+  var deltaNote = document.getElementById("deltaNote");
+  var resetBtn = document.getElementById("resetBtn");
+  var canvas = document.getElementById("plot");
+  var ctx = canvas.getContext("2d");
+  var DEFAULT_M = 2;
+
+  function signOf(m) {
+    if (m > 0) { return "positive"; }
+    if (m < 0) { return "negative"; }
+    return "zero";
+  }
+
+  function formatM(m) {
+    return (Math.round(m * 10) / 10).toFixed(1);
+  }
+
+  function resizeCanvasToDisplay() {
+    var dpr = window.devicePixelRatio || 1;
+    var rect = canvas.getBoundingClientRect();
+    var w = Math.max(280, Math.round(rect.width));
+    var h = Math.round(w * 5 / 8);
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { w: w, h: h };
+  }
+
+  // World window: x in [-5,5], y in [-6,6] with padding for labels.
+  var X_MIN = -5, X_MAX = 5, Y_MIN = -6, Y_MAX = 6;
+
+  function draw(m) {
+    var size = resizeCanvasToDisplay();
+    var W = size.w, H = size.h;
+    var padL = 44, padR = 14, padT = 14, padB = 34;
+    var pw = W - padL - padR, ph = H - padT - padB;
+
+    function sx(x) { return padL + ((x - X_MIN) / (X_MAX - X_MIN)) * pw; }
+    function sy(y) { return padT + ((Y_MAX - y) / (Y_MAX - Y_MIN)) * ph; }
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = GNOS_PALETTE.ink;
+    ctx.fillRect(0, 0, W, H);
+
+    // Grid
+    ctx.strokeStyle = GNOS_PALETTE.ink;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (var gx = Math.ceil(X_MIN); gx <= X_MAX; gx++) {
+      ctx.moveTo(sx(gx), padT);
+      ctx.lineTo(sx(gx), padT + ph);
+    }
+    for (var gy = Math.ceil(Y_MIN); gy <= Y_MAX; gy++) {
+      ctx.moveTo(padL, sy(gy));
+      ctx.lineTo(padL + pw, sy(gy));
+    }
+    ctx.stroke();
+
+    // Axes
+    ctx.strokeStyle = GNOS_PALETTE.ink;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(sx(0), padT);
+    ctx.lineTo(sx(0), padT + ph);
+    ctx.moveTo(padL, sy(0));
+    ctx.lineTo(padL + pw, sy(0));
+    ctx.stroke();
+
+    // Axis labels
+    ctx.fillStyle = GNOS_PALETTE.ink;
+    ctx.font = "12px system-ui, sans-serif";
+    ctx.fillText("x (units)", padL + pw - 58, padT + ph + 22);
+    ctx.fillText("y (units)", 4, padT + 10);
+
+    // Clip line to plot area
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(padL, padT, pw, ph);
+    ctx.clip();
+
+    // Line y = m x sampled across x range (clamped by clip)
+    ctx.strokeStyle = m > 0 ? GNOS_PALETTE.ink : (m < 0 ? GNOS_PALETTE.ink : GNOS_PALETTE.ink);
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    var first = true;
+    for (var x = X_MIN; x <= X_MAX + 1e-9; x += 0.05) {
+      var y = m * x;
+      var px = sx(x), py = sy(y);
+      if (first) { ctx.moveTo(px, py); first = false; }
+      else { ctx.lineTo(px, py); }
+    }
+    ctx.stroke();
+
+    // Origin marker
+    ctx.fillStyle = GNOS_PALETTE.ink;
+    ctx.beginPath();
+    ctx.arc(sx(0), sy(0), 3.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // Slope triangle for run=+1 from origin when inside view
+    if (m !== 0 && Math.abs(m) <= 6) {
+      var x1 = 1, y1 = m * 1;
+      if (y1 >= Y_MIN && y1 <= Y_MAX) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(padL, padT, pw, ph);
+        ctx.clip();
+        ctx.setLineDash([6, 4]);
+        ctx.strokeStyle = GNOS_PALETTE.primary;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(sx(0), sy(0));
+        ctx.lineTo(sx(x1), sy(0));
+        ctx.lineTo(sx(x1), sy(y1));
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.restore();
+      }
+    }
+
+    // Title inside plot
+    ctx.fillStyle = GNOS_PALETTE.ink;
+    ctx.font = "bold 14px system-ui, sans-serif";
+    ctx.fillText("y=mx  (m = " + formatM(m) + ")", padL + 8, padT + 18);
+  }
+
+  function update() {
+    var m = parseFloat(slider.value);
+    if (!isFinite(m)) { m = DEFAULT_M; }
+    mValue.textContent = formatM(m);
+    var s = signOf(m);
+    signValue.textContent = s;
+    signValue.className = "sign-pill " + (s === "positive" ? "sign-positive" : (s === "negative" ? "sign-negative" : "sign-zero"));
+    var rise = formatM(m * 1);
+    deltaNote.textContent = "At m = " + formatM(m) + ", a run of +1 gives a rise of " +
+      (m >= 0 ? "+" : "") + rise + " (" + s + ").";
+    draw(m);
+  }
+
+  slider.addEventListener("input", update);
+  resetBtn.addEventListener("click", function () {
+    slider.value = String(DEFAULT_M);
+    update();
+    slider.focus();
+  });
+  window.addEventListener("resize", function () {
+    draw(parseFloat(slider.value) || DEFAULT_M);
+  });
+
+  update();
+})();
+</script>
+</body>
+</html>

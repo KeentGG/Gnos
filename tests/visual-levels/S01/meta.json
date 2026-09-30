@@ -1,0 +1,28 @@
+{
+  "id": "S01",
+  "track": "simulation",
+  "level": 1,
+  "subject": "math",
+  "title": "Slope slider",
+  "claim": "Learner predicts sign of change before moving slope slider.",
+  "brief": "One slider m in y=mx; readout; prediction prompt; reset.",
+  "must_include": [
+    "slope m",
+    "reset",
+    "prediction",
+    "y=mx"
+  ],
+  "continuity": [
+    "math notation KaTeX-style"
+  ],
+  "acceptance": [
+    "slider rewires line+readout",
+    "reset works",
+    "no network fetch"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

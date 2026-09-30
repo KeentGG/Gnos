@@ -1,0 +1,27 @@
+{
+  "id": "S09",
+  "track": "simulation",
+  "level": 9,
+  "subject": "computer-science",
+  "title": "Policy-rule retry sim",
+  "claim": "Learner tests a retry threshold policy under failures.",
+  "brief": "Threshold slider, step/run, success-rate readout; tempting-bad-policy trap explained.",
+  "must_include": [
+    "threshold",
+    "success rate",
+    "retry",
+    "prediction"
+  ],
+  "continuity": [
+    "policy rule stated"
+  ],
+  "acceptance": [
+    "policy changes outcome",
+    "trap documented"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

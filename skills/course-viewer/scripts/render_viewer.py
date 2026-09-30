@@ -719,7 +719,7 @@ def render_block(block, lesson_exercises, sources, course_id=""):
     if not isinstance(course_id, str):
         course_id = str(course_id or "")
     block_type = block.get("type", "")
-    label = esc(block.get("label") or block_type or "block")
+    label = esc(block.get("label") or ("Watch" if block_type == "khan-video" else block_type) or "block")
     header = f'<div class="block-label">{label}</div>'
     chunks = []
     if block.get("text"):
@@ -738,15 +738,43 @@ def render_block(block, lesson_exercises, sources, course_id=""):
         chunks.append(f'<p class="block-caption">{render_rich_text(block["caption"])}</p>')
     body = "".join(chunks)
 
-    if block_type == "source":
+    if block_type in ("source", "khan-video"):
         source = sources.get(block.get("source_id", ""), {})
         sections = " · ".join(esc(s) for s in source.get("sections", []))
         link = ""
         if source.get("url"):
             link = f'<div class="meta"><a href="{esc(source["url"])}">open source</a></div>'
+        embed = ""
+        video_id = source.get("youtube_id", "")
+        if (source.get("type") == "khan-video" and isinstance(video_id, str) and
+                re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id)):
+            start, end = block.get("clip_start_seconds"), block.get("clip_end_seconds")
+            clip = (type(start) is int and type(end) is int and 0 <= start < end)
+            params = f"?start={start}&amp;end={end}" if clip else ""
+            segment = (f" · Watch {start // 60}:{start % 60:02d}–"
+                       f"{end // 60}:{end % 60:02d}") if clip else ""
+            embed = (f'<div class="khan-video-frame"><iframe class="khan-video-embed" loading="lazy" '
+                     'referrerpolicy="strict-origin-when-cross-origin" '
+                     f'src="https://www.youtube-nocookie.com/embed/{video_id}{params}" '
+                     f'title="{esc(source.get("title", "Khan Academy video"))}" '
+                     'allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" '
+                     'allowfullscreen></iframe></div>')
+        if block_type == "khan-video":
+            segment = (f'<span class="khan-video-time">{start // 60}:{start % 60:02d}–'
+                       f'{end // 60}:{end % 60:02d}</span>') if embed and clip else ""
+            link = (f'<a class="khan-video-link" href="{esc(source["url"])}">'
+                    'Open on Khan Academy ↗</a>') if source.get("url") else ""
+            body = (f'<div class="card khan-video-card">'
+                    f'<div class="khan-video-top"><span>Khan Academy · Video</span>{segment}</div>'
+                    f'{embed}<div class="khan-video-details">'
+                    f'<div class="khan-video-title">{esc(source.get("title", ""))}</div>'
+                    f'{body}<div class="khan-video-footer">{link}</div></div></div>')
+            return f'<div class="block">{header}{body}</div>'
+        if embed:
+            embed = f'<div class="khan-video-label">Khan Academy{segment}</div>{embed}'
         body += (f'<div class="card source-card"><div class="card-title">Source</div>'
                  f'<div class="prompt">{esc(source.get("title", ""))}'
-                 + (f" — {sections}" if sections else "") + f"</div>{link}"
+                 + (f" — {sections}" if sections else "") + f"</div>{embed}{link}"
                  f'<div class="meta">{esc(block.get("purpose", ""))}</div></div>')
         return f'<div class="block">{header}{body}</div>'
 
@@ -771,6 +799,8 @@ def rep_ready(representation, lesson, artifacts):
         return False
     if kind in ("text", "exercise"):
         return True
+    if kind == "khan":
+        return any(block.get("type") == "khan-video" and block.get("source_id") for block in blocks)
     artifact_ids = {block.get("artifact_id") for block in blocks if block.get("artifact_id")}
     for artifact in artifacts:
         if artifact.get("lesson_id") != lesson.get("id") or artifact.get("id") not in artifact_ids:
@@ -793,13 +823,14 @@ def render_chips(representations, lesson, artifacts):
     chips = []
     for representation in representations:
         kind = esc(representation.get("kind", ""))
+        display_kind = "Khan Academy" if kind == "khan" else kind
         ready = rep_ready(representation, lesson, artifacts)
         css = f"chip {kind}"
         if ready:
             css += " ready"
         purpose = esc(representation.get("purpose", ""))
         chips.append(f'<span class="{css}" title="{purpose}"><span class="status"></span>'
-                     f'{kind}</span>')
+                     f'{display_kind}</span>')
     return '<div class="chips">' + "".join(chips) + "</div>"
 
 
@@ -808,7 +839,7 @@ def lesson_representations(lesson, artifacts):
     kinds = {
         "voice-animation": "manim", "animation": "manim",
         "diagram": "diagram", "interactive-graph": "simulation",
-        "simulation": "simulation", "exercise": "exercise",
+        "simulation": "simulation", "exercise": "exercise", "khan-video": "khan",
     }
     result = []
     for block in lesson.get("blocks", []):

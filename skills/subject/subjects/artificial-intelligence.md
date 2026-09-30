@@ -11,7 +11,9 @@ an evaluation result; date benchmark claims and state their conditions.
 Use [Excalidraw](../../excalidraw/SKILL.md) for data paths and boundaries,
 [Manim](../../manim-voice-animation/SKILL.md) for narrated updates or state
 changes, and [Pinepaper](../../pinepaper/SKILL.md) for linked diagrams.
-Use plots for distributions, error, and optimization; use tables and code for
+Use [JSXGraph](../../jsxgraph/SKILL.md) to inspect distributions, decision
+boundaries, and optimization steps. Use scientific plots for measured evaluation
+results and uncertainty; use tables and code for
 exact computations. Simulations should reveal the effect of a meaningful
 choice, such as a threshold, policy, sample, or step size.
 

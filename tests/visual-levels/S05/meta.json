@@ -1,0 +1,27 @@
+{
+  "id": "S05",
+  "track": "simulation",
+  "level": 5,
+  "subject": "physics",
+  "title": "Projectile range",
+  "claim": "Learner finds angle maximizing range at fixed v0.",
+  "brief": "Sliders v0, angle; range readout; trajectory canvas; reset.",
+  "must_include": [
+    "v0 m/s",
+    "angle deg",
+    "range m",
+    "g=9.81"
+  ],
+  "continuity": [
+    "SI units, g stated"
+  ],
+  "acceptance": [
+    "range math correct",
+    "canvas in frame"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

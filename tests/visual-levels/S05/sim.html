@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html data-palette="forest" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Projectile range</title>
+<style id="simulation-style">
+:root{--surface:#EFE9E1;--ink:#322D29;--muted:#322D29;--primary:#72383D;--soft:#D9D9D9;--line:#D1C7BD;--secondary:#72383D;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+[data-palette="wine"]{--surface:#EDE7C7;--ink:#200E01;--muted:#200E01;--primary:#8B0000;--soft:#EDE7C7;--line:#5B0202;--secondary:#5B0202}
+[data-palette="forest"]{--surface:#FDE5D4;--ink:#001524;--muted:#001524;--primary:#445D48;--soft:#FDE5D4;--line:#445D48;--secondary:#5E3023}
+[data-palette="blue"]{--surface:#E9E6DD;--ink:#000000;--muted:#000000;--primary:#0274BD;--soft:#E9E6DD;--line:#C4AD9D;--secondary:#F57251}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--surface);color:var(--ink)}
+[hidden]{display:none!important}
+.sim-shell{width:100%;max-width:1280px;height:100%;margin:auto;padding:24px;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:16px}
+.sim-header h1{font:600 clamp(22px,2.6vw,30px)/1.2 Georgia,serif;letter-spacing:-.025em;margin:0 0 8px}
+.sim-header p{margin:0;color:var(--muted);max-width:80ch}
+.sim-nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+button{appearance:none;font-family:var(--mono);font-size:13px;font-weight:500;line-height:1.3;min-height:44px;padding:10px 16px;border:1px solid var(--primary);border-radius:3px;background:var(--primary);color:var(--surface);cursor:pointer}
+button.secondary,.sim-nav button{background:transparent;color:var(--primary);border-color:var(--line)}
+.sim-nav button[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--surface)}
+button:hover{text-decoration:underline}button:disabled{background:var(--surface);color:var(--muted);cursor:default}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.sim-panes{min-width:0;min-height:0;display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.25fr);gap:20px;align-items:start}
+.sim-panes[data-view]:not([data-view="both"]){grid-template-columns:minmax(0,1fr)}
+.sim-pane{min-width:0;max-width:100%;padding:20px;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+.sim-pane h2{font-size:16px;margin:0 0 16px;font-weight:600}
+.sim-pane p{margin:10px 0;overflow-wrap:anywhere}
+.sim-pane label{display:block;font-family:var(--mono);font-size:14px;font-weight:500;margin:16px 0 4px}
+input,output{font:inherit;color:inherit}
+input[type="range"]{display:block;width:100%;min-height:44px;margin:0;accent-color:var(--primary)}
+input[type="text"],input[type="number"]{min-height:44px;max-width:100%;border:1px solid var(--line);border-radius:3px;padding:8px;background:var(--surface)}
+input[type="text"]{width:100%}
+.controls,.controls-row,.controls-wrap,.btns,.btnrow,.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ctl,.control,.controls-wrap>div{flex:1 1 220px;min-width:0}
+.sim-pane>.controls:not(.actions){display:block}
+.sim-pane .row input[type="range"]{flex:1 1 120px;width:0}
+.readout,.readouts,.stats{font-variant-numeric:tabular-nums;margin:14px 0;display:flex;gap:12px;flex-wrap:wrap;background:var(--soft);padding:12px;border-radius:3px;color:var(--ink)}
+.readout p{margin:0}.readout strong,.v,.val,output{font-variant-numeric:tabular-nums;font-weight:600}
+.stat{flex:1 1 120px;min-width:0}.stat span,.stat .v{display:block;font-size:20px}
+.pill,.sign-pill{display:inline-block;border:1px solid var(--line);border-radius:3px;padding:4px 8px;font-size:14px}
+.sign-positive{color:var(--primary)}.sign-negative{color:var(--secondary)}
+.hint,.note,.model,.model-note,.axis-note,.small,.muted,.sub,.assump,.assume{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.predict,.prediction-box{padding:12px;border-left:3px solid var(--primary);background:var(--soft);margin:12px 0;font-size:14px}
+.eq,.formula,code,.code{font:14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.eq,.fixedbox{padding:12px;background:var(--surface);border-radius:3px;margin:12px 0}
+canvas,svg{display:block;max-width:min(100%,720px);width:100%;height:auto;max-height:260px;background:var(--surface);border:1px solid var(--line);border-radius:3px;object-fit:contain}
+.node{fill:var(--surface);stroke:var(--ink);stroke-width:2}.node.visited{fill:var(--soft);stroke:var(--primary)}.node.current{fill:var(--surface);stroke:var(--secondary);stroke-width:3}
+.nodelabel{font-size:22px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}.edgelabel{font-size:14px;fill:var(--muted)}
+.status{min-height:3em;font-size:14px}.label{font-size:14px;font-weight:600;margin:12px 0 4px}
+.gauge{flex:1 1 160px;padding:8px}.bar{height:12px;background:var(--line);border-radius:2px;margin:8px 0}.fill{height:100%;background:var(--primary);border-radius:2px}.fill.hot{background:var(--secondary)}
+#alarmBanner{display:none;padding:12px;border:1px solid var(--secondary);color:var(--secondary);background:var(--surface);border-radius:3px}#alarmBanner.show{display:block}#okBanner{padding:12px;color:var(--primary);background:var(--soft);border-radius:3px}#okBanner.hide{display:none}
+table{border-collapse:collapse;width:100%;font-size:14px}caption{text-align:left;font-weight:600;margin-bottom:8px}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;overflow-wrap:anywhere}
+#taskGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.task{min-width:0;min-height:40px;border:1px solid var(--line);border-radius:2px;padding:4px;font-size:14px;text-align:center;background:var(--surface)}.task.success{background:var(--soft);color:var(--primary)}.task.failed{background:var(--surface);color:var(--secondary)}.task.retry{background:var(--surface);color:var(--secondary)}
+#chart{max-width:min(100%,600px);max-height:180px}
+.sim-footer{font-family:var(--mono);font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+@media(max-width:999px){.sim-shell{padding:16px;gap:12px}.sim-panes{grid-template-columns:minmax(0,1fr)}.sim-pane{padding:16px}.sim-nav button[data-view="both"]{display:none}.sim-header h1{font-size:23px}.sim-header p{font-size:14px}.sim-pane label{margin-top:12px}canvas,svg{max-height:240px}.sim-pane h2{margin-bottom:12px}}
+@media(max-height:650px){.sim-shell{padding:12px;gap:8px}.sim-pane{padding:12px}canvas,svg{max-height:220px}.sim-header h1{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+[data-palette="blue"] button{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+[data-palette="blue"] button.secondary,[data-palette="blue"] .sim-nav button{background:transparent;color:var(--ink);border-color:var(--ink)}
+[data-palette="blue"] .sim-nav button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+[data-palette="blue"] .sign-positive,[data-palette="blue"] .sign-negative{color:var(--ink)}
+</style>
+</head>
+<body>
+<main aria-label="Interactive experiment" class="sim-shell">
+<header class="sim-header"><h1>Projectile range</h1><p>At fixed launch speed, predict which angle gives the longest range. Test 30°, 45°, and 60°.</p></header>
+<nav aria-label="Choose experiment view" class="sim-nav">
+<button aria-pressed="true" data-view="both" type="button">Together</button>
+<button aria-pressed="false" data-view="controls" type="button">Controls</button>
+<button aria-pressed="false" data-view="result" type="button">Result</button>
+<button aria-pressed="false" data-view="model" type="button">Model</button>
+</nav>
+<div class="sim-panes" data-view="both">
+<section aria-label="Controls" class="sim-pane" data-pane="controls"><h2>Change and compare</h2><div class="controls">
+<label for="v0">v0 m/s</label>
+<div class="row">
+<input aria-label="v0 m/s" id="v0" max="50" min="5" step="0.5" type="range" value="25"/>
+<output for="v0" id="v0val">25.0 v0 m/s</output>
+</div>
+<label for="angle">angle deg</label>
+<div class="row">
+<input aria-label="angle deg" id="angle" max="85" min="5" step="1" type="range" value="45"/>
+<output for="angle" id="angleval">45 angle deg</output>
+</div>
+<div aria-live="polite" class="readout">
+<div>range m</div>
+<div class="big"><span id="rangeval">63.71</span> range m</div>
+<div class="formula" id="detail">v0 = 25.0 m/s, angle = 45 deg, flight time = 3.60 s, max height = 15.93 m</div>
+</div>
+<div class="btns">
+<button id="reset" type="button">Reset</button>
+<button class="secondary" id="opt45" type="button">Try 45 deg</button>
+</div>
+<p class="hint">Keep speed fixed. Compare the ranges at 30°, 45°, and 60°.</p>
+</div></section>
+<section aria-label="Result" class="sim-pane" data-pane="result"><h2>Read the result</h2><div class="stage">
+<canvas aria-label="trajectory canvas: projectile path, ground, and range marker" height="460" id="traj" role="img" width="760"></canvas>
+<p class="hint">Trajectory canvas: x = horizontal distance (m), y = height (m). Green curve is the path; brown tick marks the landing range. Axes auto-scale to keep the full curve in frame with padding.</p>
+</div></section>
+<section aria-label="Model" class="sim-pane" data-pane="model" hidden=""><h2>Model and assumptions</h2><div class="formula">R = v0^2 * sin(2θ) / g  |  g=9.81 m/s^2  |  θ in degrees</div><div class="assump">Assumptions: flat ground (y0 = y = 0), vacuum, g=9.81 constant, v0 in m/s, angle in degrees above horizontal.</div></section>
+</div>
+<footer class="sim-footer">Compare your prediction with the result.</footer>
+</main>
+<script id="simulation-shell-script">
+(() => {
+  const panes = document.querySelector('.sim-panes');
+  const buttons = [...document.querySelectorAll('.sim-nav button')];
+  const narrow = matchMedia('(max-width:999px)');
+  let view = narrow.matches ? 'controls' : 'both';
+  function select(next) {
+    view = next;
+    panes.dataset.view = view;
+    panes.querySelectorAll('[data-pane]').forEach(pane => {
+      pane.hidden = view === 'both' ? pane.dataset.pane === 'model' : pane.dataset.pane !== view;
+    });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
+    window.dispatchEvent(new Event('resize'));
+  }
+  buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.view)));
+  narrow.addEventListener('change', () => {if(narrow.matches && view === 'both') select('controls')});
+  select(view);
+})();
+</script>
+<script id="simulation-model-script">const GNOS_PALETTE = (() => {const s=getComputedStyle(document.documentElement);return {surface:s.getPropertyValue('--surface').trim(),ink:s.getPropertyValue('--ink').trim(),primary:s.getPropertyValue('--primary').trim(),secondary:s.getPropertyValue('--secondary').trim(),line:s.getPropertyValue('--line').trim()}})();
+
+(function(){
+  "use strict";
+  var g = 9.81;
+  var v0El = document.getElementById("v0");
+  var angEl = document.getElementById("angle");
+  var v0Out = document.getElementById("v0val");
+  var angOut = document.getElementById("angleval");
+  var rangeOut = document.getElementById("rangeval");
+  var detail = document.getElementById("detail");
+  var cv = document.getElementById("traj");
+  var ctx = cv.getContext("2d");
+  var DEF_V0 = 25, DEF_ANG = 45;
+
+  function rad(d){ return d * Math.PI / 180; }
+  function range(v0, deg){
+    return (v0 * v0 * Math.sin(2 * rad(deg))) / g;
+  }
+  function flightTime(v0, deg){
+    return (2 * v0 * Math.sin(rad(deg))) / g;
+  }
+  function maxHeight(v0, deg){
+    var vy = v0 * Math.sin(rad(deg));
+    return (vy * vy) / (2 * g);
+  }
+  function pathY(v0, deg, x){
+    var th = rad(deg);
+    var c = Math.cos(th);
+    return x * Math.tan(th) - (g * x * x) / (2 * v0 * v0 * c * c);
+  }
+
+  function draw(){
+    var v0 = parseFloat(v0El.value);
+    var deg = parseFloat(angEl.value);
+    var R = range(v0, deg);
+    var H = maxHeight(v0, deg);
+
+    v0Out.textContent = v0.toFixed(1) + " v0 m/s";
+    angOut.textContent = deg.toFixed(0) + " angle deg";
+    rangeOut.textContent = R.toFixed(2);
+    detail.textContent = "v0 = " + v0.toFixed(1) + " m/s, angle = " + deg.toFixed(0) +
+      " deg, flight time = " + flightTime(v0, deg).toFixed(2) + " s, max height = " + H.toFixed(2) + " m";
+
+    var W = cv.width, Hpx = cv.height;
+    var padL = 56, padR = 20, padT = 18, padB = 40;
+    var xMax = Math.max(R * 1.12, 5);
+    var yMax = Math.max(H * 1.35, xMax * 0.28, 3);
+    function X(x){ return padL + (x / xMax) * (W - padL - padR); }
+    function Y(y){ return (Hpx - padB) - (y / yMax) * (Hpx - padT - padB); }
+
+    ctx.clearRect(0, 0, W, Hpx);
+    // grid
+    ctx.strokeStyle = GNOS_PALETTE.ink; ctx.lineWidth = 1;
+    for (var i = 0; i <= 5; i++){
+      var gx = padL + (i / 5) * (W - padL - padR);
+      ctx.beginPath(); ctx.moveTo(gx, padT); ctx.lineTo(gx, Hpx - padB); ctx.stroke();
+      var gy = padT + (i / 5) * (Hpx - padT - padB);
+      ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(W - padR, gy); ctx.stroke();
+    }
+    // axes + ground
+    ctx.strokeStyle = GNOS_PALETTE.ink; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, Hpx - padB); ctx.lineTo(W - padR, Hpx - padB); ctx.stroke();
+    ctx.strokeStyle = GNOS_PALETTE.ink; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(padL, Hpx - padB); ctx.lineTo(W - padR, Hpx - padB); ctx.stroke();
+    ctx.fillStyle = GNOS_PALETTE.ink; ctx.font = "12px system-ui, sans-serif";
+    ctx.fillText("0", padL - 12, Hpx - padB + 18);
+    ctx.fillText(xMax.toFixed(0) + " m", W - padR - 34, Hpx - padB + 18);
+    ctx.fillText("x (m)", W - padR - 40, Hpx - padB + 34);
+    ctx.fillText(yMax.toFixed(0) + " m", 6, padT + 10);
+    ctx.fillText("y (m)", 6, padT + 26);
+
+    // optimal-range reference (45 deg at same v0), dashed gray
+    var R45 = (v0 * v0) / g;
+    if (Math.abs(deg - 45) > 0.5 && R45 <= xMax){
+      ctx.save();
+      ctx.strokeStyle = GNOS_PALETTE.ink; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(X(R45), Y(0)); ctx.lineTo(X(R45), Y(yMax * 0.9)); ctx.stroke();
+      ctx.restore();
+      ctx.fillStyle = GNOS_PALETTE.ink;
+      ctx.fillText("45-deg range", Math.min(X(R45) - 84, W - 120), Y(yMax * 0.9) - 6);
+    }
+
+    // trajectory
+    ctx.strokeStyle = GNOS_PALETTE.primary; ctx.lineWidth = 3; ctx.beginPath();
+    var N = 160;
+    for (var k = 0; k <= N; k++){
+      var x = (R * k) / N;
+      var y = Math.max(0, pathY(v0, deg, x));
+      var px = X(x), py = Y(y);
+      if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    // launch point
+    ctx.fillStyle = GNOS_PALETTE.primary;
+    ctx.beginPath(); ctx.arc(X(0), Y(0), 6, 0, Math.PI * 2); ctx.fill();
+    // landing marker
+    ctx.strokeStyle = GNOS_PALETTE.ink; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(X(R), Y(0) - 16); ctx.lineTo(X(R), Y(0) + 6); ctx.stroke();
+    ctx.fillStyle = GNOS_PALETTE.ink;
+    var label = R.toFixed(1) + " m";
+    ctx.fillText(label, Math.max(padL, Math.min(X(R) - 20, W - 60)), Y(0) - 22);
+    // launch angle arc hint
+    ctx.strokeStyle = GNOS_PALETTE.surface; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(X(0), Y(0), 34, 0, -rad(deg), true); ctx.stroke();
+  }
+
+  v0El.addEventListener("input", draw);
+  angEl.addEventListener("input", draw);
+  document.getElementById("reset").addEventListener("click", function(){
+    v0El.value = String(DEF_V0);
+    angEl.value = String(DEF_ANG);
+    draw();
+  });
+  document.getElementById("opt45").addEventListener("click", function(){
+    angEl.value = "45";
+    draw();
+  });
+  draw();
+})();
+</script>
+</body>
+</html>

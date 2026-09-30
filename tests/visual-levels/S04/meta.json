@@ -1,0 +1,27 @@
+{
+  "id": "S04",
+  "track": "simulation",
+  "level": 4,
+  "subject": "math",
+  "title": "Threshold + sampling histogram",
+  "claim": "Learner varies threshold and sample size, reads histogram.",
+  "brief": "Sliders threshold, n; histogram of 100 draws; reset; assumptions shown.",
+  "must_include": [
+    "threshold",
+    "n",
+    "histogram",
+    "assumptions"
+  ],
+  "continuity": [
+    "probability units"
+  ],
+  "acceptance": [
+    "histogram updates",
+    "reset works"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

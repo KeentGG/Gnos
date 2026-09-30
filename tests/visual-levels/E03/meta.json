@@ -1,0 +1,29 @@
+{
+  "id": "E03",
+  "track": "excalidraw",
+  "level": 3,
+  "subject": "computer-science",
+  "title": "BFS visit order 3 nodes",
+  "claim": "A learner can see BFS visits A then B,C.",
+  "brief": "Draw nodes A,B,C with directed edges A->B, A->C, numbered visit badges 1,2,3.",
+  "must_include": [
+    "A",
+    "B",
+    "C",
+    "visit 1",
+    "visit 2"
+  ],
+  "continuity": [
+    "CS graph layout left-to-right"
+  ],
+  "acceptance": [
+    "edges directed",
+    "order badges present"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "ad8ed2e963ed494480"
+}

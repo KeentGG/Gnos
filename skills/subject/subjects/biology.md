@@ -15,7 +15,9 @@ and plots for concentrations or populations. State whether an image is
 observed, reconstructed, or illustrative. Use the host's image-generation
 capability for illustrations, [Excalidraw](../../excalidraw/SKILL.md) for
 fixed compartments and flows, [Pinepaper](../../pinepaper/SKILL.md) when a
-mechanism and measured quantity must change together, and
+mechanism needs a composed scene. Use [JSXGraph](../../jsxgraph/SKILL.md)
+to inspect a population or concentration model, scientific plots for measured
+data and uncertainty, and
 [Manim](../../manim-voice-animation/SKILL.md) for narrated transport. A simulation tests a named perturbation.
 Label direction, scale, units, and time; distinguish model outputs from data.
 

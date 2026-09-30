@@ -1,5 +1,10 @@
 # Charts and quantities
 
+Use this reference when quantities belong inside a Pinepaper scene. For a
+standalone mathematical graph, follow
+[representation choices](../../lesson-design/references/representation-choices.md)
+and route the block to JSXGraph when its graph rules apply.
+
 Start from the numbers or equation, not a desired curve shape. Record whether
 each value is observed, sourced, calculated, or simulated. Keep the data and
 its calculation available in the lesson or a reproducible source. Pinepaper

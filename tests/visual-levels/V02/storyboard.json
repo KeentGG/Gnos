@@ -1,0 +1,41 @@
+{
+  "title": "Secant to Tangent at x=2 for f(x)=x squared",
+  "concept_id": "math.derivative.secant-limit-x2",
+  "prerequisite": "Learner can compute the slope between two points and evaluate f(x) = x squared.",
+  "success_check": "Learner predicts the secant slope as h shrinks, then explains why the readout settles at tangent slope 4.",
+  "aspect_ratio": "16:9",
+  "scenes": [
+    {
+      "id": "V02Scene",
+      "title": "Secant tends to tangent at x=2",
+      "concept_target": "The secant slope for f(x) = x squared at x = 2 tends to the tangent slope 4 as h shrinks.",
+      "narration_cues": [
+        {
+          "cue_id": "v02a",
+          "text": "Watch the secant through x equals 2 and x equals 3 on f of x equals x squared. Its slope is 5.",
+          "visible_objects": [
+            "axes",
+            "curve",
+            "secant_line",
+            "slope_readout"
+          ],
+          "change": "Axes, curve, and coarse secant from x=2 to x=3 appear with slope readout 5.0.",
+          "duration": 5.0
+        },
+        {
+          "cue_id": "v02b",
+          "text": "Now shrink the second point toward 2. The refined secant reads 4.25 and lands on the tangent of slope 4.",
+          "visible_objects": [
+            "axes",
+            "curve",
+            "refined_secant",
+            "tangent_line",
+            "slope_readout"
+          ],
+          "change": "Coarse secant refines toward x=2 and the tangent of slope 4 appears with updated readout.",
+          "duration": 6.0
+        }
+      ]
+    }
+  ]
+}

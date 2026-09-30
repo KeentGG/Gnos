@@ -1,130 +1,322 @@
-# Lesson contract
+# Composed lesson contract — the taught topic's default record
 
-Use this reference for the structure and publication requirements of
-`lesson.json`. Read [lesson-design.md](lesson-design.md) for how to develop
-the explanation, examples, and teaching sequence within that structure.
+Author one formal lesson per taught topic. The course sets its scope and
+sequence; the lesson develops the examples, reasoning, practice, and media.
+Validate it, then publish it into the enrolled workspace:
 
-## Lesson shape
+```bash
+python3 skills/course-design/scripts/validate_lesson.py lesson.json \
+  --course learners/<learner>/courses/<course-id>/course.json
+python3 skills/course-design/scripts/course_workspace.py publish \
+  learners/<learner>/courses/<course-id> --lesson lesson.json
+```
 
-Write one lesson file per topic. It holds:
+Answer questions and clarify misunderstandings during live teaching. Keep the
+lesson file current for the portal and the next turn. Publish `draft` while
+developing and `ready` after reviewing the assembled lesson and its artifacts.
 
-- `schema_version: 2` for newly authored lessons; existing version-1 lessons
-  remain readable and are not retroactively required to have worker briefs.
-- `id`, `course_id`, `chapter_id`, `topic_id`, readable `title`, teaching `purpose`
-- `concepts` from the topic, assigned `teacher` or `null`, repository-relative `skill_routes`
-- `assumptions` supported by evidence or marked unverified
-- ordered `blocks`, detailed `exercises`
-- `publication`: `draft` while building, `ready` when the learner sees it
-- real UTC timestamps: `created_at`, `updated_at` ending in `Z`
+## Lesson fields
 
-Keep ids stable. You may change the title. Never change the id to
-fix wording. Inherit the topic teacher. Never invent a persona.
-Keep `skill_routes` unique and beneath `skills/`. Include each skill that
-will produce a lesson block or file.
+New lessons use `schema_version: 2`; existing version 1 records remain readable.
+A lesson contains:
 
-Before validating and publishing the draft, the coordinator writes each
-exercise's structured contract in `exercises`: stable `id`, concepts, a
-provisional learner prompt, response type, evaluation mode, success criteria,
-and any worked solution. This contract is data used by the exercise block and
-viewer; it is not itself a lesson block. The worker assigned the corresponding
-`exercise` block receives the contract and authors the final learner-facing
-prompt and worked solution against it. It returns the block reference plus
-the completed exercise data. The coordinator merges both into `lesson.json`,
-checks that response type, evaluation, and success criteria still match the
-contract, then revalidates and republishes the draft before accepting the
-result. If those contract fields need a change, the worker returns a proposal;
-the coordinator decides, updates the data, and revalidates.
+- `id`, `course_id`, `chapter_id`, and `topic_id`,
+- a readable `title` and observable `purpose`,
+- `concepts` drawn from that topic,
+- the assigned `teacher` or `null`, and repository-relative `skill_routes`,
+- `assumptions`, each supported by learner evidence or marked unverified,
+- ordered `blocks` using the supported types below, with a representation binding
+  when the topic has a plan,
+- `exercises` with prompts, response types, and private evaluation criteria,
+- `publication`: `draft`, `ready`, or `archived`,
+- `created_at` and `updated_at` timestamps,
+- `design_receipt` after review, required before publication as `ready`.
 
-Write a worked answer in the exercise's top-level `solution` string. Explain
-the reasoning as well as the result, using the same notation as the lesson.
-This is separate from `evaluation`: manual evaluation still means a teacher
-must review the learner's response. The solution stays out of the initial
-HTML and public lesson JSON. The local server returns it only after a saved
-attempt and an explicit Show answer request. Older exercises without a
-solution remain readable; add one when revising them.
+Timestamps are real ISO-8601 UTC instants ending in `Z`; `updated_at` cannot
+precede `created_at`. Lesson skill routes must be unique and resolve to existing skill or subject
+guidance files. Include the topic guidance and any media producers selected
+during lesson design. A binding representation still fixes its producer route.
 
-## Blocks and the course plan
+Stable identifiers preserve links from attempts, artifacts, and questions.
+Changing the title or explanation does not justify changing the lesson ID.
+The lesson inherits the topic's teacher value. A teacher-neutral topic remains
+teacher-neutral, authoring a lesson is not permission to invent a persona.
 
-Every block carries `id`, `type`, `concepts`, and a short `purpose`. Its
-concepts must belong to the topic. Choose its type and purpose while designing
-the lesson; the course does not prescribe a media list. A new block needs no
-`representation_id`. Older lessons may keep that field when their course has
-a representation plan. In those lessons, keep the old ID, kind, purpose, and
-production route consistent with the plan.
+Only `ready` lessons belong in the ordinary portal sequence. A draft can be
+saved while teaching develops; it must not appear as finished learner material.
 
-Before setting `publication` to `ready`, include at least two distinct
-teaching forms. Explanation and bullets are both prose. An equation, code,
-source, still visual, animation, interactive model, or artifact may add a
-second form. Exercise and feedback blocks do not count. Give every form a
-different job in the reasoning. The validator checks the form count; the
-lesson review checks whether the forms actually help.
+A ready lesson records `design_receipt` with `designed_at` (between its creation
+and update timestamps), `course_fingerprint` (the current course content SHA-256),
+`skill_route: "skills/lesson-design/SKILL.md"`, and `review: "pass"`. Compute the
+fingerprint with `course_contract.course_content_fingerprint`; do not invent one.
+The receipt records review and course agreement; it cannot prove teaching quality.
 
-Choose each block by what the learner must do:
+## Blocks
 
-- To state a claim, definition, or step, use text. Say the exact point.
-- To show change over time, use motion. Keep one thing fixed while one thing moves.
-- To let comparison take time, use a still. Label the relation to inspect.
-- To let the learner change an input and see the result, use simulation. Show controls, units, and reset.
-- To test transfer, use an exercise that applies the idea to a changed case or condition.
+Every block has a stable `id`, `type`, relevant `concepts`, and a short
+`purpose` stating what the representation should reveal. For a topic with a
+representation plan, every block also has `representation_id`. It must name one
+of that topic's entries in `course.json`. Type-specific fields contain the text
+or reference the block needs.
 
-Order blocks so the learner can follow the reasoning across them. Text and
-media may explain one idea together. Remove repetition that contributes no
-new explanation, observation, or practice.
+Supported types are:
 
-## Teamwork and briefs
+- `explanation`, `bullets`, `equation`, and `code`;
+- `voice-animation`, `animation`, `diagram`, `interactive-graph`, and
+  `simulation`;
+- `source`, `khan-video`, `exercise`, `feedback`, and generic `artifact`.
 
-For a new version-2 lesson, every block has a complete `production` brief,
-even in a `draft`. Existing version-1 lessons keep their earlier optional
-production-field semantics.
+For a topic with a representation plan, each block uses its planned kind:
 
-The coordinator owns assembly. One sub-agent owns each block output
-and nothing else, including prose, notation, transitions, and exercises.
-Read [how each block worker works](worker-brief.md)
-before you brief a worker, and follow the instructions it gives for that
-type of block. Do not reinvent the worker instructions.
+| representation kind | block type |
+| --- | --- |
+| `manim` | `voice-animation` or `animation` |
+| `image` | `diagram` or `artifact` |
+| `diagram` | `diagram` or `artifact` |
+| `simulation` | `interactive-graph` or `simulation` |
+| `pdf` | `artifact` |
+| `text` | `explanation`, `bullets`, `equation`, `code`, `source` |
+| `exercise` | `exercise` |
+| `khan` | `khan-video` |
 
-1. Read the topic and subject guidance, then decide what the lesson must explain.
-2. Write the full skeleton in reasoning order, including complete exercise
-   contracts in `exercises`.
-3. Add a production brief to every block, then validate and publish as `draft`.
-4. Dispatch blocks with no unmet dependencies in parallel. Give each worker its block, purpose, subject excerpt, assigned teacher guidance, learner starting point, opening question, continuity rules, sources, dependency outputs, and a separate output path. State what the next block needs from this one. Dispatch dependent blocks only after their dependencies pass review.
-5. Check each result against its acceptance checks. Reject shifts in terms, symbols, colors, units, names, or dates.
-6. After all workers return, merge fragments in skeleton order and inspect the files. Review and validate the lesson, set it to `ready`, and publish it. Then register its checked artifacts one at a time; the manifest requires a published lesson ID. If registration fails, return the lesson to `draft` and repair the artifact. Hand back to the orchestrator only when the lesson and its artifacts are ready; render after the learner says yes.
+For a topic with a representation plan, the validator checks the representation
+ID, concept, purpose, and kind-to-block mapping. Revise and validate a binding plan
+if its medium or purpose changes. A topic without a representation plan lets
+lesson design choose the medium; its blocks still use the topic's concepts.
 
-If sub-agents are unavailable, stop after publishing the validated draft and
-report that delegation could not run. Do not publish the lesson as `ready`
-unless sub-agents produced and passed review for every block. Continue solo
-only if the learner explicitly changes the request to authorize it.
+Media blocks refer to artifact IDs declared by the lesson. After a worker
+produces and checks the file, the coordinator registers that ID in the artifact
+manifest. Exercise blocks refer to an exercise defined by the same lesson.
+References must resolve; a plausible filename is not an artifact.
 
-A worker never edits the course, lesson, or manifest. A worker never
-changes concept, purpose, type, or route. If the medium cannot teach
-the purpose, stop that block. The coordinator revises the lesson brief and
-checks the result again. Revise `course.json` only for a change in topic scope.
+For a verified Khan Academy video, use a `khan-video` block referencing a course
+source with `type: "khan-video"`, the exact Khan Academy video URL, and the
+verified 11-character `youtube_id`. Its `source_id` must be in the current
+topic's `resource_ids`. Give the block a concrete `text` viewing prompt and
+use `skills/khan-academy/SKILL.md` as its production route. If only part of the video is relevant,
+set integer `clip_start_seconds` and `clip_end_seconds` on the block. These
+are absolute seconds from the beginning of the video, with end greater than
+start. The portal embeds that interval in a responsive 16:9 player and links the original Khan page.
+Khan articles and exercises use ordinary source links. See
+[Khan Academy](../../khan-academy/SKILL.md) for selection and placement.
 
-Each brief names:
+## Math notation
 
-- `skill_route`: declared by the lesson
-- `brief`: one bounded job in plain verbs
-- `must_include`: every object, label, control, or relation to show
-- `continuity`: symbols, colors, units, and names to keep
-- `acceptance_checks`: what you will look at to accept
-- `depends_on_block_ids`: an explicit list of earlier blocks this worker needs; use `[]` if there are none
+The course page renders mathematics with KaTeX. Write every formula as
+LaTeX, never as bare ASCII:
 
-Never write make it clear, make it engaging, or add context. Name the
-object and the check.
+- inline math in `text`, `items`, and exercise `prompt` fields goes in
+  `$...$` (or `\(...\)`): `For $A \in \mathbb{R}^{m \times n}$,
+  $T(x) = Ax$ is a linear map from $\mathbb{R}^n$ to $\mathbb{R}^m$`.
+- display math goes in `$$...$$` (or `\[...\]`), and `equation` blocks
+  hold one LaTeX expression, e.g. `[v]_{new} = P^{-1}[v]_{old}`.
+- never write `R^(m x n)`, `[v]_B`, `P^(-1)`, `xW_Q`, or `1/2` as plain
+  text and expect them to look right. The viewer translates common ASCII
+  idioms as a safety net, but the safety net is lossy: delimit your math.
 
-## Output text rules for every block
+Order blocks by reasoning, not by file type. A useful sequence may introduce a
+claim, let the learner inspect its changing parts, and then ask for a prediction.
+Do not require every lesson to contain every block type.
 
-These rules apply to text, narration, labels, prompts, and controls.
-They keep every representation consistent.
+## Production briefs
 
-- State claims precisely and explain how they follow. Keep sentences readable without breaking connected reasoning into fragments.
-- Use bullets only for parallel items. Use an equation block when the learner must inspect notation.
-- Write mathematics as LaTeX. Use `$...$` in prose and `$$...$$` for a displayed expression; an `equation` block holds the expression without those delimiters. Escape backslashes in JSON strings, then inspect the rendered page for correct symbols, units, and layout.
-- Keep terms, symbols, colors, direction, units, names, and dates identical across explanation, motion, graph, and exercise.
-- Ask exercises under a changed condition, such as new inputs or evidence. Keep success criteria and answers private. Choice options stay public because the learner needs them. Everything else private stays out of the public projection.
-- Add a short transition only when the reason to change medium is unclear. Never hide unrelated artifacts behind generic connectors.
+Version 2 requires `production` on every block, including those written by the
+coordinator. It records the teaching job and is removed from the public
+projection. Version 1 permits blocks without it.
+
+```json
+"production": {
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "brief": "Keep the gradient fixed while two step directions move from the same point.",
+  "must_include": [
+    "The gradient vector",
+    "One positive and one negative dot product",
+    "The local-prediction warning"
+  ],
+  "continuity": [
+    "Use the lesson's gradient symbol and direction colors.",
+    "Keep the graph axes fixed across both comparisons."
+  ],
+  "acceptance_checks": [
+    "Each moving step matches the displayed dot-product sign.",
+    "The final frame remains readable without narration."
+  ],
+  "depends_on_block_ids": ["local-prediction"]
+}
+```
+
+`skill_route` must be declared by the lesson; a binding course representation
+also fixes its route. `brief`
+states one bounded job. `must_include`, `continuity`, and `acceptance_checks`
+are nonempty. Version 2 requires `depends_on_block_ids`; use `[]` when
+there are no dependencies. It may name only earlier blocks. Do not write “make it clear,” “make it engaging,” or “add context.” Name
+the object, relation, label, control, or check the worker must produce.
+
+## Lesson production
+
+The coordinator owns `course.json`, `lesson.json`, and `manifest.json`. Workers
+write only their assigned outputs. Follow [lesson design](../SKILL.md) and
+[worker briefs](worker-brief.md) for dispatch and review:
+
+1. Draft blocks in reasoning order, with a shared case, notation, and sources.
+   Honor any binding course representation plan.
+2. Add production briefs, validate, and publish as `draft` before registering
+   artifacts against the lesson ID.
+3. Give each worker its block and required earlier context. Supply inspected
+   exports for media dependencies; start dependent work after that review.
+4. Review returned files and fragments against the brief. Check the complete
+   explanation, transitions, and learner interaction after assembly.
+5. Register checked artifacts one at a time, validate the assembled lesson,
+   publish it as `ready`, and render the course page.
+
+Revise a medium or block purpose in lesson design. Return to course design
+for a new concept, source, topic boundary, or changed binding representation.
+Workers propose these changes; they do not silently substitute an artifact.
+
+## One sequence across representations
+
+This legacy version 1 example shows prose, media, interaction, and practice
+for one concept. New version 2 lessons also brief every block:
+
+```json
+{
+  "schema_version": 1,
+  "id": "gradient-direction-1",
+  "course_id": "gradient-descent",
+  "chapter_id": "local-change",
+  "topic_id": "gradient-direction",
+  "title": "What the gradient predicts",
+  "purpose": "Predict which small step decreases a local linear approximation.",
+  "concepts": ["math.gradient", "math.directional-derivative"],
+  "teacher": "math",
+  "skill_routes": [
+    "skills/subject/SKILL.md",
+    "skills/subject/subjects/math.md",
+    "skills/manim-voice-animation/SKILL.md"
+  ],
+  "assumptions": [
+    "The learner has computed a two-variable gradient; direction choice remains unverified."
+  ],
+  "blocks": [
+    {
+      "id": "local-prediction",
+      "representation_id": "local-prediction-text",
+      "type": "explanation",
+      "concepts": ["math.directional-derivative"],
+      "purpose": "Name the prediction the animation will make visible.",
+      "text": "For a small step d, the dot product between the gradient and d predicts the first-order change."
+    },
+    {
+      "id": "direction-video",
+      "representation_id": "direction-motion",
+      "type": "voice-animation",
+      "concepts": ["math.gradient", "math.directional-derivative"],
+      "purpose": "Keep the gradient fixed while comparing two step directions.",
+      "artifact_id": "gradient-direction-video",
+      "production": {
+        "skill_route": "skills/manim-voice-animation/SKILL.md",
+        "brief": "Animate two step directions from one point while the gradient stays fixed.",
+        "must_include": ["The gradient", "Two step vectors", "Both dot-product signs"],
+        "continuity": ["Reuse the notation and colors from local-prediction."],
+        "acceptance_checks": ["Each direction matches its displayed sign."],
+        "depends_on_block_ids": ["local-prediction"]
+      }
+    },
+    {
+      "id": "connect-sign",
+      "representation_id": "connect-sign-text",
+      "type": "bullets",
+      "concepts": ["math.directional-derivative"],
+      "purpose": "Connect the moving arrow to the sign of the dot product.",
+      "items": [
+        "A positive dot product predicts an increase.",
+        "A negative dot product predicts a decrease.",
+        "The prediction is local; a large step can leave the region where it is accurate."
+      ]
+    },
+    {
+      "id": "direction-lab",
+      "representation_id": "direction-control",
+      "type": "interactive-graph",
+      "concepts": ["math.gradient", "math.directional-derivative"],
+      "purpose": "Let the learner rotate the step and inspect the predicted sign.",
+      "artifact_id": "direction-simulator"
+    },
+    {
+      "id": "predict-new-direction",
+      "representation_id": "direction-check",
+      "type": "exercise",
+      "concepts": ["math.directional-derivative"],
+      "purpose": "Test whether the learner can predict before moving the simulator.",
+      "exercise_id": "predict-direction-sign"
+    }
+  ],
+  "artifacts": [{"id": "gradient-direction-video"}, {"id": "direction-simulator"}],
+  "exercises": [
+    {
+      "id": "predict-direction-sign",
+      "concepts": ["math.directional-derivative"],
+      "prompt": "The gradient is (2, 4) and the step is (1, -1). Predict the sign of the local change and justify it.",
+      "response_type": "long-text",
+      "reference_block_ids": ["direction-video", "connect-sign", "direction-lab"],
+      "evaluation": {"mode": "manual"},
+      "success_criteria": [
+        "Computes or reasons from a negative dot product.",
+        "Describes a local prediction rather than a guaranteed global change."
+      ]
+    }
+  ],
+  "publication": "draft",
+  "created_at": "2026-09-12T16:00:00Z",
+  "updated_at": "2026-09-12T16:00:00Z"
+}
+```
+
+The example assumes the selected course topic declares the five named
+representations and all listed skill routes. The same term, symbol, direction,
+and color meaning must survive across the explanation, narration, graph, and
+exercise. Add a short transition when the reason for changing representation
+would otherwise be unclear. Do not use generic connective language to disguise
+unrelated artifacts.
+
+## Exercises and evaluation
+
+An exercise contains `id`, `concepts`, `prompt`, `response_type`, `evaluation`,
+private `success_criteria`, and optional `reference_block_ids`.
+
+Supported response types are `multiple-choice`, `short-text`, `long-text`,
+`numeric`, and `code-text`. Supported evaluation modes are:
+
+- `manual` for explanations, proofs, arguments, and code review;
+- `choice` for a nonempty unique `options` list and a private `answer` equal to
+  one of those options;
+- `numeric` for a numeric private `answer` and nonnegative numeric `tolerance`.
+
+The first portal version stores code as text, it never executes submitted code.
+An `execute` field is invalid in every evaluation mode. Manual evaluation does
+not contain an answer, accepted values, tolerance, or solution.
+Manual responses remain awaiting review until an active teacher evaluates the
+actual attempt. Revealing a solution is not independent success.
+
+Success criteria belong in the private lesson file so the teacher can review
+consistently. A public lesson projection is an explicit allowlist. It includes
+the identity, placement, purpose, visible blocks, prompt, response shape, and
+publication metadata, but never success criteria, accepted answers, tolerances,
+solutions, or other private evaluation fields. Choice options remain public
+because the learner needs them to answer; the accepted choice does not.
 
 ## Validation
 
-Run `python3 skills/course-design/scripts/validate_lesson.py <lesson.json> --course <course.json>` before every publish. Valid JSON is not proof of learning. Revise from learner response.
+Run:
+
+```bash
+python3 skills/course-design/scripts/validate_lesson.py \
+  <lesson.json> --course <course.json>
+```
+
+Validation checks course placement, teacher and skill routes, concept ownership,
+representation bindings, production briefs and dependencies, unique IDs, block
+types, exercise references, response and evaluation modes, timestamps, and
+publication state. It cannot establish that the chosen sequence helps this
+learner; revise from their response rather than treating valid JSON as evidence
+of learning.

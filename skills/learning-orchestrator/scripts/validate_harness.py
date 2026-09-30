@@ -16,7 +16,7 @@ from lesson_contract import validate_lesson
 def validate():
     errors = []
     skills = sorted((ROOT / 'skills').glob('*/SKILL.md'))
-    expected = ('course-design', 'course-viewer', 'excalidraw', 'khan-academy', 'learner-tracking',
+    expected = ('course-design', 'course-viewer', 'excalidraw', 'jsxgraph', 'khan-academy', 'learner-tracking',
                 'learning-orchestrator', 'lesson-design', 'manim-voice-animation',
                 'pdf', 'pinepaper', 'subject')
     found = {path.parent.name for path in skills}

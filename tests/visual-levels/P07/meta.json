@@ -1,0 +1,27 @@
+{
+  "id": "P07",
+  "track": "pinepaper",
+  "level": 7,
+  "subject": "physics",
+  "title": "Driven oscillation no clipping",
+  "claim": "A learner can inspect resonance without clipped labels.",
+  "brief": "Motion + amplitude-vs-frequency chart, drive slider, all labels in frame at 1280x800.",
+  "must_include": [
+    "drive f",
+    "amplitude",
+    "resonance",
+    "Hz"
+  ],
+  "continuity": [
+    "Hz everywhere"
+  ],
+  "acceptance": [
+    "no clipping",
+    "slider rewires chart+motion"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "scaffolded"
+}

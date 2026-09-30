@@ -32,101 +32,143 @@ Treat the named confusion as a possibility, not a diagnosis of this learner.
 
 ### Cell structure and transport
 
-- **Build:** Start with two compartments and what can cross between them. Equilibrium
-  does not mean molecules stop moving.
+- **Build:** Begin with a neutral solute in two compartments separated by
+  a permeable membrane. Specify volumes and what can cross. Distinguish
+  movement in each direction from net transport; equilibrium does not mean
+  molecular motion stops. Add electrical forces when moving to charged solutes.
 - **Research:** Use a cell-biology chapter for membrane mechanisms and a primary
   experiment for a specific transport claim. Check compartments and concentration
   conditions.
-- **Show and check:** An Excalidraw membrane diagram locates barriers. Use
-  Pinepaper when movement in both directions and a concentration plot must
-  share one clock. Vary permeability and check the net change against the
-  stated transport rule.
+- **Show and check:** Map particles or amounts in each compartment to its
+  concentration curve, including volume. Show opposing flows separately
+  from their net difference; use one clock if both views move. Change
+  permeability and ask about equilibration time, then change compartment
+  volume and ask about the final concentrations under the same passive
+  transport assumptions. Check conservation of the tracked solute.
 
 ### Molecular biology / biochemistry
 
-- **Build:** Start with named molecules, a transformation, and the material or
-  information being tracked. Enzymes alter rates. They do not supply the reaction's net
-  energy.
+- **Build:** Use an enzyme-catalyzed reaction with named substrate, product,
+  and enzyme. Track matter and energy separately from reaction speed.
+  Enzymes change rates, not the reaction's equilibrium or net free-energy
+  change; state any coupled energy source explicitly.
 - **Research:** Use a biochemistry reference for reaction mechanism and an original
   assay for measured rates. Track substrate, enzyme, energy, and experimental conditions
   separately.
-- **Show and check:** A labeled structure shows binding. An Excalidraw pathway
-  tracks matter. Use Pinepaper if binding stages must align with a reaction
-  trace. Compare sourced data or a rate curve for inhibition and substrate
-  shortage.
+- **Show and check:** Connect binding and catalytic steps in the mechanism
+  to the species counted in the assay and axes of the rate plot. Distinguish
+  an initial-rate curve from a product-versus-time trace. Change substrate
+  or enzyme amount and predict the response under the stated kinetic model;
+  compare an inhibitor separately. Do not use illustrative binding motion
+  as evidence for a measured rate or mechanism.
 
 ### Genetics and genomics
 
-- **Build:** Start with one inheritance case with explicit ploidy and segregation
-  assumptions. Dominant does not mean common. A cross ratio is a probability prediction.
+- **Build:** Follow one diploid inheritance case from parental alleles to
+  gametes and offspring under explicit segregation assumptions. Separate
+  genotype from phenotype and dominance from population frequency. A cross
+  ratio predicts probabilities, not exact counts in a small family.
 - **Research:** Use a genetics chapter for inheritance assumptions. For sequence
   evidence, inspect the reference assembly, sample metadata, and analysis method.
-- **Show and check:** A chromosome diagram explains segregation. A cross table predicts
-  combinations. A pedigree or sequence comparison tests a different view. Simulate small
-  families to show variation.
+- **Show and check:** Carry allele labels from homologous chromosomes into
+  gamete probabilities, cross-table cells, and phenotype predictions. Change
+  one parental genotype and ask for the new distribution before simulating
+  small families. For genomics, match a sequence coordinate and variant to
+  the reference assembly and evidence track; a detected variant alone does
+  not establish its functional effect.
 
 ### Physiology
 
-- **Build:** Start with a regulated quantity, a disturbance, and the response. Negative
-  feedback need not keep a quantity perfectly constant.
+- **Build:** Use a regulated temperature or concentration, one disturbance,
+  and a named sensor and effector. Explain the physical or biochemical link
+  that closes the loop. Negative feedback permits variation and delay; it
+  does not hold a quantity perfectly constant.
 - **Research:** Use a physiology chapter for the feedback mechanism and original
   perturbation data for its response. Check species, tissue, and time scale.
-- **Show and check:** An Excalidraw feedback diagram names sensor and
-  effector. Use Pinepaper when a perturbation must update both the mechanism
-  and linked time plots. Mark delay and recovery; test compensation under
-  one changed condition.
+- **Show and check:** Match each feedback arrow to a specific causal step
+  and connect the regulated quantity and effector response to separate time
+  traces for the same perturbation. Mark stimulus time, delay, and recovery.
+  Block the effector or slow the sensor and ask which trace changes first;
+  compare the prediction with perturbation evidence rather than assuming
+  every correlated response is part of the loop.
 
 ### Evolution
 
-- **Build:** Start with variation and reproduction in a small population across
-  generations. Organisms do not acquire directed heritable variants because they need
-  them.
+- **Build:** Follow a heritable variant through reproduction in a small
+  population. State how survival or reproduction differs, if at all.
+  Separate a change in one organism from a frequency change across
+  generations; variants do not arise because organisms need them.
 - **Research:** Use an evolution text for mechanisms and a population study for a
   lineage claim. Check inheritance, sampling, generation time, and alternative
   explanations.
-- **Show and check:** A population count table grounds frequency. A lineage diagram
-  tracks inheritance. Repeated simulations distinguish selection from chance. A sourced
-  dataset tests a biological claim.
+- **Show and check:** Match offspring in the lineage diagram to counts and
+  allele frequencies in each generation's table. Plot repeated populations
+  under the same model to compare drift with a stated selection effect.
+  Change population size or reproductive advantage and ask how variation
+  among runs and their expected trend differ. For a real lineage, use
+  sourced observations to assess competing mechanisms.
 
 ### Ecology
 
-- **Build:** Start with a bounded population or interaction and how it is measured. A
-  food web does not establish the size or sign of every population response.
+- **Build:** Use a resource-consumer interaction in a defined place and
+  sampling period. Separate observed counts from true abundance and a
+  feeding relation from a complete prediction of population response.
+  Name the measurement and ecological assumptions before modeling.
 - **Research:** Inspect the field study and dataset methods alongside an ecology
   chapter. Check spatial boundaries, detection probability, and sampling intervals.
-- **Show and check:** A web shows proposed interactions. Time series show observations.
-  A model tests resource or predator changes. Compare the model with sampling limits.
+- **Show and check:** Match the species and interaction arrows in the web
+  to variables and terms in a stated population model, then compare its
+  traces with observation dates and units. Change a resource or predator
+  and predict the response under that model. Change detection probability
+  separately and ask how an apparent count trend could arise without the
+  same change in abundance.
 
 ### Development and cell differentiation
 
-- **Build:** Start with a signal received by a cell in a particular earlier state. Cell
-  identity reflects regulation and history, not one permanent switch.
+- **Build:** Compare cells receiving the same signal at two developmental
+  stages. Name their prior state, lineage, and measured response. Cell
+  identity reflects regulation and history; signal presence alone does not
+  determine every cell's fate.
 - **Research:** Use a developmental-biology reference and a time-resolved or
   perturbation study. Check lineage, stage, and what establishes the signal-response
   link.
-- **Show and check:** A lineage diagram shows ancestry. A sequence shows signal and
-  response. Time-course data checks order. Compare a blocked signal at two stages.
+- **Show and check:** Carry cell or lineage labels from the ancestry diagram
+  into the signaling sequence and time-course measurements. Distinguish
+  ancestry, marker expression, and demonstrated fate. Block the signal at
+  an early versus late stage and ask which outcome tests induction or
+  maintenance. Identify the perturbation evidence needed to support the
+  proposed causal link.
 
 ### Microbiology and host interaction
 
-- **Build:** Start with exposure, establishment, growth, and host response in a concrete
-  case. Detecting a microbe does not by itself establish disease causation.
+- **Build:** Follow a defined microbe-host case from exposure through
+  establishment, growth, and host response. Separate an assay detecting
+  microbial material from viable growth, infection, or disease causation.
+  State strain, host, and conditions before interpreting the result.
 - **Research:** Use a microbiology reference and the original assay or host study. Check
   strain, growth conditions, measurement, and whether the result concerns infection or
   disease.
-- **Show and check:** A labeled image locates structures. A timeline separates stages.
-  Growth curves and controls test an explanation. Distinguish observed images from
-  illustrations.
+- **Show and check:** Match a labeled observed image to its assay and scale,
+  then place sampling times and microbial and host measurements on the same
+  timeline. Explain what a growth curve measures rather than treating all
+  signals as cell counts. Change a growth condition or control and ask
+  which interpretation remains supported; label illustrative mechanisms
+  separately from observed evidence.
 
 ### Experimental / quantitative biology
 
-- **Build:** Start with two competing explanations and an observation that would
-  separate them. A control group does not remove every confound.
+- **Build:** Use two competing explanations for a treatment response and
+  propose an observation that separates them. Name the experimental unit,
+  comparison, and measurement. A control does not remove every confound,
+  and repeated measurements of one unit are not independent biological units.
 - **Research:** Inspect the experimental protocol, controls, data, and analysis. Use the
   methods source to determine which competing explanation each control can exclude.
-- **Show and check:** An experiment diagram makes the comparison explicit. A data figure
-  shows variation. A design table links controls to alternative explanations. A PDF can
-  collect the checked figures for review.
+- **Show and check:** Match each group and sample ID in the design diagram
+  to its data points and the control table's excluded explanation. Show
+  variation among biological units separately from repeated measurements.
+  Change a control, batch assignment, or sampling unit and ask which causal
+  comparison or uncertainty calculation remains justified. A reviewed
+  handout may collect these views without introducing a new inference.
 
 ## Source use
 

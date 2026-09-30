@@ -1,0 +1,27 @@
+{
+  "id": "P10",
+  "track": "pinepaper",
+  "level": 10,
+  "subject": "physics",
+  "title": "Wave + spectrum + controls",
+  "claim": "A learner can vary a wave and read its spectrum.",
+  "brief": "String motion + spectrum bars + frequency/amplitude sliders; prediction question.",
+  "must_include": [
+    "frequency",
+    "amplitude",
+    "spectrum",
+    "prediction"
+  ],
+  "continuity": [
+    "Hz, m units"
+  ],
+  "acceptance": [
+    "spectrum follows sliders",
+    "all labels consistent"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "scaffolded"
+}

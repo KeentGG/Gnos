@@ -49,9 +49,12 @@ Paths below are relative to the repository root.
 5. Load a media skill only when that medium is useful or requested:
    `pdf`, `manim`, host image generation,
    [Excalidraw](../excalidraw/SKILL.md), or
-   [Pinepaper](../pinepaper/SKILL.md). Use the lesson's subject guidance to
-   choose the diagram skill, then call that skill's MCP server to make the
-   visual. Read supporting references at the point of use. Media
+   [Pinepaper](../pinepaper/SKILL.md), or [JSXGraph](../jsxgraph/SKILL.md).
+   Select mathematical graphs through lesson design's
+   [representation choices](../lesson-design/references/representation-choices.md).
+   Use the lesson's subject guidance to choose the media skill, then follow
+   that skill's documented authoring and inspection workflow.
+   Read supporting references at the point of use. Media
    is chosen for what it teaches. Every ready lesson needs at least two
    distinct teaching forms, but no subject requires a particular media tool.
    For generated images, use the host's existing image-generation skill or
@@ -88,9 +91,10 @@ explicit plan. Add `--mode course` when designing.
 Use `--mode lesson` while building the current lesson. After the learner
 asks to see it or answers yes, use `--mode viewer` to load the viewing
 instructions for that enrolled course. Add
-`--media pdf|manim|image|diagram|simulation|pinepaper|excalidraw|khan-academy` when
+`--media pdf|manim|image|diagram|simulation|graph|jsxgraph|pinepaper|excalidraw|khan-academy` when
 a representation skill is needed this turn. `--media excalidraw` and
-`--media pinepaper` load their `SKILL.md` entrypoints; loading alone does not
+`--media pinepaper` load their `SKILL.md` entrypoints. `--media graph` and
+`--media jsxgraph` load the JSXGraph skill. Loading alone does not
 create a diagram.
 With one active enrolled course the loader selects it; with several, it asks
 for an explicit course ID. Learner evidence is scoped to the selected course.

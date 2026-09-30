@@ -12,7 +12,9 @@ measurement and state when the approximation fails.
 Use diagrams for setup, graphs for quantities, and equations for their relation.
 Use [Excalidraw](../../excalidraw/SKILL.md) for boundaries or apparatus,
 [Manim](../../manim-voice-animation/SKILL.md) for narrated motion, and
-[Pinepaper](../../pinepaper/SKILL.md) for linked visual states. A simulation
+[JSXGraph](../../jsxgraph/SKILL.md) for linked quantity plots. Use
+[Pinepaper](../../pinepaper/SKILL.md) when a composed apparatus or spatial scene
+must change with the system. A simulation
 lets the learner test a changed condition. Keep the same units and initial
 state across views. Generated motion is a model illustration.
 

@@ -75,6 +75,12 @@ that adds no new explanation, observation, or practice.
 | `khan` | `khan-video` |
 | Khan Academy article or exercise | `source` |
 
+For a mathematical graph, follow the selection rules in representation choices
+and use [JSXGraph](../jsxgraph/SKILL.md) when they fit. Declare its production
+route in the lesson as with the other media skills. It uses the existing
+`interactive-graph` or `simulation` blocks; the graph library does not add a
+new representation kind.
+
 When the topic has a representation plan, bind a block to the matching
 entry with `representation_id` and keep its concept, purpose, kind, and
 skill route. For a topic without that plan, choose the medium during lesson

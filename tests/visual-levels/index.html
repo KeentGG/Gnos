@@ -1,0 +1,1283 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GNOS visual-levels gallery (41)</title></head><body style="background:#FDE5D4;color:#001524;font-family:system-ui;max-width:1000px;margin:auto;padding:16px">
+<h1>GNOS visual-levels — 41 prompts, scroll + rate</h1>
+<p>Videos play inline, sims/Pinepaper run inline in iframes, Excalidraw shows as image. Rate each 1-10 + feedback. Scores save to browser + Export JSON.</p>
+<p><button onclick="exp()">Export scores.json</button> <span id="st"></span></p>
+
+<section id="E01" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E01 · L01 · excalidraw · math — Slope triangle y=2x</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can see rise over run for y=2x.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E01 L01 [excalidraw] — Slope triangle y=2x
+
+Subject: math | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can see rise over run for y=2x.
+
+Brief: Draw axes, line y=2x, one slope triangle with rise/run labeled.
+
+Must include: x axis, y axis, y=2x, rise=2, run=1
+
+Continuity: math symbols, blue axes, black line, red triangle
+
+Acceptance: all 5 labels verbatim in SVG; no overlap at 800px wide
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E01/output.png" alt="E01" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E01/output.png" target="_blank">open E01/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E01">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E01" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E01" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="E02" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E02 · L02 · excalidraw · physics — Pendulum forces at 20 deg</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can see gravity vs tension at 20 deg displacement.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E02 L02 [excalidraw] — Pendulum forces at 20 deg
+
+Subject: physics | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can see gravity vs tension at 20 deg displacement.
+
+Brief: Draw pivot, string at 20 deg, bob, gravity arrow down, tension arrow along string.
+
+Must include: pivot, 20 deg, mg, T, bob
+
+Continuity: physics units deg, red gravity, blue tension
+
+Acceptance: arrow directions correct; labels verbatim
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E02/output.png" alt="E02" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E02/output.png" target="_blank">open E02/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E02">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E02" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E02" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="E03" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E03 · L03 · excalidraw · computer-science — BFS visit order 3 nodes</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can see BFS visits A then B,C.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E03 L03 [excalidraw] — BFS visit order 3 nodes
+
+Subject: computer-science | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can see BFS visits A then B,C.
+
+Brief: Draw nodes A,B,C with directed edges A-&gt;B, A-&gt;C, numbered visit badges 1,2,3.
+
+Must include: A, B, C, visit 1, visit 2
+
+Continuity: CS graph layout left-to-right
+
+Acceptance: edges directed; order badges present
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E03/output.png" alt="E03" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E03/output.png" target="_blank">open E03/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E03">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E03" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E03" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="E04" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E04 · L04 · excalidraw · biology — Cell boundary + organelles</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can see what is inside vs outside the cell.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E04 L04 [excalidraw] — Cell boundary + organelles
+
+Subject: biology | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can see what is inside vs outside the cell.
+
+Brief: Draw membrane boundary containing nucleus, mitochondria, ribosome; label outside.
+
+Must include: membrane, nucleus, mitochondria, ribosome, outside
+
+Continuity: bio terms, containment behind objects
+
+Acceptance: boundary contains 3 parts; outside label present
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E04/output.png" alt="E04" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E04/output.png" target="_blank">open E04/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E04">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E04" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E04" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="E05" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E05 · L05 · excalidraw · physics — Two force vectors to scale</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can compare 10N vs 20N vectors drawn to scale.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E05 L05 [excalidraw] — Two force vectors to scale
+
+Subject: physics | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can compare 10N vs 20N vectors drawn to scale.
+
+Brief: Draw two horizontal arrows with 1:2 length ratio, labeled 10N and 20N with scale note.
+
+Must include: 10N, 20N, scale, N
+
+Continuity: SI units N, same baseline
+
+Acceptance: length ratio ~2x; units on both
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E05/output.png" alt="E05" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E05/output.png" target="_blank">open E05/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E05">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E05" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E05" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="E06" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E06 · L06 · excalidraw · history — Dated timeline + boundary map</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can place 3 dated decisions on time and place.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E06 L06 [excalidraw] — Dated timeline + boundary map
+
+Subject: history | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can place 3 dated decisions on time and place.
+
+Brief: Draw timeline 1939,1941,1945 with matching map pins A,B,C and one boundary line.
+
+Must include: 1939, 1941, 1945, boundary
+
+Continuity: dates identical in both views
+
+Acceptance: 3 dates + boundary present
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E06/output.png" alt="E06" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E06/output.png" target="_blank">open E06/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E06">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E06" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E06" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="E07" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E07 · L07 · excalidraw · economics — Supply/demand equilibrium</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can read equilibrium P*,Q* off crossing curves.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E07 L07 [excalidraw] — Supply/demand equilibrium
+
+Subject: economics | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can read equilibrium P*,Q* off crossing curves.
+
+Brief: Draw S/D curves crossing, dashed lines to P*=5, Q*=100, dense but non-overlapping labels.
+
+Must include: Supply, Demand, P*=5, Q*=100, equilibrium
+
+Continuity: econ color: blue demand, orange supply
+
+Acceptance: crossing + dashed guides; labels legible
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E07/output.png" alt="E07" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E07/output.png" target="_blank">open E07/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E07">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E07" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E07" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="E08" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E08 · L08 · excalidraw · economics — Two linked markets</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can compare equilibrium across two side-by-side markets.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E08 L08 [excalidraw] — Two linked markets
+
+Subject: economics | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can compare equilibrium across two side-by-side markets.
+
+Brief: Draw two S/D panels with same color meanings, link arrow showing spillover.
+
+Must include: Market A, Market B, spillover, P*, Q*
+
+Continuity: same colors both panels
+
+Acceptance: two panels + link arrow
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E08/output.png" alt="E08" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E08/output.png" target="_blank">open E08/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E08">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E08" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E08" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="E09" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E09 · L09 · excalidraw · chemical-engineering — Reactor boundary flows</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can trace mass+energy across the reactor boundary.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E09 L09 [excalidraw] — Reactor boundary flows
+
+Subject: chemical-engineering | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can trace mass+energy across the reactor boundary.
+
+Brief: Draw system boundary, inflow, outflow, heat arrow, reactor vessel with stirrer.
+
+Must include: system boundary, inflow, outflow, Q heat, reactor
+
+Continuity: transport arrows: green in, purple out, red heat
+
+Acceptance: boundary + 3 crossings labeled
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E09/output.png" alt="E09" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E09/output.png" target="_blank">open E09/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E09">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E09" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E09" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="E10" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>E10 · L10 · excalidraw · artificial-intelligence — Training pipeline + leakage boundary</h2>
+<p><b>Skill:</b> <code>skills/excalidraw/SKILL.md</code> · <b>Claim:</b> A learner can see where test leakage crosses the eval boundary.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># E10 L10 [excalidraw] — Training pipeline + leakage boundary
+
+Subject: artificial-intelligence | Skill route: `skills/excalidraw/SKILL.md`
+
+Claim: A learner can see where test leakage crosses the eval boundary.
+
+Brief: Draw pipeline data-&gt;train-&gt;eval with trust boundary, red leakage arrow crossing it, metric label.
+
+Must include: train, test, eval boundary, leakage, accuracy
+
+Continuity: red=violation, gray=boundary
+
+Acceptance: boundary + violation arrow distinct
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><img loading="lazy" src="E10/output.png" alt="E10" style="max-width:100%;border:1px solid #445D48;background:#FDE5D4"><div><a href="E10/output.png" target="_blank">open E10/output.png</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="E10">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="E10" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="E10" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P01" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P01 · L01 · pinepaper · math — Fixed triangle sides</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can read three labeled sides of one triangle.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P01 L01 [pinepaper] — Fixed triangle sides
+
+Subject: math | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can read three labeled sides of one triangle.
+
+Brief: Diagram: triangle with sides a,b,c labeled; caption states relation to inspect.
+
+Must include: side a, side b, side c, triangle
+
+Continuity: math symbols italic
+
+Acceptance: 3 side labels verbatim; renders in iframe
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P01/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P01/output.html" target="_blank">open P01/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P01">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P01" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P01" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P02" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P02 · L02 · pinepaper · physics — Free-body + value table</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can match arrows to numbers in the table.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P02 L02 [pinepaper] — Free-body + value table
+
+Subject: physics | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can match arrows to numbers in the table.
+
+Brief: Diagram plus table: same mg=9.8N, T=9.2N values in both.
+
+Must include: mg=9.8N, T=9.2N, table
+
+Continuity: same numbers diagram+table
+
+Acceptance: values agree; units present
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P02/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P02/output.html" target="_blank">open P02/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P02">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P02" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P02" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P03" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P03 · L03 · pinepaper · computer-science — Queue states + length chart</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can link queue states to a length-over-time chart.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P03 L03 [pinepaper] — Queue states + length chart
+
+Subject: computer-science | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can link queue states to a length-over-time chart.
+
+Brief: Ordered states q0..q3 plus bar chart of lengths 0,1,2,1 tied to same steps.
+
+Must include: q0, q3, length chart, enqueue, dequeue
+
+Continuity: same step labels both views
+
+Acceptance: chart bars match states
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P03/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P03/output.html" target="_blank">open P03/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P03">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P03" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P03" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P04" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P04 · L04 · pinepaper · economics — Demand curve + exact table</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can verify each plotted point against the table.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P04 L04 [pinepaper] — Demand curve + exact table
+
+Subject: economics | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can verify each plotted point against the table.
+
+Brief: Curve through (1,10),(2,8),(3,6) with table of identical points; sourced-data label.
+
+Must include: (1,10), (2,8), (3,6), sourced data
+
+Continuity: exact values, no smoothing lie
+
+Acceptance: 3 points match table
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P04/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P04/output.html" target="_blank">open P04/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P04">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P04" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P04" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P05" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P05 · L05 · pinepaper · physics — Pendulum motion + linked chart</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can see position and velocity change together.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P05 L05 [pinepaper] — Pendulum motion + linked chart
+
+Subject: physics | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can see position and velocity change together.
+
+Brief: Animated bob + linked sine chart with moving dot; play/pause; same angle state.
+
+Must include: angle, velocity, play, chart
+
+Continuity: same pendulum, rad units
+
+Acceptance: motion and chart agree; controls work sandboxed
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P05/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P05/output.html" target="_blank">open P05/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P05">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P05" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P05" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P06" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P06 · L06 · pinepaper · biology — Diffusion gradient + profile</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can connect particle spread to concentration profile.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P06 L06 [pinepaper] — Diffusion gradient + profile
+
+Subject: biology | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can connect particle spread to concentration profile.
+
+Brief: Animated particles + concentration curve updating together; assumption label.
+
+Must include: high C, low C, flux, simulated output
+
+Continuity: simulated vs measured labeled
+
+Acceptance: both views update together
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P06/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P06/output.html" target="_blank">open P06/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P06">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P06" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P06" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P07" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P07 · L07 · pinepaper · physics — Driven oscillation no clipping</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can inspect resonance without clipped labels.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P07 L07 [pinepaper] — Driven oscillation no clipping
+
+Subject: physics | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can inspect resonance without clipped labels.
+
+Brief: Motion + amplitude-vs-frequency chart, drive slider, all labels in frame at 1280x800.
+
+Must include: drive f, amplitude, resonance, Hz
+
+Continuity: Hz everywhere
+
+Acceptance: no clipping; slider rewires chart+motion
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P07/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P07/output.html" target="_blank">open P07/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P07">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P07" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P07" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P08" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P08 · L08 · pinepaper · chemical-engineering — Heat model + field + graph</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can tie heat input to field and time graph.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P08 L08 [pinepaper] — Heat model + field + graph
+
+Subject: chemical-engineering | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can tie heat input to field and time graph.
+
+Brief: Heater slider drives 1D rod field colors + T(t) graph; model assumptions shown.
+
+Must include: heater W, T(t), assumptions, degC
+
+Continuity: degC, watts labeled
+
+Acceptance: three views share state
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P08/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P08/output.html" target="_blank">open P08/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P08">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P08" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P08" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P09" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P09 · L09 · pinepaper · economics — Policy slider + export-safe controls</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can test a tax policy and keep controls after export.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P09 L09 [pinepaper] — Policy slider + export-safe controls
+
+Subject: economics | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can test a tax policy and keep controls after export.
+
+Brief: Tax slider shifts equilibrium, surplus readout; controls survive sandboxed iframe export.
+
+Must include: tax, surplus, equilibrium, reset
+
+Continuity: USD units
+
+Acceptance: controls work in viewer iframe; reset restores
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P09/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P09/output.html" target="_blank">open P09/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P09">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P09" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P09" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P10" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P10 · L10 · pinepaper · physics — Wave + spectrum + controls</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can vary a wave and read its spectrum.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P10 L10 [pinepaper] — Wave + spectrum + controls
+
+Subject: physics | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can vary a wave and read its spectrum.
+
+Brief: String motion + spectrum bars + frequency/amplitude sliders; prediction question.
+
+Must include: frequency, amplitude, spectrum, prediction
+
+Continuity: Hz, m units
+
+Acceptance: spectrum follows sliders; all labels consistent
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P10/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P10/output.html" target="_blank">open P10/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>1</b> <small>missing/tiny</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:20.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P10">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P10" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P10" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="P11" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>P11 · L11 · pinepaper · math — Eigenvectors and eigenvalues</h2>
+<p><b>Skill:</b> <code>skills/pinepaper/SKILL.md</code> · <b>Claim:</b> A learner can identify the directions a transformation preserves and their eigenvalues.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># P11 L11 [pinepaper] — Eigenvectors and eigenvalues
+
+Subject: math | Skill route: `skills/pinepaper/SKILL.md`
+
+Claim: A learner can identify which directions a linear transformation preserves and read their eigenvalues.
+
+Brief: For A = diag(2, 1/2), select x-axis, y-axis, or diagonal input vectors. Compare v and Av on one coordinate plane. The first two are eigenvectors; the diagonal is not.
+
+Must include: A, v, Av, eigenvector, eigenvalue, λ, interactive selection
+
+Continuity: The same matrix and vector coordinates appear in the diagram and explanation.
+
+Acceptance: All three choices work after HTML export inside the gallery iframe; x gives λ = 2, y gives λ = 1/2, and diagonal changes direction.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="P11/output.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="P11/output.html" target="_blank">open P11/output.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>—</b> <small>run visual_levels.py auto-score</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="P11">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="P11" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="P11" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S01" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S01 · L01 · simulation · math — Slope slider</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner predicts sign of change before moving slope slider.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S01 L01 [simulation] — Slope slider
+
+Subject: math | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner predicts sign of change before moving slope slider.
+
+Brief: One slider m in y=mx; readout; prediction prompt; reset.
+
+Must include: slope m, reset, prediction, y=mx
+
+Continuity: math notation KaTeX-style
+
+Acceptance: slider rewires line+readout; reset works; no network fetch
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S01/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S01/sim.html" target="_blank">open S01/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 9854; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S01">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S01" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S01" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S02" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S02 · L02 · simulation · physics — Pendulum angle+length</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner tests how length changes period.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S02 L02 [simulation] — Pendulum angle+length
+
+Subject: physics | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner tests how length changes period.
+
+Brief: Sliders angle, length; period readout T=2pi sqrt(L/g); reset.
+
+Must include: angle deg, length m, period s, reset
+
+Continuity: SI units on all controls
+
+Acceptance: T formula correct; responsive 1280x800
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S02/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S02/sim.html" target="_blank">open S02/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 6748; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S02">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S02" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S02" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S03" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S03 · L03 · simulation · computer-science — BFS stepper</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner steps through BFS and predicts next visit.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S03 L03 [simulation] — BFS stepper
+
+Subject: computer-science | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner steps through BFS and predicts next visit.
+
+Brief: Buttons next/reset, visited list, queue display; prediction prompt.
+
+Must include: next, reset, queue, visited
+
+Continuity: same graph A-B-C
+
+Acceptance: step order correct; reset clears
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S03/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S03/sim.html" target="_blank">open S03/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 7099; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S03">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S03" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S03" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S04" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S04 · L04 · simulation · math — Threshold + sampling histogram</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner varies threshold and sample size, reads histogram.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S04 L04 [simulation] — Threshold + sampling histogram
+
+Subject: math | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner varies threshold and sample size, reads histogram.
+
+Brief: Sliders threshold, n; histogram of 100 draws; reset; assumptions shown.
+
+Must include: threshold, n, histogram, assumptions
+
+Continuity: probability units
+
+Acceptance: histogram updates; reset works
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S04/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S04/sim.html" target="_blank">open S04/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 9600; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S04">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S04" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S04" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S05" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S05 · L05 · simulation · physics — Projectile range</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner finds angle maximizing range at fixed v0.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S05 L05 [simulation] — Projectile range
+
+Subject: physics | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner finds angle maximizing range at fixed v0.
+
+Brief: Sliders v0, angle; range readout; trajectory canvas; reset.
+
+Must include: v0 m/s, angle deg, range m, g=9.81
+
+Continuity: SI units, g stated
+
+Acceptance: range math correct; canvas in frame
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S05/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S05/sim.html" target="_blank">open S05/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 9079; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S05">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S05" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S05" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S06" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S06 · L06 · simulation · biology — Logistic growth r/K</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner separates growth rate from carrying capacity.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S06 L06 [simulation] — Logistic growth r/K
+
+Subject: biology | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner separates growth rate from carrying capacity.
+
+Brief: Sliders r,K; population curve; N0 fixed; reset; model shown.
+
+Must include: r, K, N0, dN/dt
+
+Continuity: bio model labeled as model
+
+Acceptance: curve follows logistic; K asymptote visible
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S06/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S06/sim.html" target="_blank">open S06/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 12078; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S06">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S06" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S06" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S07" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S07 · L07 · simulation · economics — Stochastic demand trials</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner repeats trials to distinguish noise from shift.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S07 L07 [simulation] — Stochastic demand trials
+
+Subject: economics | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner repeats trials to distinguish noise from shift.
+
+Brief: Buttons run-100/reset, mean/sd readout, histogram; seed note.
+
+Must include: run 100, mean, sd, histogram
+
+Continuity: USD units
+
+Acceptance: repeatable; stats update
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S07/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S07/sim.html" target="_blank">open S07/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 8674; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S07">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S07" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S07" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S08" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S08 · L08 · simulation · physics — Damping + drive phase plot</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner maps drive to phase portrait.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S08 L08 [simulation] — Damping + drive phase plot
+
+Subject: physics | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner maps drive to phase portrait.
+
+Brief: Sliders damping, drive; phase canvas + amplitude readout; reset.
+
+Must include: damping, drive, phase, amplitude
+
+Continuity: same oscillator state both views
+
+Acceptance: phase responds; no overflow
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S08/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S08/sim.html" target="_blank">open S08/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 8646; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S08">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S08" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S08" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S09" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S09 · L09 · simulation · computer-science — Policy-rule retry sim</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner tests a retry threshold policy under failures.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S09 L09 [simulation] — Policy-rule retry sim
+
+Subject: computer-science | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner tests a retry threshold policy under failures.
+
+Brief: Threshold slider, step/run, success-rate readout; tempting-bad-policy trap explained.
+
+Must include: threshold, success rate, retry, prediction
+
+Continuity: policy rule stated
+
+Acceptance: policy changes outcome; trap documented
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S09/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S09/sim.html" target="_blank">open S09/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 9423; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S09">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S09" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S09" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="S10" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>S10 · L10 · simulation · chemical-engineering — Reactor T/C control + alarms</h2>
+<p><b>Skill:</b> <code>skills/subject/SKILL.md</code> · <b>Claim:</b> Learner keeps reactor in limits with T/C controls.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># S10 L10 [simulation] — Reactor T/C control + alarms
+
+Subject: chemical-engineering | Skill route: `skills/subject/SKILL.md`
+
+Claim: Learner keeps reactor in limits with T/C controls.
+
+Brief: Sliders coolant, feed; T/C readouts, alarm banner, limits table; reset; responsive.
+
+Must include: coolant, feed, alarm, limits, reset
+
+Continuity: degC, mol/L units
+
+Acceptance: alarm triggers out-of-limit; readable at phone width
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><iframe loading="lazy" src="S10/sim.html" sandbox="allow-scripts" style="width:100%;height:800px;border:1px solid #445D48;background:#FDE5D4"></iframe><div><a href="S10/sim.html" target="_blank">open S10/sim.html fullscreen</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 5/5; length 7702; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="S10">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="S10" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="S10" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V01" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V01 · L01 · video · math — Dot along line 1 cue</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Learner watches one change: dot moves along y=2x.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V01 L01 [video] — Dot along line 1 cue
+
+Subject: math | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Learner watches one change: dot moves along y=2x.
+
+Brief: 1 cue, exact narration, dot + line, clean first/ending frames.
+
+Must include: cue v01a, dot, y=2x, narration
+
+Continuity: silent preview; authored duration
+
+Acceptance: storyboard valid; preview plays; labels in frame
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V01/preview.mp4"></video><div><a href="V01/preview.mp4" target="_blank">open V01/preview.mp4 (with audio)</a> · <a href="V01/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>4</b> <small>exists+nontrivial; labels 4/4; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:80.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V01">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V01" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V01" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V02" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V02 · L02 · video · math — Secant to tangent 2 cues</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Learner watches secant tend to tangent.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V02 L02 [video] — Secant to tangent 2 cues
+
+Subject: math | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Learner watches secant tend to tangent.
+
+Brief: 2 cues, secant slope readout approaching 4 at x=2 for x^2.
+
+Must include: cue v02a, cue v02b, secant, tangent
+
+Continuity: same axes both cues
+
+Acceptance: slope converges; each cue played once conceptually
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V02/preview.mp4"></video><div><a href="V02/preview.mp4" target="_blank">open V02/preview.mp4 (with audio)</a> · <a href="V02/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>4</b> <small>exists+nontrivial; labels 4/4; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:80.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V02">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V02" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V02" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V03" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V03 · L03 · video · computer-science — BFS animation 3 cues</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Learner follows visit order over time.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V03 L03 [video] — BFS animation 3 cues
+
+Subject: computer-science | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Learner follows visit order over time.
+
+Brief: 3 cues visiting A,B,C with narration per cue.
+
+Must include: cue v03a, cue v03b, cue v03c, queue
+
+Continuity: node colors stable
+
+Acceptance: 3 cues ordered; final frame readable silent
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V03/preview.mp4"></video><div><a href="V03/preview.mp4" target="_blank">open V03/preview.mp4 (with audio)</a> · <a href="V03/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 2116; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V03">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V03" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V03" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V04" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V04 · L04 · video · math — Basis transform ValueTracker</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Learner sees basis vectors rotate together.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V04 L04 [video] — Basis transform ValueTracker
+
+Subject: math | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Learner sees basis vectors rotate together.
+
+Brief: ValueTracker-style tween of basis, determinant readout.
+
+Must include: e1, e2, det, tracker
+
+Continuity: matrix symbols consistent
+
+Acceptance: vectors + det agree
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V04/preview.mp4"></video><div><a href="V04/preview.mp4" target="_blank">open V04/preview.mp4 (with audio)</a> · <a href="V04/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>4</b> <small>exists+nontrivial; labels 4/4; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:80.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V04">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V04" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V04" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V05" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V05 · L05 · video · physics — Pendulum numbers tied to geometry</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Learner checks displayed angle equals drawn angle.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V05 L05 [video] — Pendulum numbers tied to geometry
+
+Subject: physics | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Learner checks displayed angle equals drawn angle.
+
+Brief: Swung bob with DecimalNumber angle readout driven by same state.
+
+Must include: theta, readout, pivot, L
+
+Continuity: deg units both
+
+Acceptance: readout matches geometry
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V05/preview.mp4"></video><div><a href="V05/preview.mp4" target="_blank">open V05/preview.mp4 (with audio)</a> · <a href="V05/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>4</b> <small>exists+nontrivial; labels 4/4; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:80.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V05">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V05" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V05" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V06" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V06 · L06 · video · math — Area accumulation cleanup</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Learner sees Riemann sum refine without leftover updaters.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V06 L06 [video] — Area accumulation cleanup
+
+Subject: math | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Learner sees Riemann sum refine without leftover updaters.
+
+Brief: Bars refine 4-&gt;8-&gt;16, error readout shrinks, no ghost objects.
+
+Must include: n=4, n=16, error, integral
+
+Continuity: same function x^2
+
+Acceptance: error decreases; ending clean
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V06/preview.mp4"></video><div><a href="V06/preview.mp4" target="_blank">open V06/preview.mp4 (with audio)</a> · <a href="V06/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 2015; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V06">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V06" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V06" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V07" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V07 · L07 · video · computer-science — Dijkstra 5 cues + subtitles</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Learner tracks relaxations with subtitle timing.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V07 L07 [video] — Dijkstra 5 cues + subtitles
+
+Subject: computer-science | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Learner tracks relaxations with subtitle timing.
+
+Brief: 5 cues, per-cue subtitle lines, distance labels update.
+
+Must include: dist, relax, subtitle, 5 cues
+
+Continuity: graph layout fixed
+
+Acceptance: subtitles align to cues; distances correct
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V07/preview.mp4"></video><div><a href="V07/preview.mp4" target="_blank">open V07/preview.mp4 (with audio)</a> · <a href="V07/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 3451; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V07">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V07" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V07" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V08" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V08 · L08 · video · physics — Projectile cue-timed motion</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Spoken timing coordinates apex callout with motion.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V08 L08 [video] — Projectile cue-timed motion
+
+Subject: physics | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Spoken timing coordinates apex callout with motion.
+
+Brief: Cue-timed apex marker + velocity components; cue_player concept.
+
+Must include: apex, vx, vy, cue timing
+
+Continuity: SI units
+
+Acceptance: callout at apex frame; no cue reused conceptually
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V08/preview.mp4"></video><div><a href="V08/preview.mp4" target="_blank">open V08/preview.mp4 (with audio)</a> · <a href="V08/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 2744; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V08">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V08" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V08" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V09" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V09 · L09 · video · physics — Wave propagation stable camera</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Learner follows propagation without decorative camera motion.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V09 L09 [video] — Wave propagation stable camera
+
+Subject: physics | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Learner follows propagation without decorative camera motion.
+
+Brief: Traveling wave, fixed camera, wavelength callout moves with crest.
+
+Must include: lambda, crest, fixed camera, direction
+
+Continuity: stable frame
+
+Acceptance: camera static; callout tracks crest
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V09/preview.mp4"></video><div><a href="V09/preview.mp4" target="_blank">open V09/preview.mp4 (with audio)</a> · <a href="V09/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>4</b> <small>exists+nontrivial; labels 4/4; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:80.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V09">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V09" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V09" rows="2" style="width:100%"></textarea></label>
+</section>
+
+<section id="V10" style="border:1px solid #445D48;border-radius:3px;padding:16px;margin:24px 0;background:#FDE5D4">
+<h2>V10 · L10 · video · math — Surface + gradient path camera reveals</h2>
+<p><b>Skill:</b> <code>skills/manim-voice-animation/SKILL.md</code> · <b>Claim:</b> Learner sees gradient path descend on 3D surface where camera move reveals structure.</p>
+<details open><summary><b>Prompt</b></summary><pre style="white-space:pre-wrap;background:#FDE5D4;padding:12px;border:1px solid #445D48"># V10 L10 [video] — Surface + gradient path camera reveals
+
+Subject: math | Skill route: `skills/manim-voice-animation/SKILL.md`
+
+Claim: Learner sees gradient path descend on 3D surface where camera move reveals structure.
+
+Brief: Contour-projected surface, path dots, one justified camera orbit, final readable frame.
+
+Must include: contour, path, orbit, minimum
+
+Continuity: same f(x,y) throughout
+
+Acceptance: orbit justified; path descends; ending legible
+
+Learner prediction: predict the result before running/moving, then compare.
+</pre></details>
+<h3>Result</h3><video controls preload="metadata" style="max-width:100%;border:1px solid #445D48" src="V10/preview.mp4"></video><div><a href="V10/preview.mp4" target="_blank">open V10/preview.mp4 (with audio)</a> · <a href="V10/storyboard.json" target="_blank">storyboard.json</a></div>
+<h3>Scores</h3>
+<div>Auto (1-5): <b>5</b> <small>exists+nontrivial; labels 4/4; length 2055; controls-or-n/a ok</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#445D48;height:10px;border-radius:3px;width:100.0%"></div></div>
+<div>LLM (1-10): <b>—</b> <small>pending image review</small></div>
+<div style="background:#FDE5D4;border-radius:3px;height:10px;max-width:300px"><div style="background:#5E3023;height:10px;border-radius:3px;width:0%"></div></div>
+<div>Total fair/10 = (human+llm+auto*2)/3 → <b data-total="V10">—</b></div>
+<h3>Your rating (1-10)</h3>
+<label>Score <input type="number" min="1" max="10" step="1" data-human="V10" style="width:64px"></label>
+<br><label>Feedback<br><textarea data-feedback="V10" rows="2" style="width:100%"></textarea></label>
+</section>
+<script>
+try{Object.assign(window.__s||={},JSON.parse(localStorage.getItem('gnos-vl')||'{}'))}catch(e){window.__s={}}
+document.querySelectorAll('[data-human]').forEach(i=>{i.value=window.__s[i.dataset.human]?.h||'';i.oninput=save});
+document.querySelectorAll('[data-feedback]').forEach(t=>{t.value=window.__s[t.dataset.feedback]?.f||'';t.oninput=save});
+function save(){document.querySelectorAll('[data-human]').forEach(i=>{window.__s[i.dataset.human]=window.__s[i.dataset.human]||{};window.__s[i.dataset.human].h=i.value});
+document.querySelectorAll('[data-feedback]').forEach(t=>{window.__s[t.dataset.feedback]=window.__s[t.dataset.feedback]||{};window.__s[t.dataset.feedback].f=t.value});
+localStorage.setItem('gnos-vl',JSON.stringify(window.__s));document.getElementById('st').textContent='saved '+new Date().toLocaleTimeString()}
+function exp(){const b=new Blob([JSON.stringify(window.__s,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='scores.human.json';a.click()}
+</script></body></html>

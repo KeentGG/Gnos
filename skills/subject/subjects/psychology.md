@@ -9,8 +9,9 @@ response.
 
 Use experiment diagrams, timelines, and measured distributions. Use
 [Excalidraw](../../excalidraw/SKILL.md) for fixed study structure,
-[Pinepaper](../../pinepaper/SKILL.md) when a stimulus, response, and graph must
-share a clock, and [Manim](../../manim-voice-animation/SKILL.md) when timing
+[Pinepaper](../../pinepaper/SKILL.md) for timed stimulus scenes,
+[JSXGraph](../../jsxgraph/SKILL.md) for quantitative model comparisons,
+and [Manim](../../manim-voice-animation/SKILL.md) when timing
 needs narration. Audio or images may be the stimulus itself. A simulation can
 show sampling, measurement error, or confounding under stated assumptions.
 Connect the displayed result to what was actually measured.

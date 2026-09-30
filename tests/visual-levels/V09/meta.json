@@ -1,0 +1,27 @@
+{
+  "id": "V09",
+  "track": "video",
+  "level": 9,
+  "subject": "physics",
+  "title": "Wave propagation stable camera",
+  "claim": "Learner follows propagation without decorative camera motion.",
+  "brief": "Traveling wave, fixed camera, wavelength callout moves with crest.",
+  "must_include": [
+    "lambda",
+    "crest",
+    "fixed camera",
+    "direction"
+  ],
+  "continuity": [
+    "stable frame"
+  ],
+  "acceptance": [
+    "camera static",
+    "callout tracks crest"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent"
+}

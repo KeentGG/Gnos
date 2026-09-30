@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "project": "Wave propagation stable camera",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V09Scene": {
+      "title": "Traveling wave with fixed camera",
+      "cues": [
+        {
+          "text": "A traveling sine wave appears on a fixed camera. Watch one crest as the wave moves in a steady direction, one wavelength lambda from the next crest.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "wave_shown",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "The highlighted crest is tracked in the same direction with no camera motion. The lambda callout follows the crest so propagation stays clear.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "crest_tracked",
+          "sync_target": "",
+          "pause_after": 0
+        }
+      ],
+      "total_duration": 11.0
+    }
+  }
+}

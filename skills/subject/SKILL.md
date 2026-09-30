@@ -105,9 +105,11 @@ section for its research checks and representation choices. Adapt them to the
 learner's question. Read deeper references when that section leaves a
 prerequisite, mechanism, or evidence question unresolved.
 For a visual block, specify the relation to reveal and the values or sources
-it must preserve. Use [Excalidraw](../excalidraw/SKILL.md) for a fixed sketch
-and [Pinepaper](../pinepaper/SKILL.md) when linked states, a chart tied to a
-scene, motion, or controls serve that relation. The media skill explains
+it must preserve. Select graphs and maps through
+[representation choices](../lesson-design/references/representation-choices.md).
+Use [JSXGraph](../jsxgraph/SKILL.md) for mathematical coordinates and linked
+quantities, [Excalidraw](../excalidraw/SKILL.md) for a fixed structural sketch,
+and [Pinepaper](../pinepaper/SKILL.md) for a composed scene. The media skill explains
 construction and export; the subject guide keeps the science or evidence
 correct.
 
@@ -118,7 +120,8 @@ correct.
 | Manim voice animation | Narrated rendered motion with subtitles | `skills/manim-voice-animation/SKILL.md` |
 | PDF | Rendered and inspected handout or source packet | `skills/pdf/SKILL.md` |
 | Excalidraw MCP | Quick inspectable relationship, process, or boundary diagram | [Excalidraw workflow](../excalidraw/SKILL.md) and the selected subject guide |
-| Pinepaper MCP | Linked diagram, chart, motion, or interactive model | [Pinepaper workflow](../pinepaper/SKILL.md) and the selected subfield guidance |
+| JSXGraph | Mathematical graph or coordinate construction | [JSXGraph workflow](../jsxgraph/SKILL.md) and the selected subfield guidance |
+| Pinepaper MCP | Composed diagram or changing scene | [Pinepaper workflow](../pinepaper/SKILL.md) and the selected subfield guidance |
 | Simulation | Learner-controlled graph or model | Self-contained HTML registered through `manage_artifact.py` |
 
 For generated images, invoke the host's existing image-generation skill

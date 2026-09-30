@@ -1,0 +1,29 @@
+{
+  "id": "V01",
+  "track": "video",
+  "level": 1,
+  "subject": "math",
+  "title": "Dot along line 1 cue",
+  "claim": "Learner watches one change: dot moves along y=2x.",
+  "brief": "1 cue, exact narration, dot + line, clean first/ending frames.",
+  "must_include": [
+    "cue v01a",
+    "dot",
+    "y=2x",
+    "narration"
+  ],
+  "continuity": [
+    "silent preview; authored duration"
+  ],
+  "acceptance": [
+    "storyboard valid",
+    "preview plays",
+    "labels in frame"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent",
+  "render_notes": "Silent preview rendered -q l (854x480 h264, ~5.9s, 32727 bytes). storyboard.json: 1 scene V01Scene, 1 cue v01a (6.0s authored). scene.py: Text-only labels (no LaTeX), dot rides axes.plot y=2x with Indicate on the label, one player.play(v01a)+finish. Linter 0 errors/0 warnings on storyboard and scene."
+}

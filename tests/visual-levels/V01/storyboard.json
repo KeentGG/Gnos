@@ -1,0 +1,28 @@
+{
+  "title": "Dot along line y = 2x",
+  "concept_id": "math-linear-y-equals-2x",
+  "prerequisite": "Learner can read a point (x, y) on a graph.",
+  "success_check": "Learner predicts y for a new x on the line y = 2x before the dot moves there.",
+  "aspect_ratio": "16:9",
+  "scenes": [
+    {
+      "id": "V01Scene",
+      "title": "Dot along line, one cue",
+      "concept_target": "On the line y = 2x, y grows twice as fast as x as the dot moves.",
+      "narration_cues": [
+        {
+          "cue_id": "v01a",
+          "text": "Watch the dot move along the line y equals two x. As x grows, y grows twice as fast.",
+          "visible_objects": [
+            "line y = 2x",
+            "moving dot",
+            "y = 2x label",
+            "title"
+          ],
+          "change": "The dot travels along the line from left to right while the y = 2x label stays visible.",
+          "duration": 6.0
+        }
+      ]
+    }
+  ]
+}

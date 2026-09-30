@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "project": "Dot along line y = 2x",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V01Scene": {
+      "title": "Dot along line, one cue",
+      "cues": [
+        {
+          "text": "Watch the dot move along the line y equals two x. As x grows, y grows twice as fast.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "v01a",
+          "sync_target": "",
+          "pause_after": 0
+        }
+      ],
+      "total_duration": 6.0
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "P03",
+  "track": "pinepaper",
+  "level": 3,
+  "subject": "computer-science",
+  "title": "Queue states + length chart",
+  "claim": "A learner can link queue states to a length-over-time chart.",
+  "brief": "Ordered states q0..q3 plus bar chart of lengths 0,1,2,1 tied to same steps.",
+  "must_include": [
+    "q0",
+    "q3",
+    "length chart",
+    "enqueue",
+    "dequeue"
+  ],
+  "continuity": [
+    "same step labels both views"
+  ],
+  "acceptance": [
+    "chart bars match states"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "scaffolded"
+}

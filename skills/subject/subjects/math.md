@@ -11,9 +11,9 @@ beside the claim and state the permitted inputs.
 
 Use graphs for variation, diagrams for structure, and worked notation for the
 argument. Use [Excalidraw](../../excalidraw/SKILL.md) for a quick labeled figure,
-[Pinepaper](../../pinepaper/SKILL.md) when a curve and geometric state must
-change together, and [Manim](../../manim-voice-animation/SKILL.md) for narrated change.
-Use a plotting library when exact data or numerical curves matter. A picture
+[JSXGraph](../../jsxgraph/SKILL.md) for curves and coordinate constructions,
+and [Manim](../../manim-voice-animation/SKILL.md) for narrated change.
+Use a scientific plotting library for data figures and export plots. A picture
 can suggest a theorem; it does not replace a proof.
 
 Write lesson math as LaTeX with `$...$` or `$$...$$`, such as `$\mathbb{R}^n$`

@@ -5,8 +5,12 @@ description: Build and check Pinepaper MCP diagrams, charts, motion, and interac
 
 # Pinepaper
 
-Use the `pinepaper` MCP server for a lesson view whose parts must stay linked or
-change together. Start with the selected subject guide and the block brief.
+Use the `pinepaper` MCP server for a composed diagram or scene whose parts
+must stay linked or change together. For a mathematical curve or coordinate
+construction, follow the graph rules in
+[representation choices](../lesson-design/references/representation-choices.md)
+and use [JSXGraph](../jsxgraph/SKILL.md) when they fit.
+Start with the selected subject guide and the block brief.
 Name the question the learner should answer from the scene. Keep the same
 objects, symbols, units, and example as the surrounding lesson.
 

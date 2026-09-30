@@ -112,7 +112,7 @@ Use GNOS to teach me [topic]. Keep courses and progress in this workspace.
 
 This uses GNOS directly from its files; your agent needs local file and terminal access. [OpenCode also loads `AGENTS.md` automatically](https://opencode.ai/docs/rules/). Keep the repository together so its teachers, references, and scripts remain available.
 
-**Visual tools:** Codex and Claude Code load the server definitions in [`.mcp.json`](.mcp.json). For [OpenCode](https://opencode.ai/docs/mcp-servers/) or [Antigravity](https://antigravity.google/docs/mcp), configure those servers using the host's MCP format. Pinepaper needs Node.js/npm; image generation uses your agent's available tools, while PDF and video lessons need their own dependencies.
+**Visual tools and Khan Academy:** Codex and Claude Code load the server definitions in [`.mcp.json`](.mcp.json). For [OpenCode](https://opencode.ai/docs/mcp-servers/) or [Antigravity](https://antigravity.google/docs/mcp), configure those servers using the host's MCP format. Pinepaper and Khan Academy search need Node.js/npm; image generation uses your agent's available tools, while PDF and video lessons need their own dependencies.
 
 For a course, share your goal, starting point, depth, and available time. To study the result, ask: **“Show my course in the browser.”**
 

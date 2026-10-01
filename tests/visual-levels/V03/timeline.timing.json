@@ -1,0 +1,20 @@
+[
+  {
+    "cue_id": "v03a",
+    "start": 0.0,
+    "end": 5.0,
+    "text": "Cue v03a. Breadth-first search starts at node A. Visit A first. The queue now holds B and C."
+  },
+  {
+    "cue_id": "v03b",
+    "start": 4.933333333333336,
+    "end": 9.933333333333337,
+    "text": "Cue v03b. Next, take node B from the queue and visit it. The queue now holds C."
+  },
+  {
+    "cue_id": "v03c",
+    "start": 9.93333333333333,
+    "end": 15.93333333333333,
+    "text": "Cue v03c. Finally, take node C from the queue and visit it. The queue is empty. Visit order is A, then B, then C."
+  }
+]

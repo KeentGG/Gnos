@@ -1,0 +1,26 @@
+{
+  "id": "V05",
+  "track": "video",
+  "level": 5,
+  "subject": "physics",
+  "title": "Pendulum numbers tied to geometry",
+  "claim": "Learner checks displayed angle equals drawn angle.",
+  "brief": "Swung bob with DecimalNumber angle readout driven by same state.",
+  "must_include": [
+    "theta",
+    "readout",
+    "pivot",
+    "L"
+  ],
+  "continuity": [
+    "deg units both"
+  ],
+  "acceptance": [
+    "readout matches geometry"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent"
+}

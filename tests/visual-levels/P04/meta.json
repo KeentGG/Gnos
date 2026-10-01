@@ -1,0 +1,26 @@
+{
+  "id": "P04",
+  "track": "pinepaper",
+  "level": 4,
+  "subject": "economics",
+  "title": "Demand curve + exact table",
+  "claim": "A learner can verify each plotted point against the table.",
+  "brief": "Curve through (1,10),(2,8),(3,6) with table of identical points; sourced-data label.",
+  "must_include": [
+    "(1,10)",
+    "(2,8)",
+    "(3,6)",
+    "sourced data"
+  ],
+  "continuity": [
+    "exact values, no smoothing lie"
+  ],
+  "acceptance": [
+    "3 points match table"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "scaffolded"
+}

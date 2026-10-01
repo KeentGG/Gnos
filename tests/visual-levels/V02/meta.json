@@ -1,0 +1,27 @@
+{
+  "id": "V02",
+  "track": "video",
+  "level": 2,
+  "subject": "math",
+  "title": "Secant to tangent 2 cues",
+  "claim": "Learner watches secant tend to tangent.",
+  "brief": "2 cues, secant slope readout approaching 4 at x=2 for x^2.",
+  "must_include": [
+    "cue v02a",
+    "cue v02b",
+    "secant",
+    "tangent"
+  ],
+  "continuity": [
+    "same axes both cues"
+  ],
+  "acceptance": [
+    "slope converges",
+    "each cue played once conceptually"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent"
+}

@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:05,000
+Cue v03a. Breadth-first search starts at node A. Visit A first. The queue now holds B and C.
+
+2
+00:00:05,000 --> 00:00:10,000
+Cue v03b. Next, take node B from the queue and visit it. The queue now holds C.
+
+3
+00:00:10,000 --> 00:00:16,000
+Cue v03c. Finally, take node C from the queue and visit it. The queue is empty. Visit order is A, then B, then C.

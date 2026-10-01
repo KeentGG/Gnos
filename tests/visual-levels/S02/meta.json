@@ -1,0 +1,27 @@
+{
+  "id": "S02",
+  "track": "simulation",
+  "level": 2,
+  "subject": "physics",
+  "title": "Pendulum angle+length",
+  "claim": "Learner tests how length changes period.",
+  "brief": "Sliders angle, length; period readout T=2pi sqrt(L/g); reset.",
+  "must_include": [
+    "angle deg",
+    "length m",
+    "period s",
+    "reset"
+  ],
+  "continuity": [
+    "SI units on all controls"
+  ],
+  "acceptance": [
+    "T formula correct",
+    "responsive 1280x800"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

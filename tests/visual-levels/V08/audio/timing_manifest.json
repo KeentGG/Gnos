@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "project": "Projectile cue-timed motion",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V08Scene": {
+      "title": "Cue-timed apex callout",
+      "cues": [
+        {
+          "text": "Launch. The projectile leaves at eight metres per second and forty-five degrees. Watch the horizontal component vx stay constant while the vertical component vy starts large. This cue timing sets up the flight in SI units.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "launch",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "Apex. At the top of the arc the vertical velocity vy is zero while vx carries the projectile forward. The apex marker appears exactly on this cue, at the apex frame.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "apex",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "Landing. Gravity has pulled vy negative, mirror to launch, while vx is unchanged and the range reads about six point five metres. The cue timing closes as the dot touches down; predict the landing spot before replaying, then compare.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "landing",
+          "sync_target": "",
+          "pause_after": 0
+        }
+      ],
+      "total_duration": 16.0
+    }
+  }
+}

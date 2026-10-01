@@ -31,7 +31,9 @@ survive. Inspect the exported file, not only the editor scene.
 GNOS shows image and video files inline. It runs interactive HTML only when
 registered as a `simulation` in the course viewer's restricted iframe. For
 that route, return a self-contained HTML file with `text/html`, a responsive
-layout, and valid `metadata.dimensions`. Open it at wide and narrow widths.
+layout, and valid `metadata.dimensions`. Follow
+[simulation presentation](../../lesson-design/references/simulation-design.md)
+for the four approved palettes, frame layout, and checks without internal scrolling.
 Check that controls work without relying on the Pinepaper editor or an
 external session. Follow the [artifact manifest](../../course-design/references/artifact-manifest.md)
 for registration. The lesson coordinator owns that registration.

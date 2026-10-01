@@ -39,86 +39,119 @@ Treat the named confusion as a possibility, not a diagnosis of this learner.
 
 ### Political / institutional
 
-- **Build:** Start with a dated decision and the choices open to named actors. Knowing
-  the later outcome can make a contingent choice seem inevitable.
+- **Build:** Start with a dated vote, decree, or institutional dispute and
+  the choices open to named actors. Reconstruct what they could know before
+  the result; later success or failure does not make the choice inevitable.
 - **Research:** Use a scholarly account to establish the sequence, then inspect laws,
   minutes, votes, or correspondence. Check which records show action and which only
   state an intention.
-- **Show and check:** A chronology establishes order. Two records test motives
-  or constraints. Use Excalidraw for the fixed authority map. Use Pinepaper
-  only when dated changes in authority are supported by records. Return to
-  the choice before its outcome.
+- **Show and check:** Put the decision and its records on a chronology, then
+  connect the relevant actors to a dated authority map. Compare a stated
+  intention with a record of action, preserving maker, audience, and date.
+  Explain which source supports each claimed constraint. Introduce a new
+  letter or an earlier rule and ask how it changes the choices available at
+  that moment, without inventing the alternative outcome.
 
 ### Social / cultural
 
-- **Build:** Start with a situated person, group, or object and its surviving record.
-  One vivid voice does not represent everyone. Archival silence is not absence.
+- **Build:** Start with a person's letter, an oral account, or an object from
+  a specified place and period. One vivid voice does not represent everyone;
+  a missing record does not establish absence of the experience.
 - **Research:** Pair a social history with letters, oral accounts, objects, or images.
   Inspect provenance, selection, and whose records are absent.
-- **Show and check:** Compare captioned sources. A place map gives context. A source
-  table shows whose experience is missing. Revise the claim when the group changes.
+- **Show and check:** Annotate the detail that supports a narrow claim, then
+  compare it with another captioned source in a provenance table. Locate
+  their people or objects on a dated place map; explain what location adds
+  and what it cannot establish. Add a record from another social group and
+  ask whether the claim broadens, narrows, or needs a different explanation.
+  Keep unequal survival and collection visible.
 
 ### Economic / labor
 
-- **Build:** Start with a workplace or exchange and the rules governing it. A price or
-  wage series may change because its coverage or units changed.
+- **Build:** Start with a wage payment or workplace contract and its governing
+  rules. A higher recorded wage can reflect changed coverage, units, or work
+  conditions rather than improved living conditions.
 - **Research:** Inspect contracts, workplace records, and the construction of wage or
   price series. Use scholarship to place those records in their institutional setting.
-- **Show and check:** Pair a data table with collection notes. Compare contracts and
-  testimony. A dated graph shows the pattern that the explanation must account for.
+- **Show and check:** Map table observations to a dated wage or price graph,
+  retaining units, coverage, and gaps. Use a contract and testimony to explain
+  what a payment meant in that workplace, distinguishing their purposes and
+  reach. Change the occupation, price basket, or series coverage and ask
+  whether the trend still supports the proposed account. An economic model
+  supplies a conditional mechanism, not missing historical evidence.
 
 ### Intellectual / religious
 
-- **Build:** Start with a short passage, its audience, and a term in period usage. An
-  author's claim differs from later readers' uses of it.
+- **Build:** Start with a short passage, its audience, and a term in period
+  usage. Explain the author's argument before asking how contemporary or
+  later readers used it; those uses are separate historical claims.
 - **Research:** Use a reliable edition with period context and a contemporary response.
   Distinguish the original argument from later reception.
-- **Show and check:** Annotate an excerpt. Compare a contemporary response. An argument
-  map shows premises. A reception timeline separates later interpretations.
+- **Show and check:** Connect the excerpt's words to the premises in an
+  argument map, then compare a contemporary response using the same disputed
+  term. A reception timeline dates each later use and identifies its source.
+  Give a new response or a different audience and ask which part of the
+  interpretation changes. Do not treat the later reader's meaning as the
+  original author's intention.
 
 ### Global / comparative
 
-- **Build:** Start with two local chronologies and a documented connection. Shared dates
-  or surface similarities do not establish the same cause.
+- **Build:** Start with two places connected by a documented journey,
+  exchange, or institution. Establish each local chronology before comparing
+  them; shared dates or similar outcomes do not establish the same cause.
 - **Research:** Use regional scholarship on both sides of the connection and dated maps
   or travel records. Check unequal archive coverage and incompatible period boundaries.
-- **Show and check:** A dated map shows contact. Parallel timelines expose
-  different sequences. Use Pinepaper to step through documented changes
-  only when each displayed date and boundary has a source. Compare unequal
-  archive coverage and what the map omits.
+- **Show and check:** Connect each mapped route or contact to its dated record
+  and position on parallel timelines. Compare sequences in a table before
+  proposing transmission or a shared mechanism. Mark uncertain boundaries,
+  missing intervals, and unequal archive coverage. Add a record that shifts
+  one local date and ask whether the claimed connection remains possible.
+  Motion must preserve these gaps rather than interpolate an undocumented route.
 
 ### Environmental / medical
 
-- **Build:** Start with a material change, how it was measured, and a recorded response.
-  Later reconstruction differs from contemporary observation.
+- **Build:** Start with a local epidemic or environmental change, how it was
+  recorded, and a dated response. Contemporary observations, institutional
+  categories, and later reconstructions may describe different things.
 - **Research:** Pair environmental or medical history with measurement records and
   contemporary accounts. Distinguish observations, later reconstructions, and
   institutional responses.
-- **Show and check:** Pair a measured or reconstructed series with documents.
-  Use Pinepaper for a time-aligned map and graph only when the same dated
-  evidence supports both. Label uncertainty and reconstruction before
-  explaining an institutional response.
+- **Show and check:** Link the series' units, dates, and coverage to its
+  measurement records, and place response documents on the same chronology.
+  If using a map, connect each area to the records supporting its displayed
+  value; do not turn sparse observations into exact boundaries. Change a
+  reporting definition or introduce a contradictory observation and ask
+  whether the pattern or response explanation needs revision. Label later
+  reconstruction and causal uncertainty.
 
 ### Gender / race / empire
 
-- **Build:** Start with a category used in a particular record and the authority behind
-  it. Present categories may not match period meanings or lived identities.
+- **Build:** Start with a category assigned in a census, law, or administrative
+  record and the authority behind it. Its official meaning may differ from
+  lived identity and from a present-day category.
 - **Research:** Inspect the original classifications in laws, censuses, or
   administrative records and scholarship on their use. Check who applied the category
   and with what consequences.
-- **Show and check:** A record excerpt shows classification. A table compares its use
-  across institutions. A sourced map shows jurisdiction. Explain whose options and
-  records changed.
+- **Show and check:** Annotate the classification rule in an excerpt and
+  follow its documented consequences for a person's options. Compare the
+  same term across institutions in a table; a dated jurisdiction map locates
+  which rule applies without assigning identities to whole regions. Change
+  the institution or period and ask whether the categories remain comparable
+  and which conclusion the records can support.
 
 ### Historiography / methods
 
-- **Build:** Start with two explanations of the same question and their evidence.
-  Disagreement does not give every account equal support.
+- **Build:** Start with two scholarly explanations of the same event or
+  process. Locate a consequential disagreement in evidence or inference;
+  disagreement does not give every account equal support.
 - **Research:** Read competing scholarly arguments and the sources they cite. Identify
   whether disagreement concerns records, definitions, scale, or inference.
-- **Show and check:** An evidence matrix compares claims and sources. Annotated passages
-  expose inference. Revise a thesis after a new record. Collect sources in a PDF when
-  close reading needs a packet.
+- **Show and check:** Annotate the step from record to claim in each argument,
+  then carry those claims and cited items into an evidence matrix. Distinguish
+  disputes about source reliability, concepts, and explanatory scale. Offer
+  a new record and ask which thesis it actually challenges and how. A source
+  packet keeps passages, provenance, and comparison questions together when
+  close reading needs them.
 
 ## Source use
 

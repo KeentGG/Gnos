@@ -1,0 +1,7 @@
+1
+00:00:00,000 --> 00:00:05,000
+A traveling sine wave appears on a fixed camera. Watch one crest as the wave moves in a steady direction, one wavelength lambda from the next crest.
+
+2
+00:00:04,933 --> 00:00:10,933
+The highlighted crest is tracked in the same direction with no camera motion. The lambda callout follows the crest so propagation stays clear.

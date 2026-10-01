@@ -33,6 +33,9 @@ def media_paths(media):
         ],
         'pinepaper': ['skills/pinepaper/SKILL.md'],
         'excalidraw': ['skills/excalidraw/SKILL.md'],
+        'graph': ['skills/jsxgraph/SKILL.md'],
+        'jsxgraph': ['skills/jsxgraph/SKILL.md'],
+        'khan-academy': ['skills/khan-academy/SKILL.md'],
     }
     return mapping.get(media, [])
 
@@ -85,7 +88,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--subject', choices=SUBJECTS, required=True)
     parser.add_argument('--mode', choices=('lesson', 'course', 'viewer'), default='lesson')
-    parser.add_argument('--media', choices=('pdf', 'manim', 'image', 'diagram', 'simulation', 'pinepaper', 'excalidraw'))
+    parser.add_argument('--media', choices=('pdf', 'manim', 'image', 'diagram', 'simulation', 'graph', 'jsxgraph', 'pinepaper', 'excalidraw', 'khan-academy'))
     parser.add_argument('--learner', help='Learner folder name; defaults to %(default)s')
     parser.set_defaults(learner='learner')
     parser.add_argument('--learners-root', type=Path, default=ROOT / 'learners')

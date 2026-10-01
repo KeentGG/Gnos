@@ -1,0 +1,27 @@
+{
+  "id": "S06",
+  "track": "simulation",
+  "level": 6,
+  "subject": "biology",
+  "title": "Logistic growth r/K",
+  "claim": "Learner separates growth rate from carrying capacity.",
+  "brief": "Sliders r,K; population curve; N0 fixed; reset; model shown.",
+  "must_include": [
+    "r",
+    "K",
+    "N0",
+    "dN/dt"
+  ],
+  "continuity": [
+    "bio model labeled as model"
+  ],
+  "acceptance": [
+    "curve follows logistic",
+    "K asymptote visible"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

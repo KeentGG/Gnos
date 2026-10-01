@@ -1,0 +1,29 @@
+{
+  "id": "E10",
+  "track": "excalidraw",
+  "level": 10,
+  "subject": "artificial-intelligence",
+  "title": "Training pipeline + leakage boundary",
+  "claim": "A learner can see where test leakage crosses the eval boundary.",
+  "brief": "Draw pipeline data->train->eval with trust boundary, red leakage arrow crossing it, metric label.",
+  "must_include": [
+    "train",
+    "test",
+    "eval boundary",
+    "leakage",
+    "accuracy"
+  ],
+  "continuity": [
+    "red=violation, gray=boundary"
+  ],
+  "acceptance": [
+    "boundary + violation arrow distinct"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "77a56902582c4b8b9f",
+  "note": "create_view checkpoint on live server; PNG via pinned excalidraw 0.18.1 exportToSvg+densify; 5/5 labels verified in elements.json and output.expanded.json"
+}

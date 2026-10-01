@@ -1,0 +1,26 @@
+{
+  "id": "P02",
+  "track": "pinepaper",
+  "level": 2,
+  "subject": "physics",
+  "title": "Free-body + value table",
+  "claim": "A learner can match arrows to numbers in the table.",
+  "brief": "Diagram plus table: same mg=9.8N, T=9.2N values in both.",
+  "must_include": [
+    "mg=9.8N",
+    "T=9.2N",
+    "table"
+  ],
+  "continuity": [
+    "same numbers diagram+table"
+  ],
+  "acceptance": [
+    "values agree",
+    "units present"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "scaffolded"
+}

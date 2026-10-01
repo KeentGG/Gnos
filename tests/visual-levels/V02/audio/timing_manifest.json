@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "project": "Secant to Tangent at x=2 for f(x)=x squared",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V02Scene": {
+      "title": "Secant tends to tangent at x=2",
+      "cues": [
+        {
+          "text": "Watch the secant through x equals 2 and x equals 3 on f of x equals x squared. Its slope is 5.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "v02a",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "Now shrink the second point toward 2. The refined secant reads 4.25 and lands on the tangent of slope 4.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "v02b",
+          "sync_target": "",
+          "pause_after": 0
+        }
+      ],
+      "total_duration": 11.0
+    }
+  }
+}

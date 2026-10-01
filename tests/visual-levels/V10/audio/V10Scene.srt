@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:05,000
+Predict before we move: this bowl f of x y equals x squared plus y squared has circular level sets. Watch them appear.
+
+2
+00:00:05,000 --> 00:00:11,000
+Now test your prediction: gradient dots step downhill, crossing each circle toward lower values.
+
+3
+00:00:11,000 --> 00:00:17,000
+One justified zoom moves inward to reveal the minimum: the dots settle at the center where the bowl is lowest.

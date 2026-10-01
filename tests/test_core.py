@@ -495,6 +495,15 @@ class LearnerTests(unittest.TestCase):
                 for path in paths:
                     self.assertTrue((ROOT / path).is_file(), path)
 
+    def test_khan_academy_media_loads_its_skill(self):
+        loader = ROOT / 'skills/learning-orchestrator/scripts/assemble_context.py'
+        result = subprocess.run([
+            sys.executable, str(loader), '--subject', 'math', '--media', 'khan-academy',
+            '--manifest', '--learners-root', str(self.root),
+        ], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('skills/khan-academy/SKILL.md', result.stdout.splitlines())
+
 
 class CourseTests(unittest.TestCase):
     def check_course(self, data):

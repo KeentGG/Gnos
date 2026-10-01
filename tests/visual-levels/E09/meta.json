@@ -1,0 +1,29 @@
+{
+  "id": "E09",
+  "track": "excalidraw",
+  "level": 9,
+  "subject": "chemical-engineering",
+  "title": "Reactor boundary flows",
+  "claim": "A learner can trace mass+energy across the reactor boundary.",
+  "brief": "Draw system boundary, inflow, outflow, heat arrow, reactor vessel with stirrer.",
+  "must_include": [
+    "system boundary",
+    "inflow",
+    "outflow",
+    "Q heat",
+    "reactor"
+  ],
+  "continuity": [
+    "transport arrows: green in, purple out, red heat"
+  ],
+  "acceptance": [
+    "boundary + 3 crossings labeled"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "356bf7ffce3642ae8b",
+  "note": "create_view checkpoint on live server; PNG via pinned excalidraw 0.18.1 exportToSvg+densify; 5/5 labels verbatim, boundary + 3 crossings inspected"
+}

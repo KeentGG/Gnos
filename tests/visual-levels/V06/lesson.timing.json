@@ -1,0 +1,20 @@
+[
+  {
+    "cue_id": "c1_n4",
+    "start": 0.0,
+    "end": 6.0,
+    "text": "With n=4 right-hand bars, the Riemann sum overshoots the integral of x squared, and the error readout is large. Predict what doubling will do."
+  },
+  {
+    "cue_id": "c2_n8",
+    "start": 5.933333333333335,
+    "end": 11.933333333333335,
+    "text": "At n=8 the bars hug the curve more closely, and the error readout drops. Compare with your prediction before the final refinement."
+  },
+  {
+    "cue_id": "c3_n16",
+    "start": 11.933333333333325,
+    "end": 17.933333333333323,
+    "text": "At n=16 the bars nearly fill the area under the curve, the error is smallest, and the ending is clean with nothing left behind."
+  }
+]

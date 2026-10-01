@@ -10,10 +10,11 @@ Date current figures and policy claims.
 ## Ways to show the idea
 
 For a new curve, work through a few values and explain its axes and units.
-Use plotted graphs and equations whenever the mechanism is quantitative;
-economics does not need a separate math lesson to use them. Use
+Use equations for quantitative mechanisms; add graphs when shape,
+intersections, or changed conditions need inspection. Economics does not need
+a separate math lesson to use them. Use
 [Excalidraw](../../excalidraw/SKILL.md) for institutional or flow structure,
-[Pinepaper](../../pinepaper/SKILL.md) for linked curves, and
+[JSXGraph](../../jsxgraph/SKILL.md) for linked curves and feasible regions, and
 [Manim](../../manim-voice-animation/SKILL.md) for narrated adjustment over time.
 An interactive graph tests comparative statics; a simulation tests a sequence
 under stated rules. A smooth path is not a forecast or a causal finding.
@@ -31,96 +32,129 @@ Treat the named confusion as a possibility, not a diagnosis of this learner.
 
 ### Microeconomics
 
-- **Build:** Start with one person's alternatives and a constraint before a curve. A
-  price change along a curve differs from a change in the curve's conditions.
+- **Build:** Start with a buyer choosing quantities at a given income and
+  price. Work feasible bundles before a curve. A price change along a demand
+  curve differs from an income change that alters its conditions.
 - **Research:** Use an introductory microeconomics chapter for choice and comparative
   statics. Inspect its assumptions before borrowing a graph.
-- **Show and check:** A numerical table grounds the trade-off. Use Pinepaper
-  when changing one constraint must move the feasible set, chosen point, and
-  displayed values together. A worked comparison explains incidence or choice.
+- **Show and check:** Calculate bundles in a table and place those same
+  quantities on a budget graph. Explain how repeated choices at different
+  prices produce points on a demand curve under stated preferences. Keep
+  income and other held-constant conditions visible. Change income instead
+  of price and ask which line or curve changes and why; linked controls must
+  preserve the same budget and choice rule.
 
 ### Macroeconomics
 
-- **Build:** Start with a flow over a period and a stock at a date. Accounting
-  identities do not explain behavior. Nominal and real changes differ.
+- **Build:** Start with debt at the beginning of a year and the flows changing
+  it during that year. An accounting update does not explain borrowing behavior.
+  For output or prices, separate nominal values from the chosen real measure.
 - **Research:** Use national-accounting definitions and an inspected macroeconomics
   chapter. For data, read the official series metadata, units, adjustments, and
   revisions.
-- **Show and check:** An Excalidraw stock-flow diagram locates quantities. A
-  dated table establishes units. Use Pinepaper when stocks, flows, and time
-  plots must share one modeled adjustment. State assumptions before treating
-  any path as a forecast.
+- **Show and check:** Match every arrow in a stock-flow diagram to a term in
+  one period's update, then to its row in a dated table. Extend those rows into
+  a time plot using the same units and time step. Explain any behavioral rule
+  separately from the identity. Change a flow or price index and ask which
+  quantities must be recalculated. Label an assumed adjustment path as a model.
 
 ### Econometrics
 
-- **Build:** Start with a question, the comparison being made, and a small dataset. A
-  strong association or good prediction does not identify a causal effect.
+- **Build:** Start with a wage difference between people with different
+  education and a small labeled dataset. A predictive relation does not by
+  itself isolate the effect of education from selection or other causes.
 - **Research:** Use an econometrics chapter for the estimator and an original study for
   the empirical claim. Inspect comparison groups, identification, data, and uncertainty.
-- **Show and check:** A sourced scatterplot shows association. An Excalidraw
-  study-design diagram shows selection. A labeled simulated confound can
-  change both the diagram and plotted association in Pinepaper. Code and
-  output connect the actual estimate to data.
+- **Show and check:** Map table rows to scatterplot points and translate the
+  estimated coefficient into a wage comparison in the stated units. A study
+  diagram explains who enters each comparison and which causal assumptions
+  the estimate needs. Simulate an explicitly hypothetical common cause to
+  show why the slope can mislead. Change the comparison group and ask what
+  claim remains justified; connect any recomputed estimate to code and data.
 
 ### Game theory
 
-- **Build:** Start with two players, available actions, and what each knows. The best
-  joint outcome need not be stable under individual choices.
+- **Build:** Start with two firms choosing between two actions, with timing
+  and information stated. A large joint payoff need not survive a player's
+  incentive to change its own action.
 - **Research:** Inspect a game-theory section with explicit timing and information.
   Check whether the solution assumes simultaneous moves, commitment, or repeated play.
-- **Show and check:** A payoff table gives exact incentives. An Excalidraw
-  game tree shows timing. Use Pinepaper if a changed payoff must update best
-  responses and the highlighted path together. Recompute the conclusion.
+- **Show and check:** Read each payoff cell from one player's perspective,
+  then mark both players' best responses. For sequential play, carry the same
+  terminal payoffs into a tree and mark information sets; explain why changing
+  timing changes the reasoning. Alter one payoff or the ability to commit and
+  have the learner recompute the stable choices before showing the result.
 
 ### Labor, public, development
 
-- **Build:** Start with a policy or institution and the people facing its constraints. A
-  larger total can conceal losses for some groups.
+- **Build:** Start with one worker's program eligibility, a taxpayer's burden,
+  or a household's access to a development service, as the topic requires.
+  A larger total can conceal losses for groups or changes in who participates.
 - **Research:** Use an original policy evaluation with administrative or survey data.
   Inspect eligibility, implementation, affected groups, and the comparison used.
-- **Show and check:** A distribution table separates gains and costs. A mechanism
-  diagram explains channels. A graph or policy model compares assumptions against
-  observed evidence.
+- **Show and check:** Trace the chosen person's constraint through a mechanism
+  diagram, then place the predicted and observed group outcomes in a table.
+  Derive any aggregate graph from those same groups and weights. Distinguish
+  transfers from resource costs and the model's welfare criterion from an
+  empirical effect. Change eligibility, take-up, or group weights and ask
+  whether the total and distribution support the same conclusion.
 
 ### Behavioral economics
 
-- **Build:** Start with a baseline prediction and a choice that it struggles to explain.
-  A changed response can reflect beliefs, attention, measurement, or preferences.
+- **Build:** Start with the same options presented under two frames and a
+  baseline choice prediction. A changed response can reflect beliefs,
+  attention, measurement, or preferences; a label does not identify a mechanism.
 - **Research:** Inspect the experiment and replication or review evidence. Check
   incentives, sample, manipulation, and what the measure can distinguish.
-- **Show and check:** A choice table compares conditions. An experiment diagram
-  distinguishes explanations. Sourced effect plots show uncertainty. A toy model
-  illustrates a stated mechanism.
+- **Show and check:** Place the exact options and observed choices in a table.
+  Connect each condition to its assignment in the experiment diagram and its
+  estimate in an effect plot, preserving sample and uncertainty. Work a toy
+  mechanism on those options without presenting it as the finding. Change
+  incentives or wording and ask what competing explanations would predict
+  and what additional evidence would distinguish them.
 
 ### Economic history
 
-- **Build:** Start with a dated decision or pattern and how its records were made. A
-  modern model cannot supply historical actors' unrecorded motives.
+- **Build:** Start with a dated wage or price change and how its records were
+  made. A modern model can suggest a mechanism but cannot supply historical
+  actors' unrecorded motives.
 - **Research:** Pair a scholarly historical account with dated records and series
   metadata. Check whether categories and coverage stay comparable.
-- **Show and check:** Pair a series with source excerpts. Use a dated map or timeline
-  for context. Compare record coverage before explaining a change.
+- **Show and check:** Map a table's dated observations onto a series and
+  annotate a change with the relevant record or collection rule. A timeline
+  locates documented institutional changes without making coincidence causal.
+  Compare a second region or a revised coverage definition and ask whether
+  the pattern and explanation still hold. Keep missing records and modern
+  reconstructions visible.
 
 ### Finance and money
 
-- **Build:** Start with dated payments, claims, and the institution connecting them.
-  Profit, cash, present value, and risk answer different questions.
+- **Build:** Start with a loan's dated receipt and repayments, or a bank
+  payment and the claims it changes, depending on the question. Profit, cash,
+  present value, and risk answer different questions.
 - **Research:** Use a finance or monetary-economics chapter for the model. Inspect
   institutional definitions and dated series metadata for real claims or rates.
-- **Show and check:** Use a cash-flow timeline and ledger, then a discounting or risk
-  graph. Use controls to vary rates or payment timing. Trace each plotted value to the
-  corresponding payment and assumption.
+- **Show and check:** For valuation, map each timeline payment to its term in
+  a discounted-value table and then the rate-sensitivity graph. For money,
+  trace the same payment through the payer's, recipient's, and institutions'
+  ledgers. Preserve signs, dates, and whose claim is shown. Delay a payment or
+  change a rate and ask which value or balance changes; explain separately
+  what the example assumes about default or institutional behavior.
 
 ### Environmental and resource economics
 
-- **Build:** Start with a physical resource or emission and a choice about its use. A
-  market price need not include external costs. Physical stocks require their own
-  balance.
+- **Build:** Start with a firm's emission choice or a resource extraction
+  decision. A market price need not include external costs; money and a
+  physical stock cannot be balanced in the same units.
 - **Research:** Pair an economics chapter with physical measurement sources and a policy
   evaluation. Check units, time horizon, discounting, and uncertainty.
-- **Show and check:** Connect a physical stock-flow diagram to marginal cost and benefit
-  curves. Use an interactive graph for taxes or caps and a simulation for depletion over
-  time. Keep modeled welfare separate from observed outcomes.
+- **Show and check:** Map extraction or emissions from the physical balance
+  to the economic choice variable, naming the time period and conversion.
+  Work one row of cost and benefit values before plotting its marginal
+  curves. Show how a tax, cap, or extraction rule changes that choice and,
+  where relevant, the next stock. Ask for a prediction under a changed damage
+  or replenishment assumption; keep modeled welfare and paths separate from
+  measured outcomes.
 
 ## Source use
 

@@ -1,0 +1,27 @@
+{
+  "id": "V08",
+  "track": "video",
+  "level": 8,
+  "subject": "physics",
+  "title": "Projectile cue-timed motion",
+  "claim": "Spoken timing coordinates apex callout with motion.",
+  "brief": "Cue-timed apex marker + velocity components; cue_player concept.",
+  "must_include": [
+    "apex",
+    "vx",
+    "vy",
+    "cue timing"
+  ],
+  "continuity": [
+    "SI units"
+  ],
+  "acceptance": [
+    "callout at apex frame",
+    "no cue reused conceptually"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent"
+}

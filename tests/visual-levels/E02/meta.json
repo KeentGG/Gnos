@@ -1,0 +1,30 @@
+{
+  "id": "E02",
+  "track": "excalidraw",
+  "level": 2,
+  "subject": "physics",
+  "title": "Pendulum forces at 20 deg",
+  "claim": "A learner can see gravity vs tension at 20 deg displacement.",
+  "brief": "Draw pivot, string at 20 deg, bob, gravity arrow down, tension arrow along string.",
+  "must_include": [
+    "pivot",
+    "20 deg",
+    "mg",
+    "T",
+    "bob"
+  ],
+  "continuity": [
+    "physics units deg",
+    "red gravity, blue tension"
+  ],
+  "acceptance": [
+    "arrow directions correct",
+    "labels verbatim"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "5727ac480356460b88"
+}

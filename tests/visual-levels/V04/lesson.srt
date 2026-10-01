@@ -1,0 +1,7 @@
+1
+00:00:00,000 --> 00:00:04,000
+Here are basis vectors e1 and e2. The tracker alpha is at zero, and det equals one.
+
+2
+00:00:04,000 --> 00:00:09,000
+As the tracker alpha sweeps to ninety degrees, e1 and e2 rotate together and det stays one.

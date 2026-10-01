@@ -1,0 +1,28 @@
+{
+  "id": "S10",
+  "track": "simulation",
+  "level": 10,
+  "subject": "chemical-engineering",
+  "title": "Reactor T/C control + alarms",
+  "claim": "Learner keeps reactor in limits with T/C controls.",
+  "brief": "Sliders coolant, feed; T/C readouts, alarm banner, limits table; reset; responsive.",
+  "must_include": [
+    "coolant",
+    "feed",
+    "alarm",
+    "limits",
+    "reset"
+  ],
+  "continuity": [
+    "degC, mol/L units"
+  ],
+  "acceptance": [
+    "alarm triggers out-of-limit",
+    "readable at phone width"
+  ],
+  "skill_route": "skills/subject/SKILL.md",
+  "output": "sim.html",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "scaffolded"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "E01",
+  "track": "excalidraw",
+  "level": 1,
+  "subject": "math",
+  "title": "Slope triangle y=2x",
+  "claim": "A learner can see rise over run for y=2x.",
+  "brief": "Draw axes, line y=2x, one slope triangle with rise/run labeled.",
+  "must_include": [
+    "x axis",
+    "y axis",
+    "y=2x",
+    "rise=2",
+    "run=1"
+  ],
+  "continuity": [
+    "math symbols",
+    "blue axes, black line, red triangle"
+  ],
+  "acceptance": [
+    "all 5 labels verbatim in SVG",
+    "no overlap at 800px wide"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "8cfcc455ddb042cb9e",
+  "note": "create_view checkpoint on live server; PNG via pinned excalidraw 0.18.1 exportToSvg+densify; server export_to_excalidraw returns undecodable stub, share URL built locally with lz-string and verified through restoreElements 8/8"
+}

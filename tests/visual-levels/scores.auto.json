@@ -1,0 +1,162 @@
+{
+  "E01": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "E02": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "E03": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "E04": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "E05": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "E06": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "E07": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "E08": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "E09": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "E10": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P01": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P02": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P03": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P04": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P05": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P06": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P07": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P08": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P09": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "P10": {
+    "auto_1_5": 1,
+    "notes": "missing/tiny"
+  },
+  "S01": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 9854; controls-or-n/a ok"
+  },
+  "S02": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 6748; controls-or-n/a ok"
+  },
+  "S03": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 7099; controls-or-n/a ok"
+  },
+  "S04": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 9600; controls-or-n/a ok"
+  },
+  "S05": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 9079; controls-or-n/a ok"
+  },
+  "S06": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 12078; controls-or-n/a ok"
+  },
+  "S07": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 8674; controls-or-n/a ok"
+  },
+  "S08": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 8646; controls-or-n/a ok"
+  },
+  "S09": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 9423; controls-or-n/a ok"
+  },
+  "S10": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 5/5; length 7702; controls-or-n/a ok"
+  },
+  "V01": {
+    "auto_1_5": 4,
+    "notes": "exists+nontrivial; labels 4/4; controls-or-n/a ok"
+  },
+  "V02": {
+    "auto_1_5": 4,
+    "notes": "exists+nontrivial; labels 4/4; controls-or-n/a ok"
+  },
+  "V03": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 2116; controls-or-n/a ok"
+  },
+  "V04": {
+    "auto_1_5": 4,
+    "notes": "exists+nontrivial; labels 4/4; controls-or-n/a ok"
+  },
+  "V05": {
+    "auto_1_5": 4,
+    "notes": "exists+nontrivial; labels 4/4; controls-or-n/a ok"
+  },
+  "V06": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 2015; controls-or-n/a ok"
+  },
+  "V07": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 3451; controls-or-n/a ok"
+  },
+  "V08": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 2744; controls-or-n/a ok"
+  },
+  "V09": {
+    "auto_1_5": 4,
+    "notes": "exists+nontrivial; labels 4/4; controls-or-n/a ok"
+  },
+  "V10": {
+    "auto_1_5": 5,
+    "notes": "exists+nontrivial; labels 4/4; length 2055; controls-or-n/a ok"
+  }
+}

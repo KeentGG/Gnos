@@ -1,0 +1,38 @@
+{
+  "title": "BFS animation 3 cues",
+  "concept_id": "cs-bfs-visit-order",
+  "prerequisite": "Learner knows graph nodes and directed edges from A to B and A to C.",
+  "success_check": "Learner recites visit order A then B then C and predicts the queue before each visit, then compares.",
+  "aspect_ratio": "16:9",
+  "scenes": [
+    {
+      "id": "V03Scene",
+      "title": "BFS visit order A B C",
+      "concept_target": "Breadth-first search visits nodes A, then B, then C in queue order while node positions stay fixed.",
+      "narration_cues": [
+        {
+          "cue_id": "v03a",
+          "text": "Cue v03a. Breadth-first search starts at node A. Visit A first. The queue now holds B and C.",
+          "visible_objects": ["node_A", "node_B", "node_C", "queue_readout"],
+          "change": "Graph appears at fixed positions and node A turns visited; queue shows B and C.",
+          "duration": 5.0
+        },
+        {
+          "cue_id": "v03b",
+          "text": "Cue v03b. Next, take node B from the queue and visit it. The queue now holds C.",
+          "visible_objects": ["node_B", "queue_readout"],
+          "change": "Node B turns visited; queue readout updates to C only.",
+          "duration": 5.0
+        },
+        {
+          "cue_id": "v03c",
+          "text": "Cue v03c. Finally, take node C from the queue and visit it. The queue is empty. Visit order is A, then B, then C.",
+          "visible_objects": ["node_C", "queue_readout", "order_caption"],
+          "change": "Node C turns visited and the final order caption stays readable with an empty queue.",
+          "duration": 6.0,
+          "pause_after": 0.8
+        }
+      ]
+    }
+  ]
+}

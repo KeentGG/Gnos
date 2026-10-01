@@ -1,0 +1,26 @@
+{
+  "id": "V04",
+  "track": "video",
+  "level": 4,
+  "subject": "math",
+  "title": "Basis transform ValueTracker",
+  "claim": "Learner sees basis vectors rotate together.",
+  "brief": "ValueTracker-style tween of basis, determinant readout.",
+  "must_include": [
+    "e1",
+    "e2",
+    "det",
+    "tracker"
+  ],
+  "continuity": [
+    "matrix symbols consistent"
+  ],
+  "acceptance": [
+    "vectors + det agree"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent"
+}

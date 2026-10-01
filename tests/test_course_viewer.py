@@ -14,6 +14,7 @@ from course_workspace import create_workspace, publish_lesson  # noqa: E402
 import artifact_manifest  # noqa: E402
 from tests.test_course_contract_v2 import valid_v2_course  # noqa: E402
 from tests.test_lesson_contract import valid_lesson  # noqa: E402
+from tests.test_artifact_manifest import write_test_video  # noqa: E402
 
 RENDER = ROOT / "skills/course-viewer/scripts/render_viewer.py"
 sys.path.insert(0, str(ROOT / "skills/course-viewer/scripts"))
@@ -59,6 +60,60 @@ def lesson_with_reps(plan=None):
 
 
 class ViewerTests(unittest.TestCase):
+    def test_khan_video_block_embeds_only_selected_segment_and_links_original(self):
+        block = {"type": "khan-video", "source_id": "khan-slope",
+                 "purpose": "Compare the two point calculation.",
+                 "text": "Watch how rise and run make the slope.",
+                 "clip_start_seconds": 130, "clip_end_seconds": 330}
+        sources = {"khan-slope": {
+            "title": "Slope as rate of change", "type": "khan-video",
+            "url": "https://www.khanacademy.org/math/algebra/x/v/slope-as-rate-of-change",
+            "youtube_id": "M7lc1UVf-VE", "sections": ["Slope from two points"],
+        }}
+        html = render_viewer.render_block(block, {}, sources)
+        self.assertIn('src="https://www.youtube-nocookie.com/embed/M7lc1UVf-VE?start=130&amp;end=330"', html)
+        self.assertIn('href="https://www.khanacademy.org/math/algebra/x/v/slope-as-rate-of-change"', html)
+        self.assertIn('class="khan-video-frame"', html)
+        self.assertIn('class="card khan-video-card"', html)
+        self.assertIn("Watch how rise and run", html)
+        self.assertIn("2:10–5:30", html)
+
+    def test_published_lesson_shows_khan_clip_in_portal(self):
+        from course_contract import validate_course
+
+        plan = valid_v2_course()
+        plan["sources"]["khan-slope"] = {
+            "title": "Slope as rate of change", "type": "khan-video",
+            "url": "https://www.khanacademy.org/math/algebra/x/v/slope-as-rate-of-change",
+            "youtube_id": "M7lc1UVf-VE", "checked_on": "2026-09-26",
+            "sections": ["Slope from two points"],
+            "verification_notes": "Checked exact segment.",
+        }
+        plan["chapters"][0]["topics"][0]["resource_ids"].append("khan-slope")
+        plan["chapters"][0]["topics"][0]["skill_routes"].append("skills/khan-academy/SKILL.md")
+        workspace = create_workspace(self.root, "khan-learner", plan)
+        lesson = valid_lesson(validate_course(plan))
+        lesson["skill_routes"].append("skills/khan-academy/SKILL.md")
+        lesson["blocks"].insert(1, {
+            "id": "khan-clip", "type": "khan-video", "concepts": ["math.derivative"],
+            "purpose": "Inspect the two point calculation.", "source_id": "khan-slope",
+            "text": "Watch how the two point slope is calculated.",
+            "clip_start_seconds": 130, "clip_end_seconds": 330,
+            "production": {"skill_route": "skills/khan-academy/SKILL.md",
+                           "brief": "Select the exact clip.", "must_include": ["Two point slope"],
+                           "continuity": ["Use the same axes."],
+                           "acceptance_checks": ["The clip shows the calculation."],
+                           "depends_on_block_ids": ["intro"]},
+        })
+        publish_lesson(workspace, lesson)
+        result = subprocess.run([sys.executable, str(RENDER), str(workspace)],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        html = (workspace / "portal/index.html").read_text()
+        self.assertIn('youtube-nocookie.com/embed/M7lc1UVf-VE?start=130&amp;end=330', html)
+        self.assertIn('class="chip khan ready"', html)
+        self.assertIn('href="https://www.khanacademy.org/math/algebra/x/v/slope-as-rate-of-change"', html)
+
     def test_simulation_iframe_uses_bounded_metadata_dimensions(self):
         artifact = {
             "id": "sim", "type": "simulation", "title": "Simulation",
@@ -84,11 +139,11 @@ class ViewerTests(unittest.TestCase):
         self.assertIn('width="1280" height="800"', html)
         self.assertIn("--simulation-max-height:800px", html)
 
-    def test_simulation_iframe_uses_portrait_height_on_mobile_and_tablet(self):
+    def test_simulation_iframe_preserves_declared_height_at_every_width(self):
         text = self.render("--outline-only")
 
         self.assertIn(
-            ".media iframe.simulation-frame{height:clamp(480px,62.5vw,var(--simulation-max-height,800px));}",
+            ".media iframe.simulation-frame{height:var(--simulation-max-height,800px);}",
             text,
         )
         mobile_start = text.index("@media (max-width:1100px)")
@@ -96,7 +151,7 @@ class ViewerTests(unittest.TestCase):
         mobile_css = text[mobile_start:mobile_end]
         self.assertIn(".media iframe{height:300px;}", mobile_css)
         self.assertIn(
-            ".media iframe.simulation-frame{height:min(var(--simulation-max-height,800px),max(760px,150vw));}",
+            ".media iframe.simulation-frame{height:var(--simulation-max-height,800px);}",
             mobile_css,
         )
 
@@ -266,7 +321,7 @@ class ViewerTests(unittest.TestCase):
         publish_lesson(self.workspace, lesson_with_reps(self.plan))
         video = self.workspace / "artifacts/videos/slope-video.mp4"
         video.parent.mkdir(parents=True, exist_ok=True)
-        video.write_bytes(b"fake")
+        write_test_video(video)
         artifact_manifest.register_artifact(self.workspace, {
             "id": "slope-video", "type": "voice-animation", "title": "Slope video",
             "purpose": "Show slope.", "concepts": ["math.derivative"],
@@ -291,7 +346,7 @@ class ViewerTests(unittest.TestCase):
         text = self.render()
         self.assertIn("Slope as local change", text)
 
-    def test_course_shell_keeps_compact_logo_and_grainy_selection_surface(self):
+    def test_course_shell_keeps_compact_logo_and_solid_selection_surface(self):
         text = self.render()
         logo_start = text.index('<a class="gnos-logo"')
         logo_end = text.index("</a>", logo_start)
@@ -303,14 +358,14 @@ class ViewerTests(unittest.TestCase):
         selected_end = text.index("}", selected_start)
         selected_css = text[selected_start:selected_end]
         self.assertIn("background-color:var(--row-selected)", selected_css)
-        self.assertIn("background-image:", selected_css)
-        self.assertIn("feTurbulence", selected_css)
+        self.assertNotIn("background-image:", selected_css)
+        self.assertNotIn("gradient", selected_css)
 
     def test_course_shell_uses_reference_paper_and_selection_tones(self):
         text = self.render()
 
-        self.assertIn("--paper:#F6F4EE", text)
-        self.assertIn("--row-selected:#E0DFDC", text)
+        self.assertIn("--paper:#FDE5D4", text)
+        self.assertIn("--row-selected:#FDE5D4", text)
 
     def test_explicit_hero_copy_can_present_a_short_editorial_title(self):
         course_file = self.workspace / "course.json"

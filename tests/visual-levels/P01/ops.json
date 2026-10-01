@@ -1,0 +1,14 @@
+[
+ {"tool":"pinepaper_agent_start_job","params":{"name":"P01-triangle","description":"Teaching diagram: one triangle with three labeled sides a, b, c for a geometry lesson. Clean white background, navy triangle, dark labels.","canvasPreset":"web","clearCanvas":true,"screenshotPolicy":"on_request"}},
+ {"tool":"pinepaper_agent_batch_execute","params":{"operations":[
+   {"type":"set_canvas_size","width":1280,"height":800},
+   {"type":"set_background","backgroundColor":"#ffffff"},
+   {"type":"create","itemType":"text","position":{"x":640,"y":90},"properties":{"content":"Triangle sides: a, b, c","fontSize":40,"fontFamily":"sans-serif","color":"#1e1e1e","fontWeight":"bold"}},
+   {"type":"create","itemType":"triangle","position":{"x":640,"y":460},"properties":{"width":420,"height":360,"color":"#4a9eed","strokeColor":"#1e3a8a","strokeWidth":4}},
+   {"type":"create","itemType":"text","position":{"x":640,"y":660},"properties":{"content":"side a","fontSize":32,"color":"#1e1e1e"}},
+   {"type":"create","itemType":"text","position":{"x":420,"y":440},"properties":{"content":"side b","fontSize":32,"color":"#1e1e1e"}},
+   {"type":"create","itemType":"text","position":{"x":860,"y":440},"properties":{"content":"side c","fontSize":32,"color":"#1e1e1e"}}
+ ]}},
+ {"tool":"pinepaper_validate_scene","params":{}},
+ {"tool":"pinepaper_agent_end_job","params":{"includeScreenshot":true,"analyzeContent":false}}
+]

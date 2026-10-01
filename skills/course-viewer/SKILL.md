@@ -7,7 +7,7 @@ description: "Show an enrolled course and its lessons. Use lesson-design to auth
 
 Render the enrolled course and its published lessons. The HTML page and its
 neighboring `assets/` directory can be read locally; the course server saves exercises to JSON and reveals
-answers after submission. Math uses KaTeX. Cream editorial page: top bar with GNOS + tabs, hero
+answers after submission. Math uses KaTeX. Pale peach editorial page: top bar with GNOS + tabs, hero
 with giant title + field metadata, curriculum list + topic details.
 
 Use this skill when the learner asks to see the course or answers yes after
@@ -72,10 +72,11 @@ request and the reveal is recorded separately from the learner's response.
 ## The layout
 
 The design lives in [references/example.html](references/example.html).
-Copy that look exactly:
+Follow that layout and the approved palette:
 
-- cream paper (#F6F4EE), near-black ink, teal links (#155E63),
-  ochre labels (#8A6D3B), plum state/title (#5E2B4D), thin dividers
+- the approved forest palette: pale peach (#FDE5D4), dark ink (#001524),
+  green links and dividers (#445D48), brown state labels (#5E3023);
+  solid fills, 2–4 pixel radii, and monospace metadata
 - topbar: GNOS logo left, tabs center (Overview, Lessons, Exercises,
   Sources, Artifacts with teal underline for active), All courses → right
 - hero: giant condensed title + Rev, mono subtitle; right meta block
@@ -83,7 +84,7 @@ Copy that look exactly:
 - overview is Curriculum (left) + Topic details (right):
   chapters as "Chapter 01 + Title", topics as numbered rows with
   Current (navy) / Planned (plum) + › chevron; selected row has
-  textured grey fill; clicking a row updates Topic details
+  solid fill and a green edge; clicking a row updates Topic details
   (eyebrow, plum title, Subtopics / State / Formats / Evidence / Sources)
 - lessons show their actual block formats as chips: manim,
   image, simulation, text (kept as `chip manim` hooks, hidden in
@@ -91,7 +92,7 @@ Copy that look exactly:
   planned formats. A chip turns ready
   (`chip manim ready`) when its artifact is registered
 - videos, images, and sandboxed simulations render full width inside
-  rounded frames, captions below, never overlapping
+  frames with slight rounding, captions below, never overlapping
 - arrow keys step between lessons; lesson hooks (`#tabs`, `#lesson-list`,
   `.lesson`, `#prev-link` / `#next-link`) stay intact
 

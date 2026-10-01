@@ -72,6 +72,64 @@ def attach_receipt(lesson, validated_course):
 
 
 class LessonContractTests(unittest.TestCase):
+    def test_khan_video_block_keeps_verified_clip_bounds_public(self):
+        course = valid_v2_course()
+        course["sources"]["khan-slope"] = {
+            "title": "Slope as rate of change", "type": "khan-video",
+            "url": "https://www.khanacademy.org/math/algebra/x/v/slope-as-rate-of-change",
+            "youtube_id": "M7lc1UVf-VE", "checked_on": "2026-09-26",
+            "sections": ["Slope from two points"],
+            "verification_notes": "Checked the exact video and segment.",
+        }
+        course["sources"]["khan-other"] = dict(course["sources"]["khan-slope"])
+        course["chapters"][0]["topics"][0]["skill_routes"].append("skills/khan-academy/SKILL.md")
+        course["chapters"][0]["topics"][0]["resource_ids"].append("khan-slope")
+        course["chapters"][0]["topics"][0]["representations"] = [{
+            "id": "khan-rate", "kind": "khan", "concept": "math.derivative",
+            "purpose": "Watch how two points determine a local rate.",
+            "skill_route": "skills/khan-academy/SKILL.md",
+        }]
+        validated = validate_course(course)
+        lesson = valid_lesson(validated)
+        lesson["skill_routes"].append("skills/khan-academy/SKILL.md")
+        source_block = {
+            "id": "khan-clip", "type": "khan-video", "concepts": ["math.derivative"],
+            "purpose": "Watch how two points determine a local rate.",
+            "representation_id": "khan-rate",
+            "text": "Notice how the rise and run become one rate.",
+            "source_id": "khan-slope", "clip_start_seconds": 130,
+            "clip_end_seconds": 330,
+            "production": {"skill_route": "skills/khan-academy/SKILL.md",
+                           "brief": "Select the exact video segment.",
+                           "must_include": ["Two point slope"],
+                           "continuity": ["Use the same x and y labels."],
+                           "acceptance_checks": ["The clip shows the two point slope."],
+                           "depends_on_block_ids": ["intro"]},
+        }
+        lesson["blocks"].insert(1, source_block)
+        self.assertEqual(validate_lesson(lesson, validated), lesson)
+        projected = public_lesson(lesson)["blocks"][1]
+        self.assertEqual(projected["type"], "khan-video")
+        self.assertIn("rise and run", projected["text"])
+        self.assertEqual((projected["clip_start_seconds"], projected["clip_end_seconds"]), (130, 330))
+        for change, message in (({"text": ""}, "watch prompt"),
+                                ({"source_id": "openstax-calculus-1"}, "Khan video source"),
+                                ({"source_id": "khan-other"}, "current topic")):
+            broken = copy.deepcopy(lesson)
+            broken["blocks"][1].update(change)
+            with self.subTest(change=change), self.assertRaisesRegex(ValueError, message):
+                validate_lesson(broken, validated)
+        wrong_route = copy.deepcopy(lesson)
+        wrong_route["blocks"][1]["production"]["skill_route"] = "skills/subject/SKILL.md"
+        with self.assertRaisesRegex(ValueError, "course representation"):
+            validate_lesson(wrong_route, validated)
+        for start, end in ((330, 130), (-1, 330), (True, 330), (130, None)):
+            broken = copy.deepcopy(lesson)
+            broken["blocks"][1]["clip_start_seconds"] = start
+            broken["blocks"][1]["clip_end_seconds"] = end
+            with self.subTest(start=start, end=end), self.assertRaises(ValueError):
+                validate_lesson(broken, validated)
+
     def test_schema_one_lessons_remain_readable_without_production_briefs(self):
         course = validate_course(valid_v2_course())
         lesson = valid_lesson(course)

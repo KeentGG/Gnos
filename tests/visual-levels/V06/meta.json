@@ -1,0 +1,27 @@
+{
+  "id": "V06",
+  "track": "video",
+  "level": 6,
+  "subject": "math",
+  "title": "Area accumulation cleanup",
+  "claim": "Learner sees Riemann sum refine without leftover updaters.",
+  "brief": "Bars refine 4->8->16, error readout shrinks, no ghost objects.",
+  "must_include": [
+    "n=4",
+    "n=16",
+    "error",
+    "integral"
+  ],
+  "continuity": [
+    "same function x^2"
+  ],
+  "acceptance": [
+    "error decreases",
+    "ending clean"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "P06",
+  "track": "pinepaper",
+  "level": 6,
+  "subject": "biology",
+  "title": "Diffusion gradient + profile",
+  "claim": "A learner can connect particle spread to concentration profile.",
+  "brief": "Animated particles + concentration curve updating together; assumption label.",
+  "must_include": [
+    "high C",
+    "low C",
+    "flux",
+    "simulated output"
+  ],
+  "continuity": [
+    "simulated vs measured labeled"
+  ],
+  "acceptance": [
+    "both views update together"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "scaffolded"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "V10",
+  "track": "video",
+  "level": 10,
+  "subject": "math",
+  "title": "Surface + gradient path camera reveals",
+  "claim": "Learner sees gradient path descend on 3D surface where camera move reveals structure.",
+  "brief": "Contour-projected surface, path dots, one justified camera orbit, final readable frame.",
+  "must_include": [
+    "contour",
+    "path",
+    "orbit",
+    "minimum"
+  ],
+  "continuity": [
+    "same f(x,y) throughout"
+  ],
+  "acceptance": [
+    "orbit justified",
+    "path descends",
+    "ending legible"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent"
+}

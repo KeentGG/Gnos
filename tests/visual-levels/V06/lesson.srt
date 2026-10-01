@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:06,000
+With n=4 right-hand bars, the Riemann sum overshoots the integral of x squared, and the error readout is large. Predict what doubling will do.
+
+2
+00:00:05,933 --> 00:00:11,933
+At n=8 the bars hug the curve more closely, and the error readout drops. Compare with your prediction before the final refinement.
+
+3
+00:00:11,933 --> 00:00:17,933
+At n=16 the bars nearly fill the area under the curve, the error is smallest, and the ending is clean with nothing left behind.

@@ -1,0 +1,27 @@
+{
+  "id": "V03",
+  "track": "video",
+  "level": 3,
+  "subject": "computer-science",
+  "title": "BFS animation 3 cues",
+  "claim": "Learner follows visit order over time.",
+  "brief": "3 cues visiting A,B,C with narration per cue.",
+  "must_include": [
+    "cue v03a",
+    "cue v03b",
+    "cue v03c",
+    "queue"
+  ],
+  "continuity": [
+    "node colors stable"
+  ],
+  "acceptance": [
+    "3 cues ordered",
+    "final frame readable silent"
+  ],
+  "skill_route": "skills/manim-voice-animation/SKILL.md",
+  "output": "preview.mp4",
+  "producer": "local",
+  "fallback": "manim storyboard + silent preview; audio only on explicit request",
+  "status": "ready-silent"
+}

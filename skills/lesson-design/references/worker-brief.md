@@ -1,9 +1,8 @@
 # How each block worker works
 
-A lesson is built by one coordinator and one sub-agent per block. The
-coordinator writes the skeleton in reasoning order and owns assembly. Each
-worker, including workers assigned prose, notation, transitions, or exercises,
-builds exactly one block and returns it. A worker never edits
+A lesson has one coordinator, who writes the skeleton in reasoning order and
+owns assembly. Each delegated worker builds one assigned block and returns it.
+Follow [lesson design](../SKILL.md) for when to delegate. A worker never edits
 `course.json`, `lesson.json`, or `manifest.json`, and a worker never
 changes the concept, the purpose, or the assigned skill route. If the
 assigned medium cannot teach the purpose, the worker stops and the
@@ -16,29 +15,22 @@ named earlier block, not just its title. A worker that needs the previous
 block to make its opening sentence connect must list that block as a
 dependency. The coordinator reviews the complete reading order after
 assembly and sends disconnected blocks back for revision.
-Use the existing brief fields to carry the teaching plan. In `brief`, name
-the question this block answers and the knowledge it starts from. In
-`must_include`, name the worked step and the likely confusion to explain.
-In `continuity`, include the relevant teacher guidance and where this block
-must leave the running example. Acceptance checks should test that reasoning,
-not just the presence of headings or a file.
+Put the block's question and starting knowledge in `brief`, its worked step
+and likely confusion in `must_include`, and the exact values, assumptions,
+notation, and visual meanings in `continuity`. Acceptance checks must test the
+reasoning and interaction, not merely headings or file presence.
 
-When you brief a worker, give the worker everything it needs in plain
-language: which block it is building, what the block has to teach, which
-subject guide and teacher voice to follow, which earlier blocks it has to
-stay consistent with, which sources it may use, where to write its output
-file, and how you will check its work. The brief for a delegated block is
-stored in the block's `production` field, and it always has the same six
-parts: the `skill_route` that was already approved for this block, a
-`brief` that describes the one job in plain verbs, a `must_include` list
-of every object, label, control, or relation that has to appear, a
-`continuity` list of the terms and conventions it has to keep, an
-`acceptance_checks` list that says what you will look at before you
-accept it, and a required `depends_on_block_ids` list that names earlier
-blocks that have to be finished first. Use an empty list when it has no
-dependencies. Dispatch ready blocks in parallel and start dependent workers
-only after their listed blocks pass review. Give every worker a separate
-output path.
+Use the private packet from
+[build_block_context.py](../scripts/build_block_context.py) for the target and
+its declared earlier dependencies. Add the selected subject guidance, teacher
+instructions, inspected media exports, and a separate output path. The packet
+contains authored records; it does not certify completed media. Dispatch
+independent blocks together and dependent blocks after review.
+
+For diagrams, charts, animation, and simulation UI, use one approved palette
+from [simulation presentation](simulation-design.md). Put that preset and each
+color's meaning in the shared brief. Keep related visuals consistent; do not
+mix presets or add gradients.
 
 ## The text and exercise worker
 
@@ -74,8 +66,8 @@ The lesson inherits the topic teacher.
 
 The coordinator writes a complete provisional exercise contract in
 `exercises` before publishing the draft. It includes a prompt, response type,
-evaluation, success criteria, and worked-solution field so the draft passes
-validation. The exercise-block worker receives that contract, checks that it
+evaluation, success criteria, so the draft passes validation. Store its worked solution in the exercise
+`solution` field, outside `evaluation`; this keeps manual evaluation valid. The exercise-block worker receives that contract, checks that it
 asks for transfer to a changed case, and authors the final learner-facing
 prompt and worked solution. It returns the block with the same `exercise_id`
 and the completed exercise data. The coordinator merges both into
@@ -186,47 +178,34 @@ compare with the equation."
 
 ## The simulation worker
 
-This worker builds one self-contained interactive simulation in HTML that
-the learner can run on the lesson page. Before it builds anything, it
-reads the selected subject guide in `skills/subject/subjects/` for what
-the learner should vary in this field, and the simulation rules in
-`skills/lesson-design/references/representation-choices.md`. There is no
-separate simulation skill file, so the subject guide and the brief are
-its specification. The page runs the file in a restricted sandbox with
-no network, so the simulation cannot fetch anything. The worker returns
-the checked file and its registration details, and the coordinator
-registers it with
-`python3 skills/course-design/scripts/manage_artifact.py --learners-root learners register`.
+For a mathematical graph, read [JSXGraph](../../jsxgraph/SKILL.md) and use its
+export helper and starter closest to the assigned action. Set the block's
+`production.skill_route` to `skills/jsxgraph/SKILL.md`. The same route belongs
+in the lesson's declared skills. This worker still returns the artifact to the
+coordinator and follows the shared presentation rules below.
 
-Build the experiment named in the brief. The learner might vary a force,
-choose an action, step through a process, or repeat a sample. Each control
-should help answer the lesson's question. Follow the simulation selection
-rules in the representation guide rather than adding controls for variety.
+Build one self-contained HTML experiment for the question in the brief. Read
+the selected subfield guidance and
+[simulation presentation](simulation-design.md). Start from the
+[reusable shell](../templates/simulation.html) when it fits the interaction.
+Use one approved palette, keep all active content inside the frame without
+scrolling, and preserve state between Controls, Result, and Model views.
 
-Every simulation shows the model it implements, the units on every
-control and axis, the assumptions it makes, and a reset button that
-returns it to its starting state. The surrounding text asks the learner
-to predict what will happen before they move a control, so they compare
-their expectation with the result instead of dragging sliders at random.
-The next text block interprets a result and ties it to the lesson's question.
+Show the model, assumptions, units, current values, and reset state. Motion
+needs pause or step controls and must honor reduced-motion preferences. The
+surrounding lesson asks for a prediction and interprets a result afterward.
+Compute related views from one state; do not add controls without a teaching job.
 
-Build for a 1280 by 800 pixel design canvas. Keep the controls, graph, labels,
-and explanation inside that space with comfortable padding. The viewer gives
-the frame up to 1200 pixels of page width and reduces it on narrow screens,
-so use responsive CSS inside the HTML: `box-sizing: border-box`,
-`max-width: 100%`, wrapping controls, and a plot that resizes without clipped
-labels. Avoid a fixed 860-pixel content cap inside a wider frame. Keep text
-and controls readable at phone width. Return the actual design dimensions in
-the artifact registration payload as
-`"metadata": {"dimensions": {"width": 1280, "height": 800}}`. Width must be
-320–2400 and height 480–1600. Inspect the embedded result at desktop and
-phone widths; fix overflow, hidden controls, empty margins, or excess scrolling
-before returning it.
+Inline all required CSS and script. Test the delivered file inside the viewer's
+`sandbox="allow-scripts"` at desktop, tablet, and phone widths. Check inputs,
+reset, view switches, and the longest feedback state. The sandbox does not
+itself prevent network access; a self-contained artifact must make no external
+requests. Return the inspected file and registration payload, including its
+actual `metadata.dimensions` (normally 1280 × 800). The coordinator registers it.
 
-A good brief names the controls and what the learner should discover, for
-example: "Let the learner rotate the step vector around the fixed
-gradient and watch the predicted sign change. Show units on both axes,
-include a reset button, and ask for a prediction before they rotate."
+A useful brief says: "Rotate the step around the fixed gradient. Use the same
+vectors as the worked example, show the dot-product sign in both views, and
+check a right-angle step before resetting."
 
 ## The PDF handout worker
 
@@ -283,10 +262,9 @@ new concept, source, or place in the sequence. Never accept a quiet
 substitution where the worker returns a different artifact instead. Follow
 every view link yourself; a view that opens empty fails. After
 all workers pass review, merge their fragments in lesson order. Follow the
-publication sequence in `skills/lesson-design/SKILL.md`: validate and publish
-the reviewed ready lesson, then register each checked artifact with
-`manage_artifact.py`. If registration fails, return the lesson to draft and
-repair it before offering the page.
+publication sequence in [lesson design](../SKILL.md): keep the published
+lesson in draft while registering checked artifacts, then validate and publish
+the reviewed lesson as ready. Repair failed registration before offering the page.
 Hand control back to the orchestrator; it asks whether the learner
-wants to see the course. Render with `skills/course-viewer/scripts/render_viewer.py`
-only after the learner says yes (or if they already asked to see it).
+wants to see the course. Render the reviewed course page with `skills/course-viewer/scripts/render_viewer.py`;
+show its link after the learner requests or approves viewing.

@@ -1,0 +1,9 @@
+{
+  "package": "jsxgraph",
+  "version": "1.13.3",
+  "url": "https://registry.npmjs.org/jsxgraph/-/jsxgraph-1.13.3.tgz",
+  "license": "MIT",
+  "files": {
+    "jsxgraphcore.js": "4e196b10dc77e22ec0eda897e0271636edf8dadd91d76cc2cf2e136c61c35537"
+  }
+}

@@ -1,6 +1,7 @@
 """Contract tests for the explicit course artifact publication registry."""
 
 import copy
+import importlib.util
 import json
 import subprocess
 import sys
@@ -24,6 +25,18 @@ from artifact_manifest import (  # noqa: E402
 )
 from course_workspace import create_workspace  # noqa: E402
 from test_course_workspace import valid_v2_course  # noqa: E402
+
+
+def write_test_video(path, *, with_audio=True):
+    import imageio_ffmpeg
+
+    command = [imageio_ffmpeg.get_ffmpeg_exe(), "-v", "error", "-y",
+               "-f", "lavfi", "-i", "color=c=black:s=160x90:r=15:d=0.4"]
+    if with_audio:
+        command += ["-f", "lavfi", "-i", "sine=frequency=440:duration=0.4",
+                    "-c:a", "aac", "-shortest"]
+    command += ["-c:v", "libx264", str(path)]
+    subprocess.run(command, check=True, capture_output=True)
 
 
 def ready_video():
@@ -66,7 +79,7 @@ class ArtifactManifestTests(unittest.TestCase):
         plan = valid_v2_course()
         plan["chapters"][0]["topics"][0]["lesson_ids"] = ["slope-introduction"]
         self.workspace = create_workspace(self.root, "alex", plan)
-        (self.workspace / "artifacts/videos/gradient.mp4").write_bytes(b"video")
+        write_test_video(self.workspace / "artifacts/videos/gradient.mp4")
         (self.workspace / "artifacts/diagrams/gradient.svg").write_text("<svg/>")
 
     def tearDown(self):
@@ -79,6 +92,56 @@ class ArtifactManifestTests(unittest.TestCase):
             [a["id"] for a in ready_artifacts(read_manifest(self.workspace))],
             ["gradient-video"],
         )
+
+    @unittest.skipUnless(importlib.util.find_spec("av") and importlib.util.find_spec("imageio_ffmpeg"),
+                         "Requires media dependencies")
+    def test_ready_voice_animation_rejects_video_without_audio(self):
+        silent = self.workspace / "artifacts/videos/silent.mp4"
+        write_test_video(silent, with_audio=False)
+        for artifact_type in ("voice-animation", "animation"):
+            artifact = ready_video()
+            artifact["type"] = artifact_type
+            artifact["location"] = {"path": "artifacts/videos/silent.mp4"}
+            with self.subTest(artifact_type=artifact_type), self.assertRaisesRegex(ValueError, "audio stream"):
+                register_artifact(self.workspace, artifact)
+        self.assertEqual(read_manifest(self.workspace)["artifacts"], [])
+
+    @unittest.skipUnless(importlib.util.find_spec("av") and importlib.util.find_spec("imageio_ffmpeg"),
+                         "Requires media dependencies")
+    def test_silent_preview_can_be_registered_as_draft(self):
+        silent = self.workspace / "artifacts/videos/silent.mp4"
+        write_test_video(silent, with_audio=False)
+        artifact = ready_video()
+        artifact["location"] = {"path": "artifacts/videos/silent.mp4"}
+        artifact["status"] = "draft"
+        register_artifact(self.workspace, artifact)
+        self.assertEqual(ready_artifacts(read_manifest(self.workspace)), [])
+
+    def test_ready_animation_requires_inspectable_local_mp4(self):
+        artifact = ready_video()
+        artifact["location"] = {"url": "https://example.com/animation.mp4"}
+        with self.assertRaisesRegex(ValueError, "local video/mp4"):
+            register_artifact(self.workspace, artifact)
+        artifact["location"] = {"path": "artifacts/videos/gradient.mp4"}
+        artifact["mime_type"] = "application/octet-stream"
+        with self.assertRaisesRegex(ValueError, "local video/mp4"):
+            register_artifact(self.workspace, artifact)
+
+    @unittest.skipUnless(importlib.util.find_spec("av") and importlib.util.find_spec("imageio_ffmpeg"),
+                         "Requires media dependencies")
+    def test_ready_animation_rejects_invalid_mp4(self):
+        corrupt = self.workspace / "artifacts/videos/corrupt.mp4"
+        corrupt.write_bytes(b"video")
+        artifact = ready_video()
+        artifact["location"] = {"path": "artifacts/videos/corrupt.mp4"}
+        with self.assertRaisesRegex(ValueError, "Cannot inspect animation media"):
+            register_artifact(self.workspace, artifact)
+
+    @unittest.skipUnless(importlib.util.find_spec("av") and importlib.util.find_spec("imageio_ffmpeg"),
+                         "Requires media dependencies")
+    def test_ready_voice_animation_accepts_video_with_audio(self):
+        register_artifact(self.workspace, ready_video())
+        self.assertEqual(ready_artifacts(read_manifest(self.workspace))[0]["id"], "gradient-video")
 
     def test_simulation_dimensions_are_bounded_when_provided(self):
         artifact = copy.deepcopy(ready_video())

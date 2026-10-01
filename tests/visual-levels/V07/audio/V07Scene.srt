@@ -1,0 +1,19 @@
+1
+00:00:00,000 --> 00:00:07,000
+We track dist from source s. Relax means keep the shorter path. Dist of s is zero, others start at inf. Follow the subtitles as each cue updates a label.
+
+2
+00:00:07,500 --> 00:00:13,500
+Relax edge s to a with weight 4. The candidate is 0 plus 4. Dist of a becomes 4.
+
+3
+00:00:14,000 --> 00:00:20,000
+Relax edge s to b with weight 2. The candidate beats inf. Dist of b becomes 2.
+
+4
+00:00:20,500 --> 00:00:27,500
+Relax edge a to t with weight 3. From dist a equals 4, the candidate is 7. Dist of t becomes 7.
+
+5
+00:00:28,000 --> 00:00:34,000
+Done. Dist values are s 0, a 4, b 2, t 7. Edge b to t would give 9, so dist t stays 7. The subtitles matched each relax cue. Predict the result before running, then compare.

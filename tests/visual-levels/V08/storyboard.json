@@ -1,0 +1,37 @@
+{
+  "title": "Projectile cue-timed motion",
+  "concept_id": "phys-projectile-velocity-components",
+  "prerequisite": "Learner can resolve a velocity into x and y components and knows g = 9.8 m/s^2 downward.",
+  "success_check": "Learner predicts vy = 0 at the apex and checks it against the readout before replaying, then compares with the landing readout.",
+  "aspect_ratio": "16:9",
+  "scenes": [
+    {
+      "id": "V08Scene",
+      "title": "Cue-timed apex callout",
+      "concept_target": "At the apex the vertical component vy is zero while the horizontal component vx is unchanged, and the callout lands exactly on the apex cue.",
+      "narration_cues": [
+        {
+          "cue_id": "launch",
+          "text": "Launch. The projectile leaves at eight metres per second and forty-five degrees. Watch the horizontal component vx stay constant while the vertical component vy starts large. This cue timing sets up the flight in SI units.",
+          "visible_objects": ["axes", "trajectory", "projectile", "vx_arrow", "vy_arrow", "readout"],
+          "change": "Axes, full trajectory, projectile at the launch point, and the vx and vy arrows with readouts appear.",
+          "duration": 5.0
+        },
+        {
+          "cue_id": "apex",
+          "text": "Apex. At the top of the arc the vertical velocity vy is zero while vx carries the projectile forward. The apex marker appears exactly on this cue, at the apex frame.",
+          "visible_objects": ["projectile", "trajectory", "vx_arrow", "vy_arrow", "apex_marker", "readout"],
+          "change": "The projectile travels to the top of the arc and the apex callout fades in exactly as vy reaches zero.",
+          "duration": 6.0
+        },
+        {
+          "cue_id": "landing",
+          "text": "Landing. Gravity has pulled vy negative, mirror to launch, while vx is unchanged and the range reads about six point five metres. The cue timing closes as the dot touches down; predict the landing spot before replaying, then compare.",
+          "visible_objects": ["projectile", "trajectory", "vx_arrow", "vy_arrow", "readout", "range_note"],
+          "change": "The projectile descends to the ground, the vy arrow flips downward, and the range note appears.",
+          "duration": 5.0
+        }
+      ]
+    }
+  ]
+}

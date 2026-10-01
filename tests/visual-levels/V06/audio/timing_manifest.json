@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "project": "Area accumulation cleanup: Riemann sum refines 4-8-16",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V06Scene": {
+      "title": "Riemann sum refinement without leftover updaters",
+      "cues": [
+        {
+          "text": "With n=4 right-hand bars, the Riemann sum overshoots the integral of x squared, and the error readout is large. Predict what doubling will do.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "c1_n4",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "At n=8 the bars hug the curve more closely, and the error readout drops. Compare with your prediction before the final refinement.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "c2_n8",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "At n=16 the bars nearly fill the area under the curve, the error is smallest, and the ending is clean with nothing left behind.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "c3_n16",
+          "sync_target": "",
+          "pause_after": 0.5
+        }
+      ],
+      "total_duration": 18.5
+    }
+  }
+}

@@ -105,9 +105,11 @@ section for its research checks and representation choices. Adapt them to the
 learner's question. Read deeper references when that section leaves a
 prerequisite, mechanism, or evidence question unresolved.
 For a visual block, specify the relation to reveal and the values or sources
-it must preserve. Use [Excalidraw](../excalidraw/SKILL.md) for a fixed sketch
-and [Pinepaper](../pinepaper/SKILL.md) when linked states, a chart tied to a
-scene, motion, or controls serve that relation. The media skill explains
+it must preserve. Select graphs and maps through
+[representation choices](../lesson-design/references/representation-choices.md).
+Use [JSXGraph](../jsxgraph/SKILL.md) for mathematical coordinates and linked
+quantities, [Excalidraw](../excalidraw/SKILL.md) for a fixed structural sketch,
+and [Pinepaper](../pinepaper/SKILL.md) for a composed scene. The media skill explains
 construction and export; the subject guide keeps the science or evidence
 correct.
 
@@ -118,7 +120,8 @@ correct.
 | Manim voice animation | Narrated rendered motion with subtitles | `skills/manim-voice-animation/SKILL.md` |
 | PDF | Rendered and inspected handout or source packet | `skills/pdf/SKILL.md` |
 | Excalidraw MCP | Quick inspectable relationship, process, or boundary diagram | [Excalidraw workflow](../excalidraw/SKILL.md) and the selected subject guide |
-| Pinepaper MCP | Linked diagram, chart, motion, or interactive model | [Pinepaper workflow](../pinepaper/SKILL.md) and the selected subfield guidance |
+| JSXGraph | Mathematical graph or coordinate construction | [JSXGraph workflow](../jsxgraph/SKILL.md) and the selected subfield guidance |
+| Pinepaper MCP | Composed diagram or changing scene | [Pinepaper workflow](../pinepaper/SKILL.md) and the selected subfield guidance |
 | Simulation | Learner-controlled graph or model | Self-contained HTML registered through `manage_artifact.py` |
 
 For generated images, invoke the host's existing image-generation skill
@@ -135,19 +138,10 @@ Declare any media producer in the lesson's `skill_routes`; use
 invoked from these instructions, so its installation path does not belong in
 `course.json`.
 
-Several forms may explain one idea: text states the claim, a diagram shows
-its parts, motion shows a change, and practice checks whether the learner can
-use it. Give each form a distinct job. Do not recreate the same diagram in
-several tools or add media to meet a quota. Do not omit a useful graph, map,
-diagram, or control just to keep the lesson short.
-
-For a physics lesson on a pendulum, name the system and make a prediction,
-draw the forces at one position, show how position and velocity change over
-time, then let the learner vary the starting angle. Keep the same pendulum,
-units, and labels throughout. For a history lesson on a policy decision, give
-the dated choices in prose, show the relevant documents side by side, then ask
-the learner to explain what each source can and cannot establish. These are
-examples of different jobs for different forms, not templates for every lesson.
+Keep one case across forms. Identify which object, equation term, code step,
+or source passage corresponds to each visible part, then state what the new
+view adds. Change a meaningful condition for practice and ask which part of
+the reasoning survives. Avoid rebuilding the same visual in several tools.
 
 During lesson design, read
 `skills/lesson-design/references/representation-choices.md` for the medium

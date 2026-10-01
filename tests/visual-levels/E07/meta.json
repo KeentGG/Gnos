@@ -1,0 +1,30 @@
+{
+  "id": "E07",
+  "track": "excalidraw",
+  "level": 7,
+  "subject": "economics",
+  "title": "Supply/demand equilibrium",
+  "claim": "A learner can read equilibrium P*,Q* off crossing curves.",
+  "brief": "Draw S/D curves crossing, dashed lines to P*=5, Q*=100, dense but non-overlapping labels.",
+  "must_include": [
+    "Supply",
+    "Demand",
+    "P*=5",
+    "Q*=100",
+    "equilibrium"
+  ],
+  "continuity": [
+    "econ color: blue demand, orange supply"
+  ],
+  "acceptance": [
+    "crossing + dashed guides",
+    "labels legible"
+  ],
+  "skill_route": "skills/excalidraw/SKILL.md",
+  "output": "output.png",
+  "producer": "excalidraw-mcp",
+  "fallback": "",
+  "status": "ready",
+  "checkpoint": "f43a7b70781642028c",
+  "note": "create_view checkpoint on live server; PNG via pinned excalidraw 0.18.1 exportToSvg+densify (render_png.js, RESTORED:13); S orange #f59e0b rising, D blue #4a9eed falling, crossing at center with dashed gray guides to P*=5/Q*=100"
+}

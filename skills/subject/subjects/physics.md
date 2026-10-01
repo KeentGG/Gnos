@@ -12,7 +12,9 @@ measurement and state when the approximation fails.
 Use diagrams for setup, graphs for quantities, and equations for their relation.
 Use [Excalidraw](../../excalidraw/SKILL.md) for boundaries or apparatus,
 [Manim](../../manim-voice-animation/SKILL.md) for narrated motion, and
-[Pinepaper](../../pinepaper/SKILL.md) for linked visual states. A simulation
+[JSXGraph](../../jsxgraph/SKILL.md) for linked quantity plots. Use
+[Pinepaper](../../pinepaper/SKILL.md) when a composed apparatus or spatial scene
+must change with the system. A simulation
 lets the learner test a changed condition. Keep the same units and initial
 state across views. Generated motion is a model illustration.
 
@@ -29,97 +31,126 @@ Treat the named confusion as a possibility, not a diagnosis of this learner.
 
 ### Mechanics
 
-- **Build:** Start with an object, its interactions, and a prediction before equations.
-  Velocity and acceleration can point differently. Force is not needed to maintain
-  constant velocity.
+- **Build:** Use a thrown object at the top of its path, with drag neglected
+  and the frame stated. Predict velocity and acceleration before calculating.
+  Zero vertical velocity does not mean zero acceleration, and constant
+  velocity does not require a net force.
 - **Research:** Use an introductory mechanics chapter with a worked force or energy
   argument. Check the frame and approximations before adopting a formula.
-- **Show and check:** Draw the fixed free-body diagram with Excalidraw. Use
-  Pinepaper when position, velocity, and moving body must share one clock.
-  Label the force rule and units. Test mass, force, or initial velocity against
-  a limiting case.
+- **Show and check:** Connect the gravity arrow in the free-body diagram to
+  the acceleration term, the velocity plot's slope, and the curved path at
+  the same instant. Keep force, velocity, and acceleration visually distinct.
+  Change initial velocity or add drag and ask which prediction survives;
+  explain the changed interaction before updating the graphs.
 
 ### Oscillations and waves
 
-- **Build:** Start with one oscillator, then coupled locations. A wave transports a
-  disturbance without carrying each particle along its full path.
+- **Build:** Begin with one marked point on a vibrating string, then follow
+  a pulse along the string. Distinguish the point's local oscillation from
+  propagation of the disturbance; the point does not travel with the pulse.
 - **Research:** Inspect a waves chapter for the relation between the oscillator and
   propagation. Check the boundary conditions and whether the model is dispersive.
-- **Show and check:** Pair a spatial snapshot with a time trace at one marked
-  point. Use Pinepaper when motion must keep phase aligned across both views.
-  Separate local oscillation from propagation. Change frequency or boundary
-  conditions and explain the result.
+- **Show and check:** Connect the marked point's height in a spatial snapshot
+  to the displacement-versus-time plot at that instant. Keep the axes explicit:
+  one varies position, the other time. Use a shared clock if both move. With
+  wave speed fixed, change frequency and ask for the wavelength and local
+  period; change an end condition to explain reflection separately.
 
 ### Thermodynamics
 
-- **Build:** Start with a bounded system and an energy transfer before naming the law.
-  Heat and work describe transfers. Temperature is not stored heat.
+- **Build:** Compare two processes taking a gas between the same equilibrium
+  states. Name the boundary, heat transfer, and work before applying the first
+  law. Temperature is a state property; heat and work describe transfers
+  and depend on the process.
 - **Research:** Use a thermodynamics chapter and any needed property table. Check sign
   conventions, process assumptions, and the range of the data.
-- **Show and check:** An Excalidraw boundary diagram names heat and work
-  transfers. An energy ledger checks the balance. Use Pinepaper for a state
-  path or temperature profile that changes with the same stated process.
-  Compare two paths with the same endpoints.
+- **Show and check:** Match arrows across the boundary to signed terms in
+  the energy ledger. For a quasistatic pressure-volume path, connect its
+  area to work using the chosen convention; connect endpoints to internal
+  energy change. Draw a different path between the same states and ask what
+  remains equal and what must be recalculated.
 
 ### Electricity and magnetism
 
-- **Build:** Start with sources and a test charge or simple circuit before a field
-  formula. Field, force, potential, and potential energy are different quantities.
+- **Build:** Use a source charge and a movable test charge, or a single
+  resistor circuit with named nodes. Separate field from force and potential
+  from potential energy; in a circuit, distinguish current from voltage.
 - **Research:** Use an electromagnetism or circuits chapter that defines the quantities.
   Inspect apparatus documentation when interpreting a real measurement.
-- **Show and check:** A field map shows directions. Equipotentials explain work. A
-  circuit diagram tracks connections. A simulation compares charge, geometry, or
-  resistance.
+- **Show and check:** At one location, map the field arrow to $q\mathbf E$
+  and the potential value to $qV$. Reverse the test charge and ask which
+  quantities reverse and which stay fixed, under the test-charge approximation.
+  For circuits, carry node labels from the schematic into voltage differences
+  and loop equations; change a resistance and predict current before solving.
 
 ### Optics
 
-- **Build:** Start with a light source, an obstacle, a scale, and an observation. A ray
-  model and a wave model explain different features of the setup.
+- **Build:** Start with a lens image or a slit pattern and state the
+  relevant dimensions and wavelength. A ray model locates an image; a wave
+  model explains interference or diffraction. Establish which approximation
+  answers the observation before choosing a formula.
 - **Research:** Choose a geometrical- or wave-optics source to match the scale. Inspect
   the approximation before applying a ray or diffraction formula.
-- **Show and check:** A ray diagram locates an image. Wavefront motion explains
-  interference. An intensity plot connects to observations. Controls test aperture or
-  wavelength.
+- **Show and check:** Match object and image distances in a ray diagram to
+  the lens equation. For a slit, connect path or phase differences at a screen
+  point to the corresponding intensity-plot position. Predict what changing
+  wavelength or aperture does before recalculating; explain when the original
+  approximation becomes insufficient.
 
 ### Relativity
 
-- **Build:** Start with two observers describing the same events and measurements. A
-  coordinate difference need not be a difference in an invariant quantity.
+- **Build:** Give two inertial observers the same pair of events, then ask
+  how each assigns position and time. Separate event identity, simultaneity,
+  and the invariant interval. Scope an inertial-frame calculation to special
+  relativity; use a dedicated treatment for gravitation or curved spacetime.
 - **Research:** Use a relativity text that defines clocks, synchronization, frames, and
   the transformation. Check the physical assumptions before using a diagram.
-- **Show and check:** Use a spacetime diagram with labeled events. Work through one
-  transformation. Use Manim to coordinate observers when sequence matters. Compare an
-  invariant across both descriptions.
+- **Show and check:** Carry the same event labels from the spacetime diagram
+  into one coordinate transformation and a table of both observers' values.
+  State the axis units and interval sign convention. Calculate the interval
+  in each frame, then change relative speed and ask which coordinates can
+  change and which comparison must remain invariant.
 
 ### Quantum physics
 
-- **Build:** Start with a preparation, a measurement, and the distribution of possible
-  outcomes. An amplitude is not a probability, and a state is not a hidden classical
-  trajectory.
+- **Build:** Use a prepared two-state system and a specified measurement
+  basis. Calculate possible outcomes before discussing repeated trials.
+  Amplitudes are not probabilities, and the state is not a hidden classical
+  trajectory through the apparatus.
 - **Research:** Use a quantum text for the state, observable, and probability rule.
   Inspect the original experimental setup when explaining an empirical result.
-- **Show and check:** Pair an apparatus diagram with an outcome distribution and a
-  worked amplitude calculation. Simulate repeated measurements under stated assumptions.
-  Distinguish this teaching model from measured evidence.
+- **Show and check:** Link each apparatus outcome label to its amplitude,
+  squared magnitude, and bar in the probability plot. Repeated-trial counts
+  sample that stated model. Change the preparation or measurement basis and
+  ask for the new distribution; do not depict a basis change as an observed
+  path between hidden states. Identify experimental data separately.
 
 ### Experimental physics
 
-- **Build:** Start with a measurement question and an instrument reading. A fitted line
-  can hide bias. Precision does not establish accuracy.
+- **Build:** Start with an instrument reading and a calibration against a
+  reference. Separate repeatability, resolution, and systematic offset.
+  A precise fitted line can still give a biased physical estimate.
 - **Research:** Inspect the instrument manual, calibration method, and original
   measurements. Use a laboratory-methods source to assess uncertainty and fit quality.
-- **Show and check:** An apparatus diagram explains measurement. Data with uncertainty
-  and residual plots test the fit. Compare calibration or sampling choices.
+- **Show and check:** Map the measured quantity in the apparatus to a data
+  column, graph axis, and fitted parameter with units. Pair the fit with
+  residuals for the same observations. Add a plausible calibration offset
+  and ask why residual scatter may look unchanged while the estimate moves;
+  distinguish this from taking more repeated readings.
 
 ### Computational physics
 
-- **Build:** Start with a simple physical rule and a finite numerical step. A smooth
-  computed trajectory can still be unstable or physically wrong.
+- **Build:** Take one numerical step for a harmonic oscillator with specified
+  initial position and velocity. Separate the continuous physical rule from
+  the discrete update. A smooth computed trajectory can still be unstable
+  or violate the model's conserved energy.
 - **Research:** Use a numerical-methods source plus a known analytic or limiting case.
   Check discretization, solver tolerances, and conservation error.
-- **Show and check:** A step table connects the rule to code. A plot compares
-  analytic and numerical results. Use Pinepaper only when the computed state
-  and plot must move together. Vary the time step and inspect conservation error.
+- **Show and check:** Match the old and new state in the update table to
+  code variables, phase-plane points, and the time trace. Plot energy error
+  alongside trajectory error against an analytic case. Predict what halving
+  the time step should improve, then test it with the same initial state;
+  distinguish discretization error from a wrong force rule.
 
 ## Source use
 

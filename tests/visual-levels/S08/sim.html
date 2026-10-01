@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html data-palette="forest" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Damping and drive</title>
+<style id="simulation-style">
+:root{--surface:#EFE9E1;--ink:#322D29;--muted:#322D29;--primary:#72383D;--soft:#D9D9D9;--line:#D1C7BD;--secondary:#72383D;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+[data-palette="wine"]{--surface:#EDE7C7;--ink:#200E01;--muted:#200E01;--primary:#8B0000;--soft:#EDE7C7;--line:#5B0202;--secondary:#5B0202}
+[data-palette="forest"]{--surface:#FDE5D4;--ink:#001524;--muted:#001524;--primary:#445D48;--soft:#FDE5D4;--line:#445D48;--secondary:#5E3023}
+[data-palette="blue"]{--surface:#E9E6DD;--ink:#000000;--muted:#000000;--primary:#0274BD;--soft:#E9E6DD;--line:#C4AD9D;--secondary:#F57251}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--surface);color:var(--ink)}
+[hidden]{display:none!important}
+.sim-shell{width:100%;max-width:1280px;height:100%;margin:auto;padding:24px;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:16px}
+.sim-header h1{font:600 clamp(22px,2.6vw,30px)/1.2 Georgia,serif;letter-spacing:-.025em;margin:0 0 8px}
+.sim-header p{margin:0;color:var(--muted);max-width:80ch}
+.sim-nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+button{appearance:none;font-family:var(--mono);font-size:13px;font-weight:500;line-height:1.3;min-height:44px;padding:10px 16px;border:1px solid var(--primary);border-radius:3px;background:var(--primary);color:var(--surface);cursor:pointer}
+button.secondary,.sim-nav button{background:transparent;color:var(--primary);border-color:var(--line)}
+.sim-nav button[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--surface)}
+button:hover{text-decoration:underline}button:disabled{background:var(--surface);color:var(--muted);cursor:default}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.sim-panes{min-width:0;min-height:0;display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.25fr);gap:20px;align-items:start}
+.sim-panes[data-view]:not([data-view="both"]){grid-template-columns:minmax(0,1fr)}
+.sim-pane{min-width:0;max-width:100%;padding:20px;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+.sim-pane h2{font-size:16px;margin:0 0 16px;font-weight:600}
+.sim-pane p{margin:10px 0;overflow-wrap:anywhere}
+.sim-pane label{display:block;font-family:var(--mono);font-size:14px;font-weight:500;margin:16px 0 4px}
+input,output{font:inherit;color:inherit}
+input[type="range"]{display:block;width:100%;min-height:44px;margin:0;accent-color:var(--primary)}
+input[type="text"],input[type="number"]{min-height:44px;max-width:100%;border:1px solid var(--line);border-radius:3px;padding:8px;background:var(--surface)}
+input[type="text"]{width:100%}
+.controls,.controls-row,.controls-wrap,.btns,.btnrow,.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ctl,.control,.controls-wrap>div{flex:1 1 220px;min-width:0}
+.sim-pane>.controls:not(.actions){display:block}
+.sim-pane .row input[type="range"]{flex:1 1 120px;width:0}
+.readout,.readouts,.stats{font-variant-numeric:tabular-nums;margin:14px 0;display:flex;gap:12px;flex-wrap:wrap;background:var(--soft);padding:12px;border-radius:3px;color:var(--ink)}
+.readout p{margin:0}.readout strong,.v,.val,output{font-variant-numeric:tabular-nums;font-weight:600}
+.stat{flex:1 1 120px;min-width:0}.stat span,.stat .v{display:block;font-size:20px}
+.pill,.sign-pill{display:inline-block;border:1px solid var(--line);border-radius:3px;padding:4px 8px;font-size:14px}
+.sign-positive{color:var(--primary)}.sign-negative{color:var(--secondary)}
+.hint,.note,.model,.model-note,.axis-note,.small,.muted,.sub,.assump,.assume{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.predict,.prediction-box{padding:12px;border-left:3px solid var(--primary);background:var(--soft);margin:12px 0;font-size:14px}
+.eq,.formula,code,.code{font:14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.eq,.fixedbox{padding:12px;background:var(--surface);border-radius:3px;margin:12px 0}
+canvas,svg{display:block;max-width:min(100%,720px);width:100%;height:auto;max-height:260px;background:var(--surface);border:1px solid var(--line);border-radius:3px;object-fit:contain}
+.node{fill:var(--surface);stroke:var(--ink);stroke-width:2}.node.visited{fill:var(--soft);stroke:var(--primary)}.node.current{fill:var(--surface);stroke:var(--secondary);stroke-width:3}
+.nodelabel{font-size:22px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}.edgelabel{font-size:14px;fill:var(--muted)}
+.status{min-height:3em;font-size:14px}.label{font-size:14px;font-weight:600;margin:12px 0 4px}
+.gauge{flex:1 1 160px;padding:8px}.bar{height:12px;background:var(--line);border-radius:2px;margin:8px 0}.fill{height:100%;background:var(--primary);border-radius:2px}.fill.hot{background:var(--secondary)}
+#alarmBanner{display:none;padding:12px;border:1px solid var(--secondary);color:var(--secondary);background:var(--surface);border-radius:3px}#alarmBanner.show{display:block}#okBanner{padding:12px;color:var(--primary);background:var(--soft);border-radius:3px}#okBanner.hide{display:none}
+table{border-collapse:collapse;width:100%;font-size:14px}caption{text-align:left;font-weight:600;margin-bottom:8px}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;overflow-wrap:anywhere}
+#taskGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.task{min-width:0;min-height:40px;border:1px solid var(--line);border-radius:2px;padding:4px;font-size:14px;text-align:center;background:var(--surface)}.task.success{background:var(--soft);color:var(--primary)}.task.failed{background:var(--surface);color:var(--secondary)}.task.retry{background:var(--surface);color:var(--secondary)}
+#chart{max-width:min(100%,600px);max-height:180px}
+.sim-footer{font-family:var(--mono);font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+@media(max-width:999px){.sim-shell{padding:16px;gap:12px}.sim-panes{grid-template-columns:minmax(0,1fr)}.sim-pane{padding:16px}.sim-nav button[data-view="both"]{display:none}.sim-header h1{font-size:23px}.sim-header p{font-size:14px}.sim-pane label{margin-top:12px}canvas,svg{max-height:240px}.sim-pane h2{margin-bottom:12px}}
+@media(max-height:650px){.sim-shell{padding:12px;gap:8px}.sim-pane{padding:12px}canvas,svg{max-height:220px}.sim-header h1{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+[data-palette="blue"] button{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+[data-palette="blue"] button.secondary,[data-palette="blue"] .sim-nav button{background:transparent;color:var(--ink);border-color:var(--ink)}
+[data-palette="blue"] .sim-nav button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+[data-palette="blue"] .sign-positive,[data-palette="blue"] .sign-negative{color:var(--ink)}
+</style>
+</head>
+<body>
+<main aria-label="Interactive experiment" class="sim-shell">
+<header class="sim-header"><h1>Damping and drive</h1><p>Predict how damping changes the phase loop. Change one input and inspect the same oscillator state.</p></header>
+<nav aria-label="Choose experiment view" class="sim-nav">
+<button aria-pressed="true" data-view="both" type="button">Together</button>
+<button aria-pressed="false" data-view="controls" type="button">Controls</button>
+<button aria-pressed="false" data-view="result" type="button">Result</button>
+<button aria-pressed="false" data-view="model" type="button">Model</button>
+</nav>
+<div class="sim-panes" data-view="both">
+<section aria-label="Controls" class="sim-pane" data-pane="controls"><h2>Change and compare</h2><div class="controls">
+<label for="damping">damping c (1/s): <span class="val" id="dampingVal">0.20</span></label>
+<input aria-label="damping" id="damping" max="1" min="0" step="0.01" type="range" value="0.20"/>
+<label for="drive">drive F (N/kg): <span class="val" id="driveVal">1.50</span></label>
+<input aria-label="drive" id="drive" max="5" min="0" step="0.05" type="range" value="1.50"/>
+<div class="row">
+<button id="reset" type="button">Reset</button>
+<button aria-pressed="false" id="pause" type="button">Pause</button>
+</div>
+</div></section>
+<section aria-label="Result" class="sim-pane" data-pane="result"><h2>Read the result</h2><div class="stage">
+<canvas aria-label="phase portrait of x versus v" height="420" id="phase" role="img" width="640"></canvas>
+<div class="readout">
+<div class="pill">phase: x vs v loop (live)</div>
+<div class="pill">amplitude: <b id="amp">0.00</b> m</div>
+<div class="pill">x = <b id="xval">0.00</b> m · v = <b id="vval">0.00</b> m/s</div>
+</div>
+<p class="note">x: position (m); v: velocity (m/s). Trail: last 12 s. Amplitude: largest |x| in the last 6 s.</p>
+</div></section>
+<section aria-label="Model" class="sim-pane" data-pane="model" hidden=""><h2>Model and assumptions</h2><p class="eq">x″ = −kx − cv + F cos(ωt)</p><p>Mass = 1 kg; k = 1 s⁻²; drive frequency ω = 0.9 rad/s. Linear spring, viscous damping, sinusoidal drive, no noise.</p><p>Semi-implicit Euler: dt = 1/240 s. State is capped at ±6 m and ±6 m/s to keep this illustration finite; capped traces no longer solve the unrestricted equation.</p><p>Reset: x = 1 m, v = 0 m/s, t = 0, c = 0.20 s⁻¹, F = 1.50 N/kg. Both views use the same state.</p></section>
+</div>
+<footer class="sim-footer">Compare your prediction with the result.</footer>
+</main>
+<script id="simulation-shell-script">
+(() => {
+  const panes = document.querySelector('.sim-panes');
+  const buttons = [...document.querySelectorAll('.sim-nav button')];
+  const narrow = matchMedia('(max-width:999px)');
+  let view = narrow.matches ? 'controls' : 'both';
+  function select(next) {
+    view = next;
+    panes.dataset.view = view;
+    panes.querySelectorAll('[data-pane]').forEach(pane => {
+      pane.hidden = view === 'both' ? pane.dataset.pane === 'model' : pane.dataset.pane !== view;
+    });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
+    window.dispatchEvent(new Event('resize'));
+  }
+  buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.view)));
+  narrow.addEventListener('change', () => {if(narrow.matches && view === 'both') select('controls')});
+  select(view);
+})();
+</script>
+<script id="simulation-model-script">const GNOS_PALETTE = (() => {const s=getComputedStyle(document.documentElement);return {surface:s.getPropertyValue('--surface').trim(),ink:s.getPropertyValue('--ink').trim(),primary:s.getPropertyValue('--primary').trim(),secondary:s.getPropertyValue('--secondary').trim(),line:s.getPropertyValue('--line').trim()}})();
+
+(function(){
+  "use strict";
+  var dampingEl=document.getElementById('damping'),
+      driveEl=document.getElementById('drive'),
+      dampingVal=document.getElementById('dampingVal'),
+      driveVal=document.getElementById('driveVal'),
+      ampEl=document.getElementById('amp'),
+      xEl=document.getElementById('xval'),
+      vEl=document.getElementById('vval'),
+      cv=document.getElementById('phase'),
+      ctx=cv.getContext('2d'),
+      D0=0.20, F0=1.50,
+      K=1.0, W=0.9, DT=1/240, STEPS=4, // 4 substeps per frame => dt frame ~1/60
+      XMAX=6, VMAX=6,
+      x=1, v=0, t=0, paused=matchMedia('(prefers-reduced-motion: reduce)').matches,
+      trail=[], amps=[];
+
+  function clampFinite(n,lo,hi){ if(!isFinite(n)) return 0; return n<lo?lo:(n>hi?hi:n); }
+
+  function step(){
+    var c=parseFloat(dampingEl.value), F=parseFloat(driveEl.value);
+    for(var i=0;i<STEPS;i++){
+      var a=-K*x-c*v+F*Math.cos(W*t);
+      if(!isFinite(a)) a=0;
+      v+=a*DT; x+=v*DT; t+=DT;
+      x=clampFinite(x,-50,50); v=clampFinite(v,-50,50);
+    }
+    trail.push([x,v]); amps.push(Math.abs(x));
+    var keepTrail=Math.round(12*60), keepAmp=Math.round(6*60);
+    if(trail.length>keepTrail) trail.splice(0,trail.length-keepTrail);
+    if(amps.length>keepAmp) amps.splice(0,amps.length-keepAmp);
+  }
+
+  function draw(){
+    var Wpx=cv.width, Hpx=cv.height;
+    ctx.clearRect(0,0,Wpx,Hpx);
+    // grid + axes
+    ctx.strokeStyle=GNOS_PALETTE.ink; ctx.lineWidth=1;
+    var padL=46,padR=12,padT=12,padB=30;
+    var pw=Wpx-padL-padR, ph=Hpx-padT-padB;
+    function X(vx){ return padL+((vx+XMAX)/(2*XMAX))*pw; }
+    function Y(vv){ return padT+((VMAX-vv)/(2*VMAX))*ph; }
+    ctx.beginPath();
+    for(var gx=-6;gx<=6;gx+=2){ ctx.moveTo(X(gx),padT); ctx.lineTo(X(gx),padT+ph); }
+    for(var gv=-6;gv<=6;gv+=2){ ctx.moveTo(padL,Y(gv)); ctx.lineTo(padL+pw,Y(gv)); }
+    ctx.stroke();
+    // zero axes
+    ctx.strokeStyle=GNOS_PALETTE.ink; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(X(0),padT); ctx.lineTo(X(0),padT+ph);
+    ctx.moveTo(padL,Y(0)); ctx.lineTo(padL+pw,Y(0)); ctx.stroke();
+    // trail (phase portrait)
+    if(trail.length>1){
+      for(var i=1;i<trail.length;i++){
+        var a0=trail[i-1], a1=trail[i];
+        var f=i/trail.length;
+        ctx.strokeStyle=GNOS_PALETTE.primary;
+        ctx.lineWidth=2;
+        ctx.beginPath();
+        ctx.moveTo(X(clampFinite(a0[0],-XMAX,XMAX)),Y(clampFinite(a0[1],-VMAX,VMAX)));
+        ctx.lineTo(X(clampFinite(a1[0],-XMAX,XMAX)),Y(clampFinite(a1[1],-VMAX,VMAX)));
+        ctx.stroke();
+      }
+      var last=trail[trail.length-1];
+      ctx.fillStyle=GNOS_PALETTE.ink;
+      ctx.beginPath(); ctx.arc(X(clampFinite(last[0],-XMAX,XMAX)),Y(clampFinite(last[1],-VMAX,VMAX)),5,0,Math.PI*2); ctx.fill();
+    }
+    // labels
+    ctx.fillStyle=GNOS_PALETTE.ink; ctx.font='12px system-ui,sans-serif';
+    ctx.fillText('x (m)',padL+pw-40,padT+ph+20);
+    ctx.fillText('v (m/s)',6,padT+12);
+    ctx.fillText('-'+XMAX,padL-4,padT+ph+16); ctx.fillText('+'+XMAX,padL+pw-14,padT+ph+16);
+    ctx.fillText('+'+VMAX,4,Y(VMAX)+4); ctx.fillText('-'+VMAX,4,Y(-VMAX)+4);
+    ctx.fillStyle=GNOS_PALETTE.ink; ctx.font='bold 13px system-ui,sans-serif';
+    ctx.fillText('phase portrait (x vs v)',padL+8,padT+16);
+  }
+
+  function readout(){
+    dampingVal.textContent=parseFloat(dampingEl.value).toFixed(2);
+    driveVal.textContent=parseFloat(driveEl.value).toFixed(2);
+    var m=0;
+    for(var i=0;i<amps.length;i++) if(amps[i]>m) m=amps[i];
+    if(!isFinite(m)) m=0;
+    ampEl.textContent=m.toFixed(2);
+    xEl.textContent=isFinite(x)?x.toFixed(2):'0.00';
+    vEl.textContent=isFinite(v)?v.toFixed(2):'0.00';
+  }
+
+  function frame(){ if(!paused){ step(); } draw(); readout(); requestAnimationFrame(frame); }
+
+  function reset(){ dampingEl.value=D0.toFixed(2); driveEl.value=F0.toFixed(2); x=1; v=0; t=0; trail=[]; amps=[]; paused=matchMedia('(prefers-reduced-motion: reduce)').matches; document.getElementById('pause').textContent=paused?'Run':'Pause'; document.getElementById('pause').setAttribute('aria-pressed',String(paused)); readout(); }
+
+  matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',event=>{if(event.matches){paused=true;document.getElementById('pause').textContent='Run';document.getElementById('pause').setAttribute('aria-pressed','true');}});
+  document.getElementById('reset').addEventListener('click',reset);
+  document.getElementById('pause').addEventListener('click',function(){
+    paused=!paused;
+    this.textContent=paused?'Run':'Pause';
+    this.setAttribute('aria-pressed',paused?'true':'false');
+  });
+  dampingEl.addEventListener('input',readout);
+  driveEl.addEventListener('input',readout);
+  document.getElementById('pause').textContent=paused?'Run':'Pause';
+  document.getElementById('pause').setAttribute('aria-pressed',String(paused));
+  readout();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

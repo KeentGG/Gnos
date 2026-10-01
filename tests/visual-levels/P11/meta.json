@@ -1,0 +1,17 @@
+{
+  "id": "P11",
+  "track": "pinepaper",
+  "level": 11,
+  "subject": "math",
+  "title": "Eigenvectors and eigenvalues",
+  "claim": "A learner can identify the directions a transformation preserves and their eigenvalues.",
+  "brief": "Choose x-axis, y-axis, or diagonal for A = diag(2, 1/2); compare v with Av.",
+  "must_include": ["A", "v", "Av", "eigenvector", "eigenvalue", "λ", "interactive selection"],
+  "continuity": ["same matrix and coordinates in diagram and explanation"],
+  "acceptance": ["three choices work in exported HTML iframe", "x λ=2", "y λ=1/2", "diagonal changes direction"],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "ready"
+}

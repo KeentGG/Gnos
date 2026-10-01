@@ -167,6 +167,8 @@ def public_course(plan: dict) -> dict:
         if not isinstance(source_id, str) or not isinstance(source, dict):
             continue
         sources[source_id] = _copy_if_present(source, _PUBLIC_SOURCE_FIELDS)
+        if source.get("type") == "khan-video":
+            sources[source_id]["youtube_id"] = source["youtube_id"]
     result["sources"] = sources
     return result
 

@@ -1,0 +1,20 @@
+[
+  {
+    "cue_id": "contour",
+    "start": 0.0,
+    "end": 5.0,
+    "text": "Predict before we move: this bowl f of x y equals x squared plus y squared has circular level sets. Watch them appear."
+  },
+  {
+    "cue_id": "path",
+    "start": 4.933333333333336,
+    "end": 10.933333333333337,
+    "text": "Now test your prediction: gradient dots step downhill, crossing each circle toward lower values."
+  },
+  {
+    "cue_id": "zoom",
+    "start": 10.933333333333323,
+    "end": 16.933333333333323,
+    "text": "One justified zoom moves inward to reveal the minimum: the dots settle at the center where the bowl is lowest."
+  }
+]

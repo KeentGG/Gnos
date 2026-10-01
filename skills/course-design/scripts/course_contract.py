@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[3]
 COURSE_SCHEMA_VERSION = 2
 PLANNING_STATES = ("current", "planned", "provisional", "retired", "out-of-scope")
-REPRESENTATION_KINDS = ("text", "manim", "image", "simulation", "diagram", "pdf", "exercise")
+REPRESENTATION_KINDS = ("text", "manim", "image", "simulation", "diagram", "pdf", "exercise", "khan")
 
 
 def _available_subjects():
@@ -131,6 +131,15 @@ def _validate_source_registry(source_data):
             if not resolved.is_file() or root not in resolved.parents:
                 raise ValueError(f"{source_id}: local_path must name a repository file")
         nonempty(source.get("type"), f"{source_id}.type")
+        if source["type"] == "khan-video":
+            parsed = urlparse(source.get("url") or "")
+            host = parsed.hostname or ""
+            if (parsed.scheme != "https" or not
+                    (host == "khanacademy.org" or host.endswith(".khanacademy.org")) or
+                    parsed.username or parsed.password or parsed.port or "/v/" not in parsed.path):
+                raise ValueError(f"{source_id}: khan-video requires a Khan Academy video URL")
+            if not re.fullmatch(r"[A-Za-z0-9_-]{11}", str(source.get("youtube_id", ""))):
+                raise ValueError(f"{source_id}: khan-video requires a valid YouTube video ID")
         nonempty(source.get("checked_on"), f"{source_id}.checked_on")
         strings(source.get("sections"), f"{source_id}.sections")
         nonempty(source.get("verification_notes"), f"{source_id}.verification_notes")

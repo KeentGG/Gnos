@@ -1,0 +1,26 @@
+{
+  "id": "P08",
+  "track": "pinepaper",
+  "level": 8,
+  "subject": "chemical-engineering",
+  "title": "Heat model + field + graph",
+  "claim": "A learner can tie heat input to field and time graph.",
+  "brief": "Heater slider drives 1D rod field colors + T(t) graph; model assumptions shown.",
+  "must_include": [
+    "heater W",
+    "T(t)",
+    "assumptions",
+    "degC"
+  ],
+  "continuity": [
+    "degC, watts labeled"
+  ],
+  "acceptance": [
+    "three views share state"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "scaffolded"
+}

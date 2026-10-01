@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "project": "BFS animation 3 cues",
+  "default_voice": "en-US-ChristopherNeural",
+  "aspect_ratio": "16:9",
+  "mode": "silent-preview",
+  "silent": true,
+  "scenes": {
+    "V03Scene": {
+      "title": "BFS visit order A B C",
+      "cues": [
+        {
+          "text": "Cue v03a. Breadth-first search starts at node A. Visit A first. The queue now holds B and C.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "v03a",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "Cue v03b. Next, take node B from the queue and visit it. The queue now holds C.",
+          "audio_file": null,
+          "duration": 5.0,
+          "cue_id": "v03b",
+          "sync_target": "",
+          "pause_after": 0
+        },
+        {
+          "text": "Cue v03c. Finally, take node C from the queue and visit it. The queue is empty. Visit order is A, then B, then C.",
+          "audio_file": null,
+          "duration": 6.0,
+          "cue_id": "v03c",
+          "sync_target": "",
+          "pause_after": 0.8
+        }
+      ],
+      "total_duration": 16.8
+    }
+  }
+}

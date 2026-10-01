@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html data-palette="forest" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Random demand trials</title>
+<style id="simulation-style">
+:root{--surface:#EFE9E1;--ink:#322D29;--muted:#322D29;--primary:#72383D;--soft:#D9D9D9;--line:#D1C7BD;--secondary:#72383D;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+[data-palette="wine"]{--surface:#EDE7C7;--ink:#200E01;--muted:#200E01;--primary:#8B0000;--soft:#EDE7C7;--line:#5B0202;--secondary:#5B0202}
+[data-palette="forest"]{--surface:#FDE5D4;--ink:#001524;--muted:#001524;--primary:#445D48;--soft:#FDE5D4;--line:#445D48;--secondary:#5E3023}
+[data-palette="blue"]{--surface:#E9E6DD;--ink:#000000;--muted:#000000;--primary:#0274BD;--soft:#E9E6DD;--line:#C4AD9D;--secondary:#F57251}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--surface);color:var(--ink)}
+[hidden]{display:none!important}
+.sim-shell{width:100%;max-width:1280px;height:100%;margin:auto;padding:24px;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:16px}
+.sim-header h1{font:600 clamp(22px,2.6vw,30px)/1.2 Georgia,serif;letter-spacing:-.025em;margin:0 0 8px}
+.sim-header p{margin:0;color:var(--muted);max-width:80ch}
+.sim-nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+button{appearance:none;font-family:var(--mono);font-size:13px;font-weight:500;line-height:1.3;min-height:44px;padding:10px 16px;border:1px solid var(--primary);border-radius:3px;background:var(--primary);color:var(--surface);cursor:pointer}
+button.secondary,.sim-nav button{background:transparent;color:var(--primary);border-color:var(--line)}
+.sim-nav button[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--surface)}
+button:hover{text-decoration:underline}button:disabled{background:var(--surface);color:var(--muted);cursor:default}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.sim-panes{min-width:0;min-height:0;display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.25fr);gap:20px;align-items:start}
+.sim-panes[data-view]:not([data-view="both"]){grid-template-columns:minmax(0,1fr)}
+.sim-pane{min-width:0;max-width:100%;padding:20px;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+.sim-pane h2{font-size:16px;margin:0 0 16px;font-weight:600}
+.sim-pane p{margin:10px 0;overflow-wrap:anywhere}
+.sim-pane label{display:block;font-family:var(--mono);font-size:14px;font-weight:500;margin:16px 0 4px}
+input,output{font:inherit;color:inherit}
+input[type="range"]{display:block;width:100%;min-height:44px;margin:0;accent-color:var(--primary)}
+input[type="text"],input[type="number"]{min-height:44px;max-width:100%;border:1px solid var(--line);border-radius:3px;padding:8px;background:var(--surface)}
+input[type="text"]{width:100%}
+.controls,.controls-row,.controls-wrap,.btns,.btnrow,.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ctl,.control,.controls-wrap>div{flex:1 1 220px;min-width:0}
+.sim-pane>.controls:not(.actions){display:block}
+.sim-pane .row input[type="range"]{flex:1 1 120px;width:0}
+.readout,.readouts,.stats{font-variant-numeric:tabular-nums;margin:14px 0;display:flex;gap:12px;flex-wrap:wrap;background:var(--soft);padding:12px;border-radius:3px;color:var(--ink)}
+.readout p{margin:0}.readout strong,.v,.val,output{font-variant-numeric:tabular-nums;font-weight:600}
+.stat{flex:1 1 120px;min-width:0}.stat span,.stat .v{display:block;font-size:20px}
+.pill,.sign-pill{display:inline-block;border:1px solid var(--line);border-radius:3px;padding:4px 8px;font-size:14px}
+.sign-positive{color:var(--primary)}.sign-negative{color:var(--secondary)}
+.hint,.note,.model,.model-note,.axis-note,.small,.muted,.sub,.assump,.assume{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.predict,.prediction-box{padding:12px;border-left:3px solid var(--primary);background:var(--soft);margin:12px 0;font-size:14px}
+.eq,.formula,code,.code{font:14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.eq,.fixedbox{padding:12px;background:var(--surface);border-radius:3px;margin:12px 0}
+canvas,svg{display:block;max-width:min(100%,720px);width:100%;height:auto;max-height:260px;background:var(--surface);border:1px solid var(--line);border-radius:3px;object-fit:contain}
+.node{fill:var(--surface);stroke:var(--ink);stroke-width:2}.node.visited{fill:var(--soft);stroke:var(--primary)}.node.current{fill:var(--surface);stroke:var(--secondary);stroke-width:3}
+.nodelabel{font-size:22px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}.edgelabel{font-size:14px;fill:var(--muted)}
+.status{min-height:3em;font-size:14px}.label{font-size:14px;font-weight:600;margin:12px 0 4px}
+.gauge{flex:1 1 160px;padding:8px}.bar{height:12px;background:var(--line);border-radius:2px;margin:8px 0}.fill{height:100%;background:var(--primary);border-radius:2px}.fill.hot{background:var(--secondary)}
+#alarmBanner{display:none;padding:12px;border:1px solid var(--secondary);color:var(--secondary);background:var(--surface);border-radius:3px}#alarmBanner.show{display:block}#okBanner{padding:12px;color:var(--primary);background:var(--soft);border-radius:3px}#okBanner.hide{display:none}
+table{border-collapse:collapse;width:100%;font-size:14px}caption{text-align:left;font-weight:600;margin-bottom:8px}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;overflow-wrap:anywhere}
+#taskGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.task{min-width:0;min-height:40px;border:1px solid var(--line);border-radius:2px;padding:4px;font-size:14px;text-align:center;background:var(--surface)}.task.success{background:var(--soft);color:var(--primary)}.task.failed{background:var(--surface);color:var(--secondary)}.task.retry{background:var(--surface);color:var(--secondary)}
+#chart{max-width:min(100%,600px);max-height:180px}
+.sim-footer{font-family:var(--mono);font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+@media(max-width:999px){.sim-shell{padding:16px;gap:12px}.sim-panes{grid-template-columns:minmax(0,1fr)}.sim-pane{padding:16px}.sim-nav button[data-view="both"]{display:none}.sim-header h1{font-size:23px}.sim-header p{font-size:14px}.sim-pane label{margin-top:12px}canvas,svg{max-height:240px}.sim-pane h2{margin-bottom:12px}}
+@media(max-height:650px){.sim-shell{padding:12px;gap:8px}.sim-pane{padding:12px}canvas,svg{max-height:220px}.sim-header h1{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+[data-palette="blue"] button{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+[data-palette="blue"] button.secondary,[data-palette="blue"] .sim-nav button{background:transparent;color:var(--ink);border-color:var(--ink)}
+[data-palette="blue"] .sim-nav button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+[data-palette="blue"] .sign-positive,[data-palette="blue"] .sign-negative{color:var(--ink)}
+</style>
+</head>
+<body>
+<main aria-label="Interactive experiment" class="sim-shell">
+<header class="sim-header"><h1>Random demand trials</h1><p>Predict the mean and spread of 100 draws. Repeat the same seed to separate variation from a changed model.</p></header>
+<nav aria-label="Choose experiment view" class="sim-nav">
+<button aria-pressed="true" data-view="both" type="button">Together</button>
+<button aria-pressed="false" data-view="controls" type="button">Controls</button>
+<button aria-pressed="false" data-view="result" type="button">Result</button>
+<button aria-pressed="false" data-view="model" type="button">Model</button>
+</nav>
+<div class="sim-panes" data-view="both">
+<section aria-label="Controls" class="sim-pane" data-pane="controls"><h2>Change and compare</h2><div class="controls">
+<button id="runBtn" type="button">run 100</button>
+<button class="secondary" id="resetBtn" type="button">Reset</button>
+<label class="seedrow">seed <input aria-label="random seed" id="seedInput" step="1" type="number" value="7"/></label>
+</div></section>
+<section aria-label="Result" class="sim-pane" data-pane="result"><h2>Read the result</h2><div><div aria-live="polite" class="stats">
+<div class="stat"><div class="k">trials (n)</div><div class="v" id="nOut">0</div></div>
+<div class="stat"><div class="k">mean (USD)</div><div class="v" id="meanOut">—</div></div>
+<div class="stat"><div class="k">sd (USD, sample)</div><div class="v" id="sdOut">—</div></div>
+</div><canvas aria-label="histogram of demand draws in USD" class="histogram" height="320" id="hist" role="img" width="1000"></canvas></div></section>
+<section aria-label="Model" class="sim-pane" data-pane="model" hidden=""><h2>Model and assumptions</h2><p>Independent Normal draws: mean 100 USD, standard deviation 15 USD. Each run adds 100 trials. Values are illustrative demand amounts.</p><p>Reset clears trials and restores the current seed. The same seed repeats the same sequence. Changing it changes the sample, while the distribution stays fixed.</p><p>Histogram: 5 USD bins from 40 to 160 USD, values outside this range remain in the statistics but are omitted from the plot. Dashed line: sample mean. Dotted line: model mean, 100 USD.</p></section>
+</div>
+<footer class="sim-footer">Compare your prediction with the result.</footer>
+</main>
+<script id="simulation-shell-script">
+(() => {
+  const panes = document.querySelector('.sim-panes');
+  const buttons = [...document.querySelectorAll('.sim-nav button')];
+  const narrow = matchMedia('(max-width:999px)');
+  let view = narrow.matches ? 'controls' : 'both';
+  function select(next) {
+    view = next;
+    panes.dataset.view = view;
+    panes.querySelectorAll('[data-pane]').forEach(pane => {
+      pane.hidden = view === 'both' ? pane.dataset.pane === 'model' : pane.dataset.pane !== view;
+    });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
+    window.dispatchEvent(new Event('resize'));
+  }
+  buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.view)));
+  narrow.addEventListener('change', () => {if(narrow.matches && view === 'both') select('controls')});
+  select(view);
+})();
+</script>
+<script id="simulation-model-script">const GNOS_PALETTE = (() => {const s=getComputedStyle(document.documentElement);return {surface:s.getPropertyValue('--surface').trim(),ink:s.getPropertyValue('--ink').trim(),primary:s.getPropertyValue('--primary').trim(),secondary:s.getPropertyValue('--secondary').trim(),line:s.getPropertyValue('--line').trim()}})();
+
+(function(){
+"use strict";
+var MEAN=100, SD=15, BATCH=100;
+var data=[];
+var seedEl=document.getElementById("seedInput");
+var runBtn=document.getElementById("runBtn");
+var resetBtn=document.getElementById("resetBtn");
+var nOut=document.getElementById("nOut");
+var meanOut=document.getElementById("meanOut");
+var sdOut=document.getElementById("sdOut");
+var canvas=document.getElementById("hist");
+var ctx=canvas.getContext("2d");
+// Seeded PRNG (mulberry32) + Box-Muller normal
+var rngState=0;
+function setSeed(s){rngState=(s>>>0)||1;}
+function rand(){rngState|=0;rngState=(rngState+0x6D2B79F5)|0;var t=Math.imul(rngState^(rngState>>>15),1|rngState);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;}
+var spare=null;
+function randn(){if(spare!==null){var v=spare;spare=null;return v;}var u=0,v=0;while(u===0)u=rand();while(v===0)v=rand();var m=Math.sqrt(-2*Math.log(u));spare=m*Math.sin(2*Math.PI*v);return m*Math.cos(2*Math.PI*v);}
+function drawOne(){return MEAN+SD*randn();}
+function stats(a){var n=a.length;if(n===0)return{n:0,mean:NaN,sd:NaN};var s=0,i;for(i=0;i<n;i++)s+=a[i];var m=s/n;if(n<2)return{n:n,mean:m,sd:0};var q=0;for(i=0;i<n;i++){var d=a[i]-m;q+=d*d;}return{n:n,mean:m,sd:Math.sqrt(q/(n-1))};}
+function fmt(x){return isNaN(x)?"—":x.toFixed(2)+" USD";}
+function updateReadout(){var st=stats(data);nOut.textContent=String(st.n);meanOut.textContent=fmt(st.mean);sdOut.textContent=fmt(st.sd);}
+function fitCanvas(){var r=canvas.getBoundingClientRect();var w=Math.max(280,Math.round(r.width));var h=canvas.clientHeight||320;var dpr=window.devicePixelRatio||1;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
+var LO=40,HI=160,BIN=5;
+function drawHistogram(){
+fitCanvas();
+var r=canvas.getBoundingClientRect();var W=r.width,H=r.height||320;
+ctx.clearRect(0,0,W,H);
+var padL=52,padR=14,padT=16,padB=40;
+var pw=W-padL-padR,ph=H-padT-padB;
+var nb=Math.round((HI-LO)/BIN);
+var counts=new Array(nb).fill(0);
+for(var i=0;i<data.length;i++){var x=data[i];if(x<LO||x>=HI)continue;var b=Math.floor((x-LO)/BIN);counts[b]++;}
+var maxC=1;for(var j=0;j<nb;j++)if(counts[j]>maxC)maxC=counts[j];
+// axes
+ctx.strokeStyle=GNOS_PALETTE.ink;ctx.lineWidth=1;
+ctx.beginPath();ctx.moveTo(padL,padT);ctx.lineTo(padL,padT+ph);ctx.lineTo(padL+pw,padT+ph);ctx.stroke();
+ctx.fillStyle=GNOS_PALETTE.ink;ctx.font="12px system-ui,sans-serif";ctx.textAlign="center";
+for(var t=40;t<=160;t+=20){var px=padL+pw*(t-LO)/(HI-LO);ctx.fillText(t+" USD",px,padT+ph+20);ctx.strokeStyle=GNOS_PALETTE.ink;ctx.beginPath();ctx.moveTo(px,padT);ctx.lineTo(px,padT+ph);ctx.stroke();}
+ctx.textAlign="right";
+for(var g=0;g<=4;g++){var val=Math.round(maxC*g/4);var py=padT+ph-(ph*g/4);ctx.fillText(String(val),padL-6,py+4);ctx.strokeStyle=GNOS_PALETTE.ink;ctx.beginPath();ctx.moveTo(padL,py);ctx.lineTo(padL+pw,py);ctx.stroke();}
+// title: histogram
+ctx.fillStyle=GNOS_PALETTE.ink;ctx.textAlign="left";ctx.font="bold 13px system-ui,sans-serif";
+ctx.fillText("histogram of demand (USD, n="+data.length+")",padL,padT-2+12-12+4);
+// bars
+var bw=pw/nb;
+ctx.fillStyle=GNOS_PALETTE.primary;
+for(var k=0;k<nb;k++){var h=ph*counts[k]/maxC;var bx=padL+k*bw+1;var by=padT+ph-h;ctx.fillRect(bx,by,Math.max(1,bw-2),h);}
+if(data.length===0){ctx.fillStyle=GNOS_PALETTE.ink;ctx.textAlign="center";ctx.font="14px system-ui,sans-serif";ctx.fillText("No trials yet — predict, then press run 100.",padL+pw/2,padT+ph/2);return;}
+var st=stats(data);
+// sample mean line (dashed)
+var mx=padL+pw*(st.mean-LO)/(HI-LO);
+ctx.strokeStyle=GNOS_PALETTE.ink;ctx.setLineDash([6,4]);ctx.lineWidth=2;
+ctx.beginPath();ctx.moveTo(mx,padT);ctx.lineTo(mx,padT+ph);ctx.stroke();ctx.setLineDash([]);
+// population mean 100 line (dotted)
+var px0=padL+pw*(100-LO)/(HI-LO);
+ctx.strokeStyle=GNOS_PALETTE.ink;ctx.setLineDash([2,3]);ctx.lineWidth=1.5;
+ctx.beginPath();ctx.moveTo(px0,padT);ctx.lineTo(px0,padT+ph);ctx.stroke();ctx.setLineDash([]);
+ctx.fillStyle=GNOS_PALETTE.ink;ctx.textAlign="left";ctx.font="12px system-ui,sans-serif";
+ctx.fillText("mean "+st.mean.toFixed(1),Math.min(mx+6,padL+pw-80),padT+14);
+}
+function run100(){for(var i=0;i<BATCH;i++)data.push(drawOne());updateReadout();drawHistogram();}
+function reset(){data=[];spare=null;var s=parseInt(seedEl.value,10);if(isNaN(s))s=7;setSeed(s);updateReadout();drawHistogram();}
+runBtn.addEventListener("click",run100);
+resetBtn.addEventListener("click",reset);
+seedEl.addEventListener("change",reset);
+window.addEventListener("resize",drawHistogram);
+setSeed(parseInt(seedEl.value,10)||7);
+updateReadout();drawHistogram();
+})();
+</script>
+</body>
+</html>

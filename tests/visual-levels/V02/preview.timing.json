@@ -1,0 +1,14 @@
+[
+  {
+    "cue_id": "v02a",
+    "start": 0.0,
+    "end": 5.0,
+    "text": "Watch the secant through x equals 2 and x equals 3 on f of x equals x squared. Its slope is 5."
+  },
+  {
+    "cue_id": "v02b",
+    "start": 4.933333333333336,
+    "end": 10.933333333333337,
+    "text": "Now shrink the second point toward 2. The refined secant reads 4.25 and lands on the tangent of slope 4."
+  }
+]

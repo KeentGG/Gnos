@@ -102,9 +102,9 @@ methods and software behavior. Carry the system, frame, last sound prediction,
 and approximation through the handoff.
 
 Use [Excalidraw](../../excalidraw/SKILL.md) for the fixed system boundary,
-force diagram, or circuit. Use [Pinepaper](../../pinepaper/SKILL.md) when
-that system's state and plotted quantity must share a clock or a learner
-control. Use Manim for a narrated rendered lesson and PDF for apparatus
+force diagram, or circuit. Use [JSXGraph](../../jsxgraph/SKILL.md) for quantity
+plots that share a clock or learner control. Use Pinepaper when a composed
+system scene carries the explanation. Use Manim for a narrated rendered lesson and PDF for apparatus
 notes, derivations, or uncertainty tables.
 
 Catalog starting points include `openstax-physics-1`, `mit-mechanics`,

@@ -1,0 +1,30 @@
+{
+  "title": "Wave propagation stable camera",
+  "concept_id": "phys-wave-propagation",
+  "prerequisite": "Learner can read peaks and troughs on a sine wave.",
+  "success_check": "Learner predicts where the tracked crest moves next before replaying, then compares.",
+  "aspect_ratio": "16:9",
+  "scenes": [
+    {
+      "id": "V09Scene",
+      "title": "Traveling wave with fixed camera",
+      "concept_target": "Follow wave propagation with a stable frame while a lambda callout tracks one crest.",
+      "narration_cues": [
+        {
+          "cue_id": "wave_shown",
+          "text": "A traveling sine wave appears on a fixed camera. Watch one crest as the wave moves in a steady direction, one wavelength lambda from the next crest.",
+          "visible_objects": ["axes", "wave", "crest_dot", "wavelength_arrow"],
+          "change": "The wave, one crest dot, and the lambda wavelength arrow appear in a stable frame.",
+          "duration": 5.0
+        },
+        {
+          "cue_id": "crest_tracked",
+          "text": "The highlighted crest is tracked in the same direction with no camera motion. The lambda callout follows the crest so propagation stays clear.",
+          "visible_objects": ["crest_dot", "wavelength_arrow", "lambda_label", "direction_arrow"],
+          "change": "The crest dot, wavelength arrow, and lambda callout glide right as the phase advances.",
+          "duration": 6.0
+        }
+      ]
+    }
+  ]
+}

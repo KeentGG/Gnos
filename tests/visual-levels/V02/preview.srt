@@ -1,0 +1,7 @@
+1
+00:00:00,000 --> 00:00:05,000
+Watch the secant through x equals 2 and x equals 3 on f of x equals x squared. Its slope is 5.
+
+2
+00:00:04,933 --> 00:00:10,933
+Now shrink the second point toward 2. The refined secant reads 4.25 and lands on the tangent of slope 4.

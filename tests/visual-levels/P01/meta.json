@@ -1,0 +1,28 @@
+{
+  "id": "P01",
+  "track": "pinepaper",
+  "level": 1,
+  "subject": "math",
+  "title": "Fixed triangle sides",
+  "claim": "A learner can read three labeled sides of one triangle.",
+  "brief": "Diagram: triangle with sides a,b,c labeled; caption states relation to inspect.",
+  "must_include": [
+    "side a",
+    "side b",
+    "side c",
+    "triangle"
+  ],
+  "continuity": [
+    "math symbols italic"
+  ],
+  "acceptance": [
+    "3 side labels verbatim",
+    "renders in iframe"
+  ],
+  "skill_route": "skills/pinepaper/SKILL.md",
+  "output": "output.html",
+  "producer": "pinepaper-mcp",
+  "fallback": "",
+  "status": "ready",
+  "note": "live session: start_job->batch_execute(5 items)->validate(1 quirk: triangle flagged UNKNOWN_ITEM_TYPE but renders)->end_job screenshot; use polygon sides:3 for clean validate"
+}

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html data-palette="forest" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Sampling and thresholds</title>
+<style id="simulation-style">
+:root{--surface:#EFE9E1;--ink:#322D29;--muted:#322D29;--primary:#72383D;--soft:#D9D9D9;--line:#D1C7BD;--secondary:#72383D;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+[data-palette="wine"]{--surface:#EDE7C7;--ink:#200E01;--muted:#200E01;--primary:#8B0000;--soft:#EDE7C7;--line:#5B0202;--secondary:#5B0202}
+[data-palette="forest"]{--surface:#FDE5D4;--ink:#001524;--muted:#001524;--primary:#445D48;--soft:#FDE5D4;--line:#445D48;--secondary:#5E3023}
+[data-palette="blue"]{--surface:#E9E6DD;--ink:#000000;--muted:#000000;--primary:#0274BD;--soft:#E9E6DD;--line:#C4AD9D;--secondary:#F57251}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--surface);color:var(--ink)}
+[hidden]{display:none!important}
+.sim-shell{width:100%;max-width:1280px;height:100%;margin:auto;padding:24px;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:16px}
+.sim-header h1{font:600 clamp(22px,2.6vw,30px)/1.2 Georgia,serif;letter-spacing:-.025em;margin:0 0 8px}
+.sim-header p{margin:0;color:var(--muted);max-width:80ch}
+.sim-nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+button{appearance:none;font-family:var(--mono);font-size:13px;font-weight:500;line-height:1.3;min-height:44px;padding:10px 16px;border:1px solid var(--primary);border-radius:3px;background:var(--primary);color:var(--surface);cursor:pointer}
+button.secondary,.sim-nav button{background:transparent;color:var(--primary);border-color:var(--line)}
+.sim-nav button[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--surface)}
+button:hover{text-decoration:underline}button:disabled{background:var(--surface);color:var(--muted);cursor:default}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.sim-panes{min-width:0;min-height:0;display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.25fr);gap:20px;align-items:start}
+.sim-panes[data-view]:not([data-view="both"]){grid-template-columns:minmax(0,1fr)}
+.sim-pane{min-width:0;max-width:100%;padding:20px;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+.sim-pane h2{font-size:16px;margin:0 0 16px;font-weight:600}
+.sim-pane p{margin:10px 0;overflow-wrap:anywhere}
+.sim-pane label{display:block;font-family:var(--mono);font-size:14px;font-weight:500;margin:16px 0 4px}
+input,output{font:inherit;color:inherit}
+input[type="range"]{display:block;width:100%;min-height:44px;margin:0;accent-color:var(--primary)}
+input[type="text"],input[type="number"]{min-height:44px;max-width:100%;border:1px solid var(--line);border-radius:3px;padding:8px;background:var(--surface)}
+input[type="text"]{width:100%}
+.controls,.controls-row,.controls-wrap,.btns,.btnrow,.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ctl,.control,.controls-wrap>div{flex:1 1 220px;min-width:0}
+.sim-pane>.controls:not(.actions){display:block}
+.sim-pane .row input[type="range"]{flex:1 1 120px;width:0}
+.readout,.readouts,.stats{font-variant-numeric:tabular-nums;margin:14px 0;display:flex;gap:12px;flex-wrap:wrap;background:var(--soft);padding:12px;border-radius:3px;color:var(--ink)}
+.readout p{margin:0}.readout strong,.v,.val,output{font-variant-numeric:tabular-nums;font-weight:600}
+.stat{flex:1 1 120px;min-width:0}.stat span,.stat .v{display:block;font-size:20px}
+.pill,.sign-pill{display:inline-block;border:1px solid var(--line);border-radius:3px;padding:4px 8px;font-size:14px}
+.sign-positive{color:var(--primary)}.sign-negative{color:var(--secondary)}
+.hint,.note,.model,.model-note,.axis-note,.small,.muted,.sub,.assump,.assume{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.predict,.prediction-box{padding:12px;border-left:3px solid var(--primary);background:var(--soft);margin:12px 0;font-size:14px}
+.eq,.formula,code,.code{font:14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.eq,.fixedbox{padding:12px;background:var(--surface);border-radius:3px;margin:12px 0}
+canvas,svg{display:block;max-width:min(100%,720px);width:100%;height:auto;max-height:260px;background:var(--surface);border:1px solid var(--line);border-radius:3px;object-fit:contain}
+.node{fill:var(--surface);stroke:var(--ink);stroke-width:2}.node.visited{fill:var(--soft);stroke:var(--primary)}.node.current{fill:var(--surface);stroke:var(--secondary);stroke-width:3}
+.nodelabel{font-size:22px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}.edgelabel{font-size:14px;fill:var(--muted)}
+.status{min-height:3em;font-size:14px}.label{font-size:14px;font-weight:600;margin:12px 0 4px}
+.gauge{flex:1 1 160px;padding:8px}.bar{height:12px;background:var(--line);border-radius:2px;margin:8px 0}.fill{height:100%;background:var(--primary);border-radius:2px}.fill.hot{background:var(--secondary)}
+#alarmBanner{display:none;padding:12px;border:1px solid var(--secondary);color:var(--secondary);background:var(--surface);border-radius:3px}#alarmBanner.show{display:block}#okBanner{padding:12px;color:var(--primary);background:var(--soft);border-radius:3px}#okBanner.hide{display:none}
+table{border-collapse:collapse;width:100%;font-size:14px}caption{text-align:left;font-weight:600;margin-bottom:8px}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;overflow-wrap:anywhere}
+#taskGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.task{min-width:0;min-height:40px;border:1px solid var(--line);border-radius:2px;padding:4px;font-size:14px;text-align:center;background:var(--surface)}.task.success{background:var(--soft);color:var(--primary)}.task.failed{background:var(--surface);color:var(--secondary)}.task.retry{background:var(--surface);color:var(--secondary)}
+#chart{max-width:min(100%,600px);max-height:180px}
+.sim-footer{font-family:var(--mono);font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+@media(max-width:999px){.sim-shell{padding:16px;gap:12px}.sim-panes{grid-template-columns:minmax(0,1fr)}.sim-pane{padding:16px}.sim-nav button[data-view="both"]{display:none}.sim-header h1{font-size:23px}.sim-header p{font-size:14px}.sim-pane label{margin-top:12px}canvas,svg{max-height:240px}.sim-pane h2{margin-bottom:12px}}
+@media(max-height:650px){.sim-shell{padding:12px;gap:8px}.sim-pane{padding:12px}canvas,svg{max-height:220px}.sim-header h1{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+[data-palette="blue"] button{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+[data-palette="blue"] button.secondary,[data-palette="blue"] .sim-nav button{background:transparent;color:var(--ink);border-color:var(--ink)}
+[data-palette="blue"] .sim-nav button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+[data-palette="blue"] .sign-positive,[data-palette="blue"] .sign-negative{color:var(--ink)}
+</style>
+</head>
+<body>
+<main aria-label="Interactive experiment" class="sim-shell">
+<header class="sim-header"><h1>Sampling and thresholds</h1><p>Predict the fraction above a threshold. Compare the observed sample with its expected fraction.</p></header>
+<nav aria-label="Choose experiment view" class="sim-nav">
+<button aria-pressed="true" data-view="both" type="button">Together</button>
+<button aria-pressed="false" data-view="controls" type="button">Controls</button>
+<button aria-pressed="false" data-view="result" type="button">Result</button>
+<button aria-pressed="false" data-view="model" type="button">Model</button>
+</nav>
+<div class="sim-panes" data-view="both">
+<section aria-label="Controls" class="sim-pane" data-pane="controls"><h2>Change and compare</h2><div aria-label="Simulation controls" class="controls" role="group">
+<label for="threshold">threshold (probability units, 0..1): <span class="val" id="thresholdVal">0.50</span></label>
+<input aria-label="threshold" id="threshold" max="1" min="0" step="0.01" type="range" value="0.5"/>
+<div class="hint">Vertical line on the histogram marks the threshold.</div>
+<label for="n">n (sample size, number of draws, 10..1000): <span class="val" id="nVal">100</span></label>
+<input aria-label="n" id="n" max="1000" min="10" step="10" type="range" value="100"/>
+<div class="hint">Changing n draws a fresh uniform sample of that size.</div>
+<div class="row">
+<button class="secondary" id="resample" type="button">Resample</button>
+<button id="reset" type="button">Reset</button>
+</div>
+</div></section>
+<section aria-label="Result" class="sim-pane" data-pane="result"><h2>Read the result</h2><div class="plotbox">
+<canvas aria-label="histogram of uniform draws with threshold line" height="420" id="hist" role="img" width="760"></canvas>
+<div aria-live="polite" class="readout">
+<div class="stat"><b>count above threshold</b><span id="countAbove">0</span></div>
+<div class="stat"><b>fraction above (observed)</b><span id="fracAbove">0.00</span></div>
+<div class="stat"><b>expected fraction (1 − threshold)</b><span id="fracExpected">0.50</span></div>
+</div>
+<p class="hint" id="caption">20 equal bins of Uniform(0,1) draws. Brown line: threshold. Axes: value (0–1), count.</p>
+</div></section>
+<section aria-label="Model" class="sim-pane" data-pane="model" hidden=""><h2>Model and assumptions</h2><p class="model">Model: <code>X[i] ~ Uniform(0,1)</code>, i.i.d. draws in probability units. Count above = number of draws with <code>X &gt; threshold</code>. Expected fraction above = <code>1 − threshold</code>.</p><div class="assumptions">
+<strong>assumptions:</strong> draws are independent and identically distributed Uniform(0,1); the histogram uses 20 equal-width bins over [0,1]; the threshold line does not resample the data, only re-counts; reset restores threshold = 0.5 and n = 100 with a fresh sample. This simulation illustrates sampling variability, not empirical evidence for any real dataset.
+  </div></section>
+</div>
+<footer class="sim-footer">Compare your prediction with the result.</footer>
+</main>
+<script id="simulation-shell-script">
+(() => {
+  const panes = document.querySelector('.sim-panes');
+  const buttons = [...document.querySelectorAll('.sim-nav button')];
+  const narrow = matchMedia('(max-width:999px)');
+  let view = narrow.matches ? 'controls' : 'both';
+  function select(next) {
+    view = next;
+    panes.dataset.view = view;
+    panes.querySelectorAll('[data-pane]').forEach(pane => {
+      pane.hidden = view === 'both' ? pane.dataset.pane === 'model' : pane.dataset.pane !== view;
+    });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
+    window.dispatchEvent(new Event('resize'));
+  }
+  buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.view)));
+  narrow.addEventListener('change', () => {if(narrow.matches && view === 'both') select('controls')});
+  select(view);
+})();
+</script>
+<script id="simulation-model-script">const GNOS_PALETTE = (() => {const s=getComputedStyle(document.documentElement);return {surface:s.getPropertyValue('--surface').trim(),ink:s.getPropertyValue('--ink').trim(),primary:s.getPropertyValue('--primary').trim(),secondary:s.getPropertyValue('--secondary').trim(),line:s.getPropertyValue('--line').trim()}})();
+
+(function(){
+  "use strict";
+  var BINS = 20;
+  var DEFAULT_T = 0.5, DEFAULT_N = 100;
+  var thresholdEl = document.getElementById('threshold');
+  var nEl = document.getElementById('n');
+  var thresholdVal = document.getElementById('thresholdVal');
+  var nVal = document.getElementById('nVal');
+  var countEl = document.getElementById('countAbove');
+  var fracEl = document.getElementById('fracAbove');
+  var expEl = document.getElementById('fracExpected');
+  var canvas = document.getElementById('hist');
+  var ctx = canvas.getContext('2d');
+  var draws = [];
+
+  function resample(n){
+    draws = new Array(n);
+    for(var i=0;i<n;i++){ draws[i] = Math.random(); }
+  }
+
+  function binCounts(){
+    var counts = new Array(BINS).fill(0);
+    for(var i=0;i<draws.length;i++){
+      var b = Math.min(BINS-1, Math.floor(draws[i]*BINS));
+      counts[b]++;
+    }
+    return counts;
+  }
+
+  function fitCanvas(){
+    var r = canvas.getBoundingClientRect();
+    var cssW = Math.max(300, r.width || 760);
+    var cssH = cssW * (420/760);
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {w: cssW, h: cssH};
+  }
+
+  function draw(){
+    var size = fitCanvas();
+    var W = size.w, H = size.h;
+    var padL=44, padR=12, padT=14, padB=34;
+    var pw = W-padL-padR, ph = H-padT-padB;
+    var counts = binCounts();
+    var maxC = 1;
+    for(var i=0;i<counts.length;i++){ if(counts[i]>maxC) maxC=counts[i]; }
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle=GNOS_PALETTE.ink; ctx.fillRect(0,0,W,H);
+    // gridlines
+    ctx.strokeStyle=GNOS_PALETTE.ink; ctx.lineWidth=1;
+    ctx.fillStyle=GNOS_PALETTE.ink; ctx.font='11px system-ui,sans-serif'; ctx.textAlign='right';
+    var rows=4;
+    for(var g=0; g<=rows; g++){
+      var yv = padT + ph - (ph*g/rows);
+      ctx.beginPath(); ctx.moveTo(padL,yv); ctx.lineTo(padL+pw,yv); ctx.stroke();
+      ctx.fillText(String(Math.round(maxC*g/rows)), padL-6, yv+4);
+    }
+    // bars
+    var gap=2;
+    var bw = pw/BINS;
+    for(var b=0;b<BINS;b++){
+      var h = ph * (counts[b]/maxC);
+      var x = padL + b*bw + gap/2;
+      var y = padT + ph - h;
+      var t = parseFloat(thresholdEl.value);
+      var binLo = b/BINS, binHi=(b+1)/BINS;
+      var above = binLo >= t;
+      ctx.fillStyle = above ? GNOS_PALETTE.ink : GNOS_PALETTE.ink;
+      ctx.fillRect(x, y, bw-gap, h);
+      void binHi;
+    }
+    // axes
+    ctx.strokeStyle=GNOS_PALETTE.ink; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(padL,padT); ctx.lineTo(padL,padT+ph); ctx.lineTo(padL+pw,padT+ph); ctx.stroke();
+    // x ticks
+    ctx.fillStyle=GNOS_PALETTE.ink; ctx.textAlign='center';
+    for(var q=0;q<=4;q++){
+      var tx = padL + pw*q/4;
+      ctx.fillText((q/4).toFixed(2), tx, padT+ph+16);
+    }
+    ctx.fillText('probability units', padL+pw/2, padT+ph+30);
+    ctx.save(); ctx.translate(12, padT+ph/2); ctx.rotate(-Math.PI/2); ctx.fillText('bin count',0,0); ctx.restore();
+    // threshold line
+    var t2 = parseFloat(thresholdEl.value);
+    var lx = padL + t2*pw;
+    ctx.strokeStyle=GNOS_PALETTE.ink; ctx.lineWidth=2.5;
+    ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(lx,padT); ctx.lineTo(lx,padT+ph); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle=GNOS_PALETTE.ink; ctx.textAlign = t2>0.85 ? 'right' : 'left';
+    ctx.font='bold 12px system-ui,sans-serif';
+    ctx.fillText('threshold '+t2.toFixed(2), t2>0.85?lx-6:lx+6, padT+12);
+  }
+
+  function updateReadout(){
+    var t = parseFloat(thresholdEl.value);
+    var c = 0;
+    for(var i=0;i<draws.length;i++){ if(draws[i] > t) c++; }
+    var frac = draws.length ? c/draws.length : 0;
+    countEl.textContent = c + ' / ' + draws.length;
+    fracEl.textContent = frac.toFixed(3);
+    expEl.textContent = (1-t).toFixed(2);
+    thresholdVal.textContent = t.toFixed(2);
+    nVal.textContent = String(draws.length);
+  }
+
+  function refresh(){ updateReadout(); draw(); }
+
+  thresholdEl.addEventListener('input', function(){ refresh(); });
+  nEl.addEventListener('input', function(){
+    var n = parseInt(nEl.value,10);
+    resample(n);
+    refresh();
+  });
+  document.getElementById('resample').addEventListener('click', function(){
+    resample(parseInt(nEl.value,10));
+    refresh();
+  });
+  document.getElementById('reset').addEventListener('click', function(){
+    thresholdEl.value = String(DEFAULT_T);
+    nEl.value = String(DEFAULT_N);
+    resample(DEFAULT_N);
+    refresh();
+  });
+  window.addEventListener('resize', function(){ draw(); });
+
+  resample(DEFAULT_N);
+  refresh();
+})();
+</script>
+</body>
+</html>
